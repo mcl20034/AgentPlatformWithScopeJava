@@ -44,9 +44,11 @@ class AuthenticationFlowIntegrationTest {
         assertThat(admin.get("/api/v1/ping").statusCode()).isEqualTo(HttpStatus.OK.value());
 
         HttpServer fakeModel = HttpServer.create(new InetSocketAddress("127.0.0.1", 0), 0);
+        java.util.concurrent.atomic.AtomicBoolean contextSeen=new java.util.concurrent.atomic.AtomicBoolean(false);
         fakeModel.createContext("/models", exchange -> { exchange.sendResponseHeaders(200, 0); exchange.getResponseBody().close(); });
         fakeModel.createContext("/chat/completions", exchange -> {
             String request = new String(exchange.getRequestBody().readAllBytes(), java.nio.charset.StandardCharsets.UTF_8);
+            if(request.contains("最近会话上下文"))contextSeen.set(true);
             String content = request.contains("Elasticsearch 查询规划器")
                     ? (request.contains("上一次生成的查询计划未通过校验") ? "{\"filters\":[{\"field\":\"title\",\"operator\":\"match\",\"value\":\"测试\"}],\"size\":10}" : request.contains("截断测试") ? "{\"filters\":[" : "{\"filters\":[{\"field\":\"title\",\"operator\":\"match\",\"value\":\"测试\"}],\"size\":10}")
                     : "查询到 1 条符合条件的记录。";
@@ -103,6 +105,20 @@ class AuthenticationFlowIntegrationTest {
         String truncatedStatus="QUEUED";
         for(int i=0;i<60;i++){truncatedStatus=jdbc.queryForObject("SELECT status FROM analysis_task WHERE id=?",String.class,truncatedTask.get("taskId").asText());if(!java.util.List.of("QUEUED","RUNNING").contains(truncatedStatus))break;Thread.sleep(100);}
         assertThat(truncatedStatus).isEqualTo("COMPLETED");
+        assertThat(contextSeen).isTrue();
+        String completedMessage=jdbc.queryForObject("SELECT assistant_message_id FROM analysis_task WHERE id=?",String.class,task.get("taskId").asText());
+        admin.put("/api/v1/chat/messages/"+completedMessage+"/feedback","{\"rating\":\"HELPFUL\",\"comment\":\"结果准确\"}");
+        assertThat(jdbc.queryForObject("SELECT feedback_rating FROM chat_message WHERE id=?",String.class,completedMessage)).isEqualTo("HELPFUL");
+
+        JsonNode clarificationConversation=admin.post("/api/v1/chat/conversations",mapper.writeValueAsString(java.util.Map.of("modelId",model.get("id").asText(),"sourceId",source.get("id").asText())));
+        JsonNode clarificationTask=admin.post("/api/v1/chat/conversations/"+clarificationConversation.get("id").asText()+"/messages","{\"content\":\"看看\"}");
+        for(int i=0;i<30;i++){if(Boolean.TRUE.equals(jdbc.queryForObject("SELECT clarification_requested FROM analysis_task WHERE id=?",Boolean.class,clarificationTask.get("taskId").asText())))break;Thread.sleep(50);}
+        assertThat(jdbc.queryForObject("SELECT clarification_requested FROM analysis_task WHERE id=?",Boolean.class,clarificationTask.get("taskId").asText())).isTrue();
+
+        JsonNode evaluationCase=admin.post("/api/v1/admin/evaluations/cases",mapper.writeValueAsString(java.util.Map.of("name","新闻查询基准","question","查找测试记录","sourceType","ELASTICSEARCH","expectedTerms",java.util.List.of("测试"))));
+        JsonNode evaluationRun=admin.post("/api/v1/admin/evaluations/cases/"+evaluationCase.get("id").asText()+"/runs",mapper.writeValueAsString(java.util.Map.of("modelId",model.get("id").asText(),"sourceId",source.get("id").asText())));
+        String evaluationStatus="RUNNING";for(int i=0;i<60;i++){evaluationStatus=jdbc.queryForObject("SELECT status FROM evaluation_run WHERE id=?",String.class,evaluationRun.get("runId").asText());if(!"RUNNING".equals(evaluationStatus))break;Thread.sleep(100);}
+        assertThat(evaluationStatus).isEqualTo("COMPLETED");assertThat(jdbc.queryForObject("SELECT score FROM evaluation_run WHERE id=?",Double.class,evaluationRun.get("runId").asText())).isEqualTo(1.0);
         fakeModel.stop(0);
 
         JsonNode created = admin.post("/api/v1/admin/users", """
