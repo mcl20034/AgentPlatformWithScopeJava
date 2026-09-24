@@ -10,6 +10,7 @@ agent-platform-data/
 *.jar
 *.war
 *.zip
+release/
 hs_err_pid*
 replay_pid*
 error.txt

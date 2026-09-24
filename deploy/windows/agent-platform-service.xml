@@ -1,0 +1,19 @@
+<service>
+  <id>AgentPlatform</id>
+  <name>Agent Platform</name>
+  <description>Intelligent analysis platform backend</description>
+  <executable>powershell.exe</executable>
+  <arguments>-NoProfile -ExecutionPolicy Bypass -File "%BASE%\launcher.ps1"</arguments>
+  <workingdirectory>%BASE%\current</workingdirectory>
+  <logpath>C:\ProgramData\AgentPlatform\service-logs</logpath>
+  <log mode="roll-by-size-time">
+    <sizeThreshold>10240</sizeThreshold>
+    <pattern>yyyyMMdd</pattern>
+    <autoRollAtTime>00:00:00</autoRollAtTime>
+    <zipOlderThanNumDays>7</zipOlderThanNumDays>
+    <zipDateFormat>yyyyMM</zipDateFormat>
+  </log>
+  <stoptimeout>45sec</stoptimeout>
+  <onfailure action="restart" delay="5 sec" />
+  <onfailure action="restart" delay="15 sec" />
+</service>

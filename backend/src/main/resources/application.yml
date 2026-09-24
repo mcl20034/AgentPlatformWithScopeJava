@@ -15,7 +15,15 @@ spring:
     multipart:
       max-file-size: 20MB
       max-request-size: 20MB
+  lifecycle:
+    timeout-per-shutdown-phase: ${PLATFORM_SHUTDOWN_TIMEOUT:30s}
 server:
+  address: ${PLATFORM_SERVER_ADDRESS:127.0.0.1}
+  port: ${PLATFORM_SERVER_PORT:8080}
+  forward-headers-strategy: framework
+  shutdown: graceful
+  compression:
+    enabled: true
   servlet:
     session:
       cookie:

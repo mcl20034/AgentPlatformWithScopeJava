@@ -1,0 +1,25 @@
+[Unit]
+Description=Agent Platform backend
+After=network-online.target postgresql.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=agent-platform
+Group=agent-platform
+WorkingDirectory=/opt/agent-platform/current
+EnvironmentFile=/etc/agent-platform/agent-platform.env
+ExecStart=/usr/bin/java $JAVA_OPTS -jar /opt/agent-platform/current/backend/agent-platform.jar
+SuccessExitStatus=143
+Restart=on-failure
+RestartSec=5
+TimeoutStopSec=45
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/agent-platform /var/log/agent-platform
+UMask=0077
+
+[Install]
+WantedBy=multi-user.target
