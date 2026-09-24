@@ -1,0 +1,4 @@
+$env:JAVA_HOME='D:\develop\jdk\openjdk-21.0.1'
+$env:Path="$env:JAVA_HOME\bin;$env:Path"
+
+D:\develop\apache-maven-3.9.8\bin\mvn.cmd spring-boot:run '-Dspring-boot.run.profiles=local'

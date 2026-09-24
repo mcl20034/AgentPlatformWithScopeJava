@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>登录与认证 - 凭证错误与重试限制变体</title>
+<!-- Tailwind CSS v3 with Forms & Container Queries -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+            }
+          }
+        }
+      }
+    }
+  </script>
+<!-- BEGIN: CustomStyles -->
+<style data-purpose="base-layout">
+    body {
+      background-color: #f1f5f9;
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(219, 234, 254, 0.4) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(226, 232, 240, 0.6) 0px, transparent 50%);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    }
+  </style>
+<!-- END: CustomStyles -->
+</head>
+<body class="min-h-screen flex flex-col justify-between text-slate-800 antialiased selection:bg-blue-100 selection:text-blue-900">
+<!-- BEGIN: HeaderPlaceholder -->
+<header class="w-full px-6 py-4 flex items-center justify-between">
+<div class="flex items-center space-x-2.5">
+<div class="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white font-bold shadow-sm shadow-blue-500/30">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M13 10V3L4 14h7v7l9-11h-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<div class="flex flex-col">
+<span class="text-sm font-bold leading-tight text-slate-900">企业级智能分析治理平台</span>
+<span class="text-[11px] text-slate-500 font-mono tracking-wide">SECURE ACCESS v3.4</span>
+</div>
+</div>
+<!-- Security Badges -->
+<div class="hidden sm:flex items-center space-x-2">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-emerald-50 text-emerald-700 border border-emerald-200">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-1.5 animate-pulse"></span>
+        生产环境 · KMS隔离
+      </span>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-slate-100 text-slate-600 border border-slate-200">
+        双因子强制 (MFA)
+      </span>
+</div>
+</header>
+<!-- END: HeaderPlaceholder -->
+<!-- BEGIN: MainContent -->
+<main class="flex-1 flex items-center justify-center px-4 py-8">
+<div class="w-full max-w-[440px] bg-white rounded-xl shadow-xl shadow-slate-200/60 border border-slate-200/80 p-8 relative">
+<!-- Brand & Header -->
+<div class="mb-6 text-left">
+<div class="inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded bg-blue-50 text-blue-700 mb-3">
+<svg class="w-3.5 h-3.5 text-blue-600" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+          统一身份与访问控制中心
+        </div>
+<h1 class="text-xl font-bold tracking-tight text-slate-900">员工凭据认证</h1>
+<p class="text-xs text-slate-500 mt-1">请输入内部 LDAP / 企业通行证账户以授权访问云端资源</p>
+</div>
+<!-- BEGIN: AlertBanner -->
+<!-- 醒目的错误内联警示卡片 -->
+<section class="bg-red-50 border border-red-200 rounded-lg p-3.5 mb-5 flex items-start space-x-3" data-purpose="credential-error-alert">
+<!-- 警告圆圈感叹号图标 -->
+<div class="flex-shrink-0 mt-0.5 text-red-500">
+<svg class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20">
+<path clip-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" fill-rule="evenodd"></path>
+</svg>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between">
+<h2 class="text-sm font-semibold text-red-700">用户名或密码错误</h2>
+<span class="inline-flex items-center px-1.5 py-0.2 rounded text-[10px] font-bold bg-red-100 text-red-700">401 认证受阻</span>
+</div>
+<p class="text-xs text-red-600 mt-1 leading-relaxed">
+            出于企业安全合规要求，连续输错 5 次账号将锁定 15 分钟（当前剩余重试次数：<span class="font-bold underline decoration-red-400 decoration-1">3 次</span>）。
+          </p>
+</div>
+</section>
+<!-- END: AlertBanner -->
+<!-- BEGIN: LoginForm -->
+<form action="#" class="space-y-4" method="POST" onsubmit="event.preventDefault();">
+<!-- 用户名输入项 (已保留历史输入) -->
+<div data-purpose="form-group-username">
+<div class="flex items-center justify-between mb-1.5">
+<label class="text-xs font-medium text-slate-700" for="username">企业工作账号 / LDAP</label>
+<span class="text-[11px] text-emerald-600 font-medium flex items-center gap-1">
+<svg class="w-3 h-3" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+              有效域账号格式
+            </span>
+</div>
+<div class="relative rounded-lg shadow-sm">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<input class="block w-full rounded-lg border-slate-300 pl-9 pr-8 text-xs text-slate-900 bg-slate-50/50 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 py-2.5 transition" id="username" name="username" placeholder="name@enterprise.internal" type="text" value="chen.data@enterprise.internal"/>
+<div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-slate-400">
+<svg class="w-4 h-4 text-emerald-500" fill="currentColor" viewbox="0 0 20 20">
+<path clip-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" fill-rule="evenodd"></path>
+</svg>
+</div>
+</div>
+</div>
+<!-- 密码输入项 (校验失败状态并清空) -->
+<div data-purpose="form-group-password">
+<div class="flex items-center justify-between mb-1.5">
+<label class="text-xs font-medium text-slate-700" for="password">登录密码 / 动态密码</label>
+<a class="text-[11px] font-medium text-blue-600 hover:text-blue-700 transition" href="javascript:void(0)">忘记密码？</a>
+</div>
+<div class="relative rounded-lg shadow-sm">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-red-400">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<input autocomplete="off" autofocus="" class="block w-full rounded-lg border-red-400 ring-2 ring-red-100 pl-9 pr-10 text-xs text-slate-900 bg-white placeholder-slate-400 focus:outline-none focus:border-red-500 focus:ring-2 focus:ring-red-200 py-2.5 transition" id="password" name="password" placeholder="请输入企业安全访问密码" type="password"/>
+<div class="absolute inset-y-0 right-0 pr-3 flex items-center">
+<button class="text-slate-400 hover:text-slate-600 focus:outline-none" title="显示密码" type="button">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+<path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+</div>
+<!-- 凭据清除及安全说明文案 -->
+<p class="text-xs text-red-500 mt-1 flex items-center gap-1">
+<svg class="w-3.5 h-3.5 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20">
+<path clip-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" fill-rule="evenodd"></path>
+</svg>
+            凭证校验未通过，字段已清空以保护密钥完整性
+          </p>
+</div>
+<!-- 保持登录状态选项 -->
+<div class="flex items-center justify-between py-0.5">
+<label class="flex items-center cursor-pointer select-none">
+<input checked="" class="h-4 w-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500 transition" type="checkbox"/>
+<span class="ml-2 text-xs text-slate-600">在此时信工作站保持活跃</span>
+</label>
+<span class="text-[11px] text-slate-400">8小时无操作自动下线</span>
+</div>
+<!-- 重新验证登录按钮 -->
+<button class="w-full h-10 px-4 flex items-center justify-center space-x-2 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white text-sm font-semibold rounded-lg shadow-md shadow-blue-500/20 transition-all focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" type="submit">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>重新验证并登录</span>
+</button>
+</form>
+<!-- END: LoginForm -->
+<!-- BEGIN: SecOpsAuditSummary -->
+<!-- SecOps 故障诊断与审计摘要折叠/信息面板 -->
+<section class="mt-6 bg-slate-50 border border-slate-200 rounded-lg p-3 text-xs" data-purpose="secops-audit-panel">
+<div class="flex items-center justify-between pb-2 mb-2 border-b border-slate-200/80">
+<div class="flex items-center space-x-1.5">
+<span class="w-2 h-2 rounded-full bg-amber-500"></span>
+<span class="font-semibold text-slate-700">SecOps 审计追踪与诊断参数</span>
+</div>
+<span class="text-[10px] font-mono text-slate-500 bg-white border border-slate-200 px-1.5 py-0.5 rounded">ENV: PROD</span>
+</div>
+<dl class="space-y-1.5 text-slate-600">
+<div class="flex justify-between items-center">
+<dt class="text-slate-400">错误状态码：</dt>
+<dd class="font-mono text-[11px] text-slate-800 font-medium">AUTH_FAIL_401 · InvalidCredentials</dd>
+</div>
+<div class="flex justify-between items-center">
+<dt class="text-slate-400">客户端 IP：</dt>
+<dd class="font-mono text-[11px] text-slate-800">10.198.42.15 <span class="text-slate-400 font-sans">(VPN-GW)</span></dd>
+</div>
+<div class="flex justify-between items-center">
+<dt class="text-slate-400">发生时间戳：</dt>
+<dd class="font-mono text-[11px] text-slate-800">2026-09-24 14:32:09 UTC+8</dd>
+</div>
+<div class="flex justify-between items-center pt-0.5">
+<dt class="text-slate-400">审计流水号：</dt>
+<dd class="flex items-center space-x-1 font-mono text-[11px] text-slate-800 bg-white border border-slate-200/80 rounded px-1.5 py-0.5">
+<span>SEC-AUDIT-99420-TX</span>
+<button class="text-slate-400 hover:text-blue-600 transition" onclick="navigator.clipboard &amp;&amp; navigator.clipboard.writeText('SEC-AUDIT-99420-TX')" title="复制流水号" type="button">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</dd>
+</div>
+</dl>
+<div class="mt-2.5 pt-2 border-t border-dashed border-slate-200 text-[11px] text-slate-500 flex items-center justify-between">
+<span>如需解除异常请向 SOC 提交工单。</span>
+<a class="text-blue-600 hover:underline font-medium" href="javascript:void(0)">发起工单 →</a>
+</div>
+</section>
+<!-- END: SecOpsAuditSummary -->
+<!-- Footer Help Support within Card -->
+<div class="mt-5 text-center">
+<p class="text-[11px] text-slate-400">
+          遇到问题？请联系 IT 服务台 (内部拨分机: <span class="font-mono text-slate-600">8088</span>)
+        </p>
+</div>
+</div>
+</main>
+<!-- END: MainContent -->
+<!-- BEGIN: SiteFooter -->
+<footer class="w-full py-4 text-center text-xs text-slate-400">
+<div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
+<div class="flex items-center space-x-2">
+<span class="inline-block w-2 h-2 rounded-full bg-emerald-500"></span>
+<span>统一安全接入网关正常运作 (Zone-East-A)</span>
+</div>
+<div>
+        © 2026 Enterprise Architecture &amp; Big Data Lab. 保留所有权利.
+      </div>
+</div>
+</footer>
+<!-- END: SiteFooter -->
+</body></html>

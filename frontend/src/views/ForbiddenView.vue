@@ -1,0 +1,1 @@
+<template><main class="status-page"><div class="status-code">403</div><h1>你没有权限访问此页面</h1><p>当前账号无法使用该管理功能。</p><el-button type="primary" @click="$router.push('/chat')">返回智能问答</el-button></main></template>

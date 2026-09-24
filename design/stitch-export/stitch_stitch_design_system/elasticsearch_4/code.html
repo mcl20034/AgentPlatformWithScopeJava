@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter,+-apple-system,+BlinkMacSystemFont,+'PingFang+SC',+sans-serif:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"status-success-bg":"#ECFDF5","secondary-container":"#4069f2","on-primary-fixed-variant":"#003ea8","text-primary":"#1F2937","status-danger":"#EF4444","on-secondary-container":"#fffbff","status-processing":"#3B82F6","status-warning":"#F59E0B","status-danger-bg":"#FEF2F2","border-subtle":"#E5E7EB","status-neutral-bg":"#F3F4F6","inverse-surface":"#27313f","on-background":"#121c2a","on-error-container":"#93000a","tertiary-fixed-dim":"#ffb596","code-bg":"#F9FAFB","on-tertiary-fixed-variant":"#7d2d00","canvas-bg":"#F7F8FA","border-focus":"#2563EB","primary-container":"#2563eb","inverse-primary":"#b4c5ff","tertiary-fixed":"#ffdbcd","surface-card":"#FFFFFF","status-warning-bg":"#FFFBEB","text-secondary":"#6B7280","secondary-fixed":"#dce1ff","primary-fixed":"#dbe1ff","error":"#ba1a1a","status-neutral":"#6B7280","surface-container-lowest":"#ffffff","outline-variant":"#c3c6d7","on-tertiary":"#ffffff","on-tertiary-container":"#ffede6","on-primary-fixed":"#00174b","tertiary":"#943700","text-muted":"#9CA3AF","on-primary-container":"#eeefff","outline":"#737686","on-error":"#ffffff","tertiary-container":"#bc4800","background":"#f8f9ff","on-primary":"#ffffff","error-container":"#ffdad6","surface":"#f8f9ff","inverse-on-surface":"#eaf1ff","surface-dim":"#d0dbed","on-surface-variant":"#434655","surface-container-highest":"#d9e3f6","on-secondary":"#ffffff","on-surface":"#121c2a","surface-container-low":"#eff4ff","surface-container-high":"#dee9fc","primary-tint":"#EFF6FF","surface-variant":"#d9e3f6","primary":"#004ac6","surface-tint":"#0053db","status-success":"#10B981","on-secondary-fixed":"#001551","primary-fixed-dim":"#b4c5ff","secondary":"#1d4ed8","on-secondary-fixed-variant":"#0039b5","surface-container":"#e6eeff","surface-bright":"#f8f9ff","secondary-fixed-dim":"#b7c4ff","on-tertiary-fixed":"#360f00","status-processing-bg":"#EFF6FF"},borderRadius:{DEFAULT:"0.25rem",lg:"0.5rem",xl:"0.75rem",full:"9999px"},spacing:{"space-lg":"1.25rem","margin-desktop":"2rem","space-2xl":"2rem","gutter-desktop":"1.5rem","space-md":"1rem",margin:"1.5rem","space-xs":"0.25rem","space-sm":"0.5rem","space-xl":"1.5rem",gutter:"1.25rem"},fontFamily:{"code-md":["\"JetBrains Mono, Menlo, Monaco, Consolas, monospace\""],display:["\"Inter, -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif\""],"code-sm":["\"JetBrains Mono, Menlo, Monaco, Consolas, monospace\""],caption:["\"Inter, -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif\""],"body-md":["\"Inter, -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif\""],"body-sm":["\"Inter, -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif\""],"label-md":["\"Inter, -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif\""],"label-sm":["\"Inter, -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif\""],"body-lg":["\"Inter, -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif\""],"headline-md":["\"Inter, -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif\""],"headline-lg":["\"Inter, -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif\""]},fontSize:{"code-md":["13px",{lineHeight:"20px",fontWeight:"400"}],display:["24px",{lineHeight:"32px",letterSpacing:"-0.02em",fontWeight:"700"}],"code-sm":["11px",{lineHeight:"16px",fontWeight:"500"}],caption:["12px",{lineHeight:"16px",fontWeight:"400"}],"body-md":["14px",{lineHeight:"20px",fontWeight:"400"}],"body-sm":["13px",{lineHeight:"18px",fontWeight:"400"}],"label-md":["14px",{lineHeight:"20px",fontWeight:"500"}],"label-sm":["12px",{lineHeight:"16px",fontWeight:"500"}],"body-lg":["15px",{lineHeight:"22px",fontWeight:"400"}],"headline-md":["16px",{lineHeight:"24px",fontWeight:"600"}],"headline-lg":["20px",{lineHeight:"28px",letterSpacing:"-0.01em",fontWeight:"600"}]}}}};</script></head><body class="bg-canvas-bg font-body-md text-text-primary antialiased min-h-screen selection:bg-primary-tint selection:text-primary"><aside class="fixed left-0 top-0 h-full w-[224px] bg-surface-card z-50 flex flex-col justify-between shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex flex-col"><div class="h-[60px] px-space-md flex items-center justify-between"><div class="flex items-center gap-space-sm"><div class="w-7 h-7 rounded-lg bg-primary-container flex items-center justify-center text-on-primary shadow-sm"><span class="material-symbols-outlined text-[18px]">hub</span></div><div class="flex flex-col"><span class="font-headline-md text-body-sm font-semibold text-text-primary tracking-tight">智能分析平台</span><span class="font-code-sm text-[10px] text-text-muted leading-tight">v1.0 企业版</span></div></div><button class="w-7 h-7 rounded-lg flex items-center justify-center text-text-secondary hover:bg-status-neutral-bg hover:text-text-primary transition-colors" title="收起侧边栏"><span class="material-symbols-outlined text-[18px]">left_panel_close</span></button></div><div class="px-space-md py-space-sm"><span class="font-label-sm text-[11px] uppercase tracking-wider text-text-muted">工作空间</span></div><nav class="px-space-sm flex flex-col gap-1" data-active-classes="bg-primary-tint text-primary font-semibold"><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-text-secondary hover:bg-status-neutral-bg hover:text-text-primary transition-all font-body-sm" data-path="intelligent-qa" href="#"><span class="material-symbols-outlined text-[18px]">forum</span><span>智能问答</span></a></nav><div class="px-space-md pt-space-lg pb-space-sm"><span class="font-label-sm text-[11px] uppercase tracking-wider text-text-muted">管理与治理</span></div><nav class="px-space-sm flex flex-col gap-1" data-active-classes="bg-primary-tint text-primary font-semibold"><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-text-secondary hover:bg-status-neutral-bg hover:text-text-primary transition-all font-body-sm" data-path="model-management" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[18px]">neurology</span><span>模型管理</span></div><span class="w-1.5 h-1.5 rounded-full bg-primary"></span></a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-text-secondary hover:bg-status-neutral-bg hover:text-text-primary transition-all font-body-sm" data-path="datasource-management" href="#"><span class="material-symbols-outlined text-[18px]">database</span><span>数据源管理</span></a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-text-secondary hover:bg-status-neutral-bg hover:text-text-primary transition-all font-body-sm" data-path="knowledge-base" href="#"><span class="material-symbols-outlined text-[18px]">menu_book</span><span>知识库</span></a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-text-secondary hover:bg-status-neutral-bg hover:text-text-primary transition-all font-body-sm" data-path="account-management" href="#"><span class="material-symbols-outlined text-[18px]">manage_accounts</span><span>账号管理</span></a></nav></div><div class="p-space-sm m-space-sm rounded-lg bg-code-bg"><div class="flex items-center gap-space-xs"><span class="w-2 h-2 rounded-full bg-status-success animate-pulse"></span><span class="font-caption text-[11px] text-text-secondary truncate">安全只读网络 · 运行正常</span></div><div class="mt-1 flex items-center justify-between font-code-sm text-[10px] text-text-muted"><span>隔离区 A-04</span><span>延迟 12ms</span></div></div></aside><div class="pl-[224px]"><header class="fixed top-0 left-[224px] right-0 h-[60px] bg-surface-card/90 backdrop-blur-md z-40 flex items-center justify-between px-gutter shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs font-body-sm text-text-secondary"><span class="hover:text-text-primary cursor-pointer transition-colors">首页</span><span class="material-symbols-outlined text-[14px] text-text-muted">chevron_right</span><span>管理与治理</span><span class="material-symbols-outlined text-[14px] text-text-muted">chevron_right</span><span class="hover:text-text-primary cursor-pointer transition-colors">模型管理</span><span class="material-symbols-outlined text-[14px] text-text-muted">chevron_right</span><span class="text-text-primary font-medium">新建模型</span></div><div class="h-4 w-px bg-border-subtle"></div><div class="flex items-center gap-space-xs"><span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-status-warning-bg text-status-warning font-label-sm text-[11px]"><span class="w-1.5 h-1.5 rounded-full bg-status-warning"></span>生产环境 · 只读安全模式</span><span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-status-success-bg text-status-success font-label-sm text-[11px]"><span class="material-symbols-outlined text-[13px]">check_circle</span>API 与推理网关正常</span></div></div><div class="flex items-center gap-space-md"><button class="flex items-center gap-1 px-space-sm py-1.5 rounded-lg text-text-secondary hover:bg-status-neutral-bg hover:text-text-primary font-body-sm transition-colors"><span class="material-symbols-outlined text-[18px]">help_outline</span><span>帮助文档</span></button><button class="relative p-1.5 rounded-lg text-text-secondary hover:bg-status-neutral-bg hover:text-text-primary transition-colors" title="通知"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-1 right-1 w-2 h-2 rounded-full bg-status-danger"></span></button><div class="h-5 w-px bg-border-subtle"></div><div class="flex items-center gap-space-sm"><div class="flex flex-col text-right"><span class="font-label-md text-body-sm font-medium text-text-primary leading-tight">陈工 (数据研发)</span><span class="font-caption text-[11px] text-text-muted leading-tight">管理员 · KMS 隔离网关接入</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="relative pt-[60px] bg-canvas-bg min-h-screen"><div class="flex flex-col w-full relative">
+<!-- Top Floating Toast Notification (Success state) -->
+<div class="fixed top-[72px] left-1/2 -translate-x-1/2 z-50 w-full max-w-4xl px-4 transition-all duration-300" id="topSuccessToast">
+<div class="bg-surface-card rounded-xl p-space-md shadow-xl flex items-center justify-between gap-space-md bg-status-success-bg/90 backdrop-blur-md">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="w-9 h-9 rounded-lg bg-status-success flex items-center justify-center text-on-primary flex-shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-2">
+<span class="font-headline-md text-headline-md text-text-primary truncate">数据源【网关访问与异常日志】发布成功！</span>
+<span class="px-2 py-0.5 rounded-full bg-status-success/20 text-status-success font-code-sm text-code-sm">v1.0</span>
+<span class="font-caption text-caption text-text-muted">生效时间：刚刚</span>
+</div>
+<span class="font-body-sm text-body-sm text-text-secondary truncate mt-0.5">受控 DSL 沙箱已挂载至智能问答生产集群，只读与敏感字段脱敏规则即时生效。</span>
+</div>
+</div>
+<div class="flex items-center gap-space-sm flex-shrink-0">
+<button class="px-space-md py-1.5 rounded-lg bg-primary-container text-on-primary font-label-md text-label-md hover:bg-secondary transition-colors flex items-center gap-1 shadow-sm">
+<span>立即前往智能问答测试</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+<button class="w-8 h-8 rounded-lg flex items-center justify-center text-text-muted hover:text-text-primary hover:bg-status-neutral-bg transition-colors" onclick="document.getElementById('topSuccessToast').style.display='none'" title="关闭通知">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Main Background Page: Step 4 Verification View (Under Scrim) -->
+<div class="p-gutter-desktop max-w-[1440px] mx-auto w-full space-y-space-lg select-none filter blur-[1.5px] opacity-75 pointer-events-none">
+<!-- Step Header Block -->
+<div class="bg-surface-card rounded-xl p-space-xl shadow-sm space-y-space-md">
+<div class="flex items-center justify-between">
+<div>
+<div class="flex items-center gap-2 font-code-sm text-code-sm text-primary mb-1">
+<span class="w-2 h-2 rounded-full bg-status-success"></span>
+<span>STEP 04 / 04 · 发布最终审计校验</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-text-primary tracking-tight">发布前检查与权限沙箱授权</h1>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="px-3 py-1 rounded-full bg-status-success-bg text-status-success font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">verified</span> 预检通过 (12/12)
+          </span>
+<span class="px-3 py-1 rounded-full bg-status-neutral-bg text-text-secondary font-label-sm text-label-sm">
+            生产网关隔离 A-04
+          </span>
+</div>
+</div>
+<!-- Step Indicator Bar -->
+<div class="grid grid-cols-4 gap-2 pt-2">
+<div class="h-1.5 rounded-full bg-status-success"></div>
+<div class="h-1.5 rounded-full bg-status-success"></div>
+<div class="h-1.5 rounded-full bg-status-success"></div>
+<div class="h-1.5 rounded-full bg-status-success"></div>
+</div>
+</div>
+<!-- Underlying Review Cards Mosaic -->
+<div class="grid grid-cols-12 gap-space-lg">
+<!-- Left Column: Source & Mapping Config Overview -->
+<div class="col-span-8 space-y-space-lg">
+<div class="bg-surface-card rounded-xl p-space-xl shadow-sm">
+<div class="flex items-center justify-between pb-space-md mb-space-md">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[22px]">database</span>
+<span class="font-headline-md text-headline-md text-text-primary">数据源拓扑与字段映射详情</span>
+</div>
+<span class="font-code-sm text-code-sm text-text-muted">Index: gateway-access-logs-2026-*</span>
+</div>
+<!-- Mock Field List -->
+<div class="space-y-space-xs">
+<div class="flex items-center justify-between p-space-sm rounded-lg bg-code-bg font-code-sm text-code-sm">
+<span class="text-text-primary">@timestamp</span>
+<span class="text-text-muted font-body-sm text-body-sm">DATETIME · 时间分区索引键 · 必选</span>
+<span class="px-2 py-0.5 rounded bg-status-success-bg text-status-success">已验证</span>
+</div>
+<div class="flex items-center justify-between p-space-sm rounded-lg bg-code-bg font-code-sm text-code-sm">
+<span class="text-text-primary">http.response.status_code</span>
+<span class="text-text-muted font-body-sm text-body-sm">INTEGER · 响应状态码 · 索引聚合允许</span>
+<span class="px-2 py-0.5 rounded bg-status-success-bg text-status-success">已验证</span>
+</div>
+<div class="flex items-center justify-between p-space-sm rounded-lg bg-code-bg font-code-sm text-code-sm">
+<span class="text-text-primary">url.path.keyword</span>
+<span class="text-text-muted font-body-sm text-body-sm">KEYWORD · 路由请求路径 · 精确匹配</span>
+<span class="px-2 py-0.5 rounded bg-status-success-bg text-status-success">已验证</span>
+</div>
+<div class="flex items-center justify-between p-space-sm rounded-lg bg-code-bg font-code-sm text-code-sm">
+<span class="text-text-primary">client.ip</span>
+<span class="text-text-muted font-body-sm text-body-sm">IP · 客户端来源 · 自动掩码脱敏 (Masked)</span>
+<span class="px-2 py-0.5 rounded bg-status-warning-bg text-status-warning">脱敏规则生效</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-card rounded-xl p-space-xl shadow-sm">
+<div class="flex items-center gap-space-sm mb-space-md">
+<span class="material-symbols-outlined text-primary text-[22px]">security</span>
+<span class="font-headline-md text-headline-md text-text-primary">AST-DSL 执行沙箱安全约束策略</span>
+</div>
+<div class="grid grid-cols-3 gap-space-md">
+<div class="p-space-md rounded-xl bg-status-neutral-bg">
+<div class="font-label-sm text-label-sm text-text-muted">单次最大扫描文档数</div>
+<div class="font-headline-md text-headline-lg text-text-primary mt-1">100,000</div>
+<div class="font-caption text-caption text-status-success mt-1">硬性熔断阈值已生效</div>
+</div>
+<div class="p-space-md rounded-xl bg-status-neutral-bg">
+<div class="font-label-sm text-label-sm text-text-muted">只读游标最大超时</div>
+<div class="font-headline-md text-headline-lg text-text-primary mt-1">15 秒</div>
+<div class="font-caption text-caption text-status-success mt-1">防止长事务锁网关</div>
+</div>
+<div class="p-space-md rounded-xl bg-status-neutral-bg">
+<div class="font-label-sm text-label-sm text-text-muted">只读权限凭证</div>
+<div class="font-headline-md text-headline-lg text-text-primary mt-1">KMS-ES-ROLE</div>
+<div class="font-caption text-caption text-status-success mt-1">自动轮转无本地密码</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Audit Timeline & Environment -->
+<div class="col-span-4 space-y-space-lg">
+<div class="bg-surface-card rounded-xl p-space-xl shadow-sm">
+<span class="font-headline-md text-headline-md text-text-primary block mb-space-md">发布流水线审计跟踪</span>
+<div class="space-y-space-md font-body-sm text-body-sm">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-status-success text-[18px]">check_circle</span>
+<div>
+<p class="font-label-md text-text-primary">元数据 Schema 兼容性校验</p>
+<p class="text-text-muted font-caption text-caption">10:42:01 通过</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-status-success text-[18px]">check_circle</span>
+<div>
+<p class="font-label-md text-text-primary">只读连接凭据安全封禁注入</p>
+<p class="text-text-muted font-caption text-caption">10:42:09 通过</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-status-success text-[18px]">check_circle</span>
+<div>
+<p class="font-label-md text-text-primary">DSL 生成引擎提示词注入防护测试</p>
+<p class="text-text-muted font-caption text-caption">10:42:15 通过</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-status-success text-[18px]">check_circle</span>
+<div>
+<p class="font-label-md text-text-primary">发布制品 Hash 打标归档</p>
+<p class="text-text-muted font-caption text-caption">10:42:21 归档完成</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Backdrop Scrim Overlay for the Modal -->
+<div class="fixed inset-0 top-[60px] left-[224px] bg-inverse-surface/40 backdrop-blur-sm z-40 flex items-center justify-center p-gutter transition-all duration-300">
+<!-- Modal Dialog Box -->
+<div class="bg-surface-card rounded-xl shadow-xl w-full max-w-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+<!-- Modal Header with Success Graphic Accent -->
+<div class="p-space-xl pb-space-md">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-space-md">
+<div class="w-12 h-12 rounded-xl bg-status-success-bg flex items-center justify-center text-status-success shadow-sm flex-shrink-0">
+<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<h2 class="font-headline-lg text-headline-lg text-text-primary">数据源已正式发布生效</h2>
+<span class="px-2 py-0.5 rounded-full bg-status-success-bg text-status-success font-code-sm text-code-sm font-semibold">
+                  PROD LIVE
+                </span>
+</div>
+<p class="font-body-sm text-body-sm text-text-secondary mt-1">发布成功 · 已接入智能问答生产集群与语义调度引擎</p>
+</div>
+</div>
+<button class="w-8 h-8 rounded-lg flex items-center justify-center text-text-muted hover:text-text-primary hover:bg-status-neutral-bg transition-colors" title="关闭">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+</div>
+<!-- Modal Body Content -->
+<div class="px-space-xl py-space-sm space-y-space-md">
+<!-- Key Metadata Summary Table / Cards -->
+<div class="rounded-xl bg-code-bg p-space-md space-y-space-sm">
+<div class="flex items-center justify-between py-1">
+<span class="font-caption text-caption text-text-muted">数据源名称与类型</span>
+<div class="flex items-center gap-2">
+<span class="font-label-md text-label-md text-text-primary font-medium">网关访问与异常日志</span>
+<span class="font-code-sm text-code-sm px-1.5 py-0.5 rounded bg-primary-tint text-primary">gateway-access-logs-2026</span>
+<span class="font-code-sm text-code-sm px-1.5 py-0.5 rounded bg-status-neutral-bg text-text-secondary">Elasticsearch</span>
+</div>
+</div>
+<div class="flex items-center justify-between py-1">
+<span class="font-caption text-caption text-text-muted">发布配置版本</span>
+<div class="flex items-center gap-2 font-code-sm text-code-sm">
+<span class="font-semibold text-text-primary">v1.0</span>
+<span class="text-text-muted">SHA-256: es8f_9a2b7c014e590a4</span>
+<button class="text-primary hover:text-secondary" title="复制 Hash">
+<span class="material-symbols-outlined text-[14px]">content_copy</span>
+</button>
+</div>
+</div>
+<div class="flex items-center justify-between py-1">
+<span class="font-caption text-caption text-text-muted">挂载工作台</span>
+<div class="flex items-center gap-2 font-body-sm text-body-sm">
+<span class="inline-flex items-center gap-1 text-text-primary font-medium">
+<span class="w-2 h-2 rounded-full bg-status-success animate-pulse"></span>
+                智能问答 (生产集群)
+              </span>
+<span class="text-text-muted">· 实时生效，全节点就绪</span>
+</div>
+</div>
+<div class="flex items-center justify-between py-1">
+<span class="font-caption text-caption text-text-muted">授权与防护能力</span>
+<div class="flex items-center gap-1.5 flex-wrap">
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-surface-card text-text-primary shadow-xs">16 个受控字段</span>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-surface-card text-text-primary shadow-xs">6 个安全聚合指标</span>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-status-success-bg text-status-success font-medium">AST-DSL 沙箱防护启用</span>
+</div>
+</div>
+</div>
+<!-- Interactive QA Guidance / Fast Prompt Action Box -->
+<div class="rounded-xl bg-primary-tint p-space-md space-y-space-xs">
+<div class="flex items-center gap-2 text-primary font-label-md text-label-md">
+<span class="material-symbols-outlined text-[18px]">psychology</span>
+<span>智能问答联动测试推荐</span>
+</div>
+<p class="font-body-sm text-body-sm text-text-secondary leading-relaxed">
+            该数据源现已加入智能检索范围，大模型将自动将自然语言转换为受限且通过沙箱校验的 ES Query DSL。你可以直接发起如下场景验证：
+          </p>
+<div class="mt-space-sm p-space-sm rounded-lg bg-surface-card flex items-center justify-between group cursor-pointer hover:bg-status-neutral-bg transition-colors">
+<div class="flex items-center gap-2 font-body-sm text-body-sm text-text-primary truncate">
+<span class="material-symbols-outlined text-text-muted text-[16px]">chat_bubble_outline</span>
+<span class="font-medium truncate">“统计过去 24 小时内 HTTP 500 异常状态码的 Top 5 路由路径”</span>
+</div>
+<span class="font-label-sm text-label-sm text-primary flex items-center gap-0.5 flex-shrink-0">
+              试一试
+              <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+</span>
+</div>
+</div>
+</div>
+<!-- Modal Action Buttons Bar -->
+<div class="p-space-xl pt-space-md flex items-center justify-between bg-surface-card">
+<div class="flex items-center gap-2">
+<button class="px-space-md py-2 rounded-lg bg-surface-card hover:bg-status-neutral-bg text-text-secondary font-label-md text-label-md transition-colors flex items-center gap-1.5 shadow-xs">
+<span class="material-symbols-outlined text-[16px]">receipt_long</span>
+<span>查看发布审计凭证 (PDF)</span>
+</button>
+<button class="px-space-md py-2 rounded-lg bg-surface-card hover:bg-status-neutral-bg text-text-secondary font-label-md text-label-md transition-colors">
+            留在当前配置页
+          </button>
+</div>
+<button class="px-space-lg py-2.5 rounded-lg bg-primary-container hover:bg-secondary text-on-primary font-label-md text-label-md flex items-center gap-2 shadow-md transition-all">
+<span>前往智能问答发起提问</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Bottom Persistent Fixed Workflow Bar (Published State) -->
+<div class="fixed bottom-0 left-[224px] right-0 h-[64px] bg-surface-card z-30 px-gutter-desktop flex items-center justify-between shadow-[0_-2px_10px_rgba(0,0,0,0.04)]">
+<div class="flex items-center gap-space-md">
+<div class="flex items-center gap-2 font-caption text-caption text-text-muted">
+<span class="material-symbols-outlined text-status-success text-[16px]">task_alt</span>
+<span>配置审计已归档</span>
+</div>
+<div class="h-4 w-px bg-border-subtle"></div>
+<div class="flex items-center gap-2 font-caption text-caption text-text-secondary">
+<span>最后修改人：陈工 (数据研发)</span>
+<span class="text-text-muted">· 2026-03-30 10:42:21</span>
+</div>
+</div>
+<div class="flex items-center gap-space-sm">
+<button class="px-space-md py-2 rounded-lg bg-surface-card text-text-secondary font-label-md text-label-md hover:bg-status-neutral-bg transition-colors" disabled="">
+        上一步：语法配置
+      </button>
+<button class="px-space-lg py-2 rounded-lg bg-status-success-bg text-status-success font-label-md text-label-md flex items-center gap-1.5 cursor-default shadow-xs" disabled="">
+<span class="material-symbols-outlined text-[18px]">check_circle</span>
+<span>已发布至生产环境 (v1.0)</span>
+</button>
+</div>
+</div>
+</div></main></div></body></html>

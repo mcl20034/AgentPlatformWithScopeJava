@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "on-error-container": "#93000a",
+          "status-warning": "#F59E0B",
+          "tertiary-fixed-dim": "#ffb596",
+          "secondary-container": "#4069f2",
+          "text-primary": "#1F2937",
+          "status-neutral": "#6B7280",
+          "on-secondary-container": "#fffbff",
+          "surface-container": "#e6eeff",
+          "tertiary-container": "#bc4800",
+          "on-primary-fixed": "#00174b",
+          "secondary": "#1d4ed8",
+          "outline-variant": "#c3c6d7",
+          "inverse-primary": "#b4c5ff",
+          "tertiary": "#943700",
+          "on-secondary-fixed": "#001551",
+          "primary": "#004ac6",
+          "surface": "#f8f9ff",
+          "on-tertiary-fixed-variant": "#7d2d00",
+          "on-tertiary-fixed": "#360f00",
+          "status-warning-bg": "#FFFBEB",
+          "text-muted": "#9CA3AF",
+          "on-background": "#121c2a",
+          "status-danger-bg": "#FEF2F2",
+          "surface-container-lowest": "#ffffff",
+          "background": "#f8f9ff",
+          "status-success": "#10B981",
+          "canvas-bg": "#F7F8FA",
+          "surface-card": "#FFFFFF",
+          "surface-container-highest": "#d9e3f6",
+          "text-secondary": "#6B7280",
+          "secondary-fixed-dim": "#b7c4ff",
+          "status-success-bg": "#ECFDF5",
+          "secondary-fixed": "#dce1ff",
+          "on-primary-fixed-variant": "#003ea8",
+          "border-focus": "#2563EB",
+          "primary-fixed-dim": "#b4c5ff",
+          "border-subtle": "#E5E7EB",
+          "status-processing-bg": "#EFF6FF",
+          "on-secondary-fixed-variant": "#0039b5",
+          "surface-dim": "#d0dbed",
+          "inverse-on-surface": "#eaf1ff",
+          "on-surface": "#121c2a",
+          "on-secondary": "#ffffff",
+          "status-neutral-bg": "#F3F4F6",
+          "outline": "#737686",
+          "error-container": "#ffdad6",
+          "on-primary-container": "#eeefff",
+          "on-error": "#ffffff",
+          "on-tertiary": "#ffffff",
+          "status-processing": "#3B82F6",
+          "primary-container": "#2563eb",
+          "on-tertiary-container": "#ffede6",
+          "primary-fixed": "#dbe1ff",
+          "code-bg": "#F9FAFB",
+          "surface-variant": "#d9e3f6",
+          "primary-tint": "#EFF6FF",
+          "surface-container-low": "#eff4ff",
+          "surface-tint": "#0053db",
+          "inverse-surface": "#27313f",
+          "tertiary-fixed": "#ffdbcd",
+          "surface-container-high": "#dee9fc",
+          "error": "#ba1a1a",
+          "on-surface-variant": "#434655",
+          "surface-bright": "#f8f9ff",
+          "status-danger": "#EF4444",
+          "on-primary": "#ffffff"
+        },
+        "borderRadius": {
+          "DEFAULT": "0.25rem",
+          "lg": "0.5rem",
+          "xl": "0.75rem",
+          "full": "9999px"
+        },
+        "spacing": {
+          "space-lg": "1.25rem",
+          "gutter-desktop": "1.5rem",
+          "margin": "1.5rem",
+          "margin-desktop": "2rem",
+          "gutter": "1.25rem",
+          "space-2xl": "2rem",
+          "space-xl": "1.5rem",
+          "space-md": "1rem",
+          "space-xs": "0.25rem",
+          "space-sm": "0.5rem"
+        },
+        "fontFamily": {
+          "label-sm": [
+            "\"Inter, -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif\""
+          ],
+          "code-sm": [
+            "\"JetBrains Mono, Menlo, Monaco, Consolas, monospace\""
+          ],
+          "headline-lg": [
+            "\"Inter, -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif\""
+          ],
+          "display": [
+            "\"Inter, -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif\""
+          ],
+          "caption": [
+            "\"Inter, -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif\""
+          ],
+          "code-md": [
+            "\"JetBrains Mono, Menlo, Monaco, Consolas, monospace\""
+          ],
+          "body-sm": [
+            "\"Inter, -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif\""
+          ],
+          "body-md": [
+            "\"Inter, -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif\""
+          ],
+          "headline-md": [
+            "\"Inter, -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif\""
+          ],
+          "body-lg": [
+            "\"Inter, -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif\""
+          ],
+          "label-md": [
+            "\"Inter, -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif\""
+          ]
+        },
+        "fontSize": {
+          "label-sm": [
+            "12px",
+            {
+              "lineHeight": "16px",
+              "fontWeight": "500"
+            }
+          ],
+          "code-sm": [
+            "11px",
+            {
+              "lineHeight": "16px",
+              "fontWeight": "500"
+            }
+          ],
+          "headline-lg": [
+            "20px",
+            {
+              "lineHeight": "28px",
+              "letterSpacing": "-0.01em",
+              "fontWeight": "600"
+            }
+          ],
+          "display": [
+            "24px",
+            {
+              "lineHeight": "32px",
+              "letterSpacing": "-0.02em",
+              "fontWeight": "700"
+            }
+          ],
+          "caption": [
+            "12px",
+            {
+              "lineHeight": "16px",
+              "fontWeight": "400"
+            }
+          ],
+          "code-md": [
+            "13px",
+            {
+              "lineHeight": "20px",
+              "fontWeight": "400"
+            }
+          ],
+          "body-sm": [
+            "13px",
+            {
+              "lineHeight": "18px",
+              "fontWeight": "400"
+            }
+          ],
+          "body-md": [
+            "14px",
+            {
+              "lineHeight": "20px",
+              "fontWeight": "400"
+            }
+          ],
+          "headline-md": [
+            "16px",
+            {
+              "lineHeight": "24px",
+              "fontWeight": "600"
+            }
+          ],
+          "body-lg": [
+            "15px",
+            {
+              "lineHeight": "22px",
+              "fontWeight": "400"
+            }
+          ],
+          "label-md": [
+            "14px",
+            {
+              "lineHeight": "20px",
+              "fontWeight": "500"
+            }
+          ]
+        }
+      },
+    },
+  }</script></head><body class="bg-surface font-body-md text-on-surface"><aside class="fixed left-0 top-0 h-full w-56 bg-surface-container-lowest z-50 flex flex-col shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-14 px-space-md flex items-center gap-space-sm bg-surface-container-low"><div class="w-7 h-7 rounded-lg bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">insights</span></div><div class="flex flex-col"><span class="font-headline-md text-headline-md tracking-tight text-on-surface">DataMind AI</span><span class="font-caption text-caption text-text-muted">企业级智能认知中台</span></div></div><div class="px-space-md py-space-sm"><div class="px-space-sm py-space-xs rounded bg-surface-container flex items-center justify-between"><span class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-space-xs"><span class="w-1.5 h-1.5 rounded-full bg-status-success"></span>集群状态稳定</span><span class="font-code-sm text-code-sm text-secondary font-medium">v2.8.4</span></div></div><nav class="flex-1 px-space-sm py-space-xs space-y-1" data-active-classes="bg-primary-container text-on-primary-container font-medium shadow-sm"><a aria-current="page" class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg transition-all bg-primary-container text-on-primary-container font-medium shadow-sm" data-path="intelligent-qa" href="#"><span class="material-symbols-outlined text-[18px]">chat</span>智能问答</a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-body-md text-body-md" data-path="model-management" href="#"><span class="material-symbols-outlined text-[18px]">tune</span>模型管理</a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-body-md text-body-md" data-path="datasource-management" href="#"><span class="material-symbols-outlined text-[18px]">database</span>数据源管理</a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-body-md text-body-md" data-path="knowledge-base" href="#"><span class="material-symbols-outlined text-[18px]">local_library</span>知识库</a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-body-md text-body-md" data-path="account-management" href="#"><span class="material-symbols-outlined text-[18px]">manage_accounts</span>账号管理</a></nav><div class="p-space-sm bg-surface-container-low"><div class="p-space-sm rounded-lg bg-surface-container-lowest flex items-center justify-between shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-secondary text-[16px]">memory</span><span class="font-label-sm text-label-sm text-on-surface">推理引擎吞吐</span></div><span class="font-code-sm text-code-sm text-status-success font-medium">99.8%</span></div></div></aside><div class="pl-56"><header class="fixed top-0 left-56 right-0 h-14 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-space-md"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs"><span class="font-headline-md text-headline-md font-semibold text-on-surface">企业智能分析平台</span><span class="font-caption text-caption text-text-muted">/</span><span class="font-label-sm text-label-sm text-on-surface-variant">控制台工作区</span></div><div class="h-4 w-px bg-outline-variant"></div><div class="flex items-center gap-space-xs"><span class="px-space-sm py-0.5 rounded bg-status-success-bg text-status-success font-label-sm text-label-sm flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">verified_user</span>安全只读网络</span><span class="px-space-sm py-0.5 rounded bg-primary-tint text-primary font-label-sm text-label-sm flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">shield</span>KMS隔离网关</span></div></div><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs px-space-sm py-1 rounded bg-surface-container"><span class="w-2 h-2 rounded-full bg-status-success animate-pulse"></span><span class="font-code-sm text-code-sm text-on-surface-variant">Session Enclave #9812</span></div><div class="flex items-center gap-space-sm pl-space-xs"><div class="flex flex-col text-right"><span class="font-label-sm text-label-sm text-on-surface font-medium">SecAdmin-904</span><span class="font-caption text-caption text-text-muted">安全运维审计组</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="relative pt-14 w-full bg-surface"><div class="flex flex-col w-full">
+<!-- Top Global Sticky Context Header (Integrated in content area) -->
+<div class="bg-surface-container-low px-space-md py-space-xs flex items-center justify-between shadow-sm">
+<div class="flex items-center gap-space-sm">
+<span class="px-space-xs py-0.5 rounded bg-primary text-on-primary font-code-sm text-code-sm">DIAGNOSTIC-RUN #0924-4215</span>
+<div class="flex items-center gap-1.5 text-text-secondary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px] text-primary">hub</span>
+<span>根因链审计模式</span>
+<span class="text-text-muted">/</span>
+<span class="text-on-surface font-medium">异常 IP 突发洪峰归因</span>
+</div>
+<span class="px-space-sm py-0.5 rounded-full bg-status-danger-bg text-status-danger font-label-sm text-label-sm flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-status-danger animate-ping"></span>
+        严重故障排查中 (P1)
+      </span>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="font-caption text-caption text-text-muted">上下文锁定：</span>
+<span class="px-space-xs py-0.5 rounded bg-surface-container font-code-sm text-code-sm text-primary">client_ip=10.198.42.15</span>
+<span class="px-space-xs py-0.5 rounded bg-surface-container font-code-sm text-code-sm text-on-surface-variant">window=14:00~14:40</span>
+<button class="px-space-sm py-1 rounded bg-surface-container-lowest text-text-secondary hover:text-on-surface text-label-sm font-label-sm shadow-sm flex items-center gap-1 transition-all">
+<span class="material-symbols-outlined text-[15px]">refresh</span> 重放执行
+      </button>
+</div>
+</div>
+<!-- Three-Column Work Area Grid -->
+<div class="flex w-full items-start gap-space-sm p-space-sm bg-canvas-bg min-h-[calc(100vh-7rem)]">
+<!-- Column 1: Left Session Sidebar (260px fixed) -->
+<aside class="w-[260px] flex-shrink-0 flex flex-col gap-space-sm">
+<!-- Action & Filter Box -->
+<div class="bg-surface-card rounded-lg p-space-sm shadow-sm space-y-space-sm">
+<button class="w-full h-9 rounded-lg bg-primary-container text-on-primary font-label-md text-label-md flex items-center justify-center gap-space-xs hover:bg-primary transition-all shadow-sm">
+<span class="material-symbols-outlined text-[18px]">add</span>
+          新建排查会话
+        </button>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-2.5 top-2 text-text-muted text-[18px]">search</span>
+<input class="w-full h-8 pl-8 pr-2.5 rounded bg-code-bg font-body-sm text-body-sm text-on-surface placeholder:text-text-muted focus:outline-none focus:bg-surface-card transition-all" placeholder="搜索会话 / IP / 路由..." type="text" value="10.198.42.15"/>
+</div>
+</div>
+<!-- Session Navigation Tree -->
+<div class="bg-surface-card rounded-lg p-space-sm shadow-sm flex flex-col gap-space-xs">
+<div class="flex items-center justify-between px-space-xs py-1">
+<span class="font-label-sm text-label-sm text-text-muted uppercase tracking-wider font-semibold">排查工单与会话</span>
+<span class="px-1.5 py-0.5 rounded bg-surface-container font-code-sm text-code-sm text-secondary">4 活跃</span>
+</div>
+<!-- Active Session Item (Round 4) -->
+<div class="p-space-sm rounded-lg bg-status-processing-bg shadow-sm cursor-pointer relative overflow-hidden group">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-primary"></div>
+<div class="flex items-start justify-between gap-1 pl-1">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[18px]">emergency_home</span>
+<span class="font-headline-md text-body-sm text-primary font-medium truncate max-w-[155px]">网关 500 异常: 支付回调深钻</span>
+</div>
+<span class="px-1 py-0.5 rounded bg-primary text-on-primary font-code-sm text-[10px]">R4</span>
+</div>
+<div class="pl-6 mt-1 flex items-center justify-between text-text-secondary font-caption text-caption">
+<span class="font-code-sm text-code-sm text-primary">IP 10.198.42.15</span>
+<span class="flex items-center gap-1 text-status-processing">
+<span class="w-1.5 h-1.5 rounded-full bg-status-processing animate-pulse"></span>
+              分析中
+            </span>
+</div>
+</div>
+<!-- Historical Session Item 2 -->
+<div class="p-space-sm rounded-lg hover:bg-surface-container-low transition-all cursor-pointer">
+<div class="flex items-start justify-between gap-1">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-text-secondary text-[18px]">storage</span>
+<span class="font-body-md text-body-sm text-on-surface truncate max-w-[170px]">订单分库分表连接池耗尽审计</span>
+</div>
+</div>
+<div class="pl-6 mt-1 flex items-center justify-between text-text-muted font-caption text-caption">
+<span>MySQL · shard-cluster-04</span>
+<span>12:30</span>
+</div>
+</div>
+<!-- Historical Session Item 3 -->
+<div class="p-space-sm rounded-lg hover:bg-surface-container-low transition-all cursor-pointer">
+<div class="flex items-start justify-between gap-1">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-text-secondary text-[18px]">cached</span>
+<span class="font-body-md text-body-sm text-on-surface truncate max-w-[170px]">会员中台 Redis 缓存穿透排查</span>
+</div>
+</div>
+<div class="pl-6 mt-1 flex items-center justify-between text-text-muted font-caption text-caption">
+<span>Cache Miss 88.2%</span>
+<span>昨天</span>
+</div>
+</div>
+<!-- Historical Session Item 4 -->
+<div class="p-space-sm rounded-lg hover:bg-surface-container-low transition-all cursor-pointer">
+<div class="flex items-start justify-between gap-1">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-text-secondary text-[18px]">shield_lock</span>
+<span class="font-body-md text-body-sm text-on-surface truncate max-w-[170px]">BGP 入口高频恶意探针封禁</span>
+</div>
+</div>
+<div class="pl-6 mt-1 flex items-center justify-between text-text-muted font-caption text-caption">
+<span>WAF 规则生效中</span>
+<span>09-22</span>
+</div>
+</div>
+</div>
+<!-- Cluster Connectivity Card -->
+<div class="bg-surface-card rounded-lg p-space-sm shadow-sm space-y-2">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-status-success"></span>
+<span class="font-label-sm text-label-sm font-medium text-on-surface">ES 聚合引擎状态</span>
+</div>
+<span class="font-code-sm text-code-sm text-status-success font-medium">12ms</span>
+</div>
+<div class="p-2 rounded bg-surface-container-low text-text-secondary space-y-1">
+<div class="flex items-center justify-between font-caption text-caption">
+<span>索引集群</span>
+<span class="font-code-sm text-code-sm text-on-surface">gateway-logs-prod</span>
+</div>
+<div class="flex items-center justify-between font-caption text-caption">
+<span>熔断保护器</span>
+<span class="font-label-sm text-label-sm text-status-success">只读 · 闭合正常</span>
+</div>
+<div class="flex items-center justify-between font-caption text-caption">
+<span>分片检索路由</span>
+<span class="font-code-sm text-code-sm text-secondary">5/5 Primary OK</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- Column 2: Center QA & Investigation Canvas (Fluid) -->
+<main class="flex-1 min-w-[620px] flex flex-col gap-space-md">
+<!-- Folded Prior Investigation Breadcrumb Pipeline (Rounds 1-3 Summary) -->
+<div class="bg-surface-card rounded-xl p-space-md shadow-sm space-y-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[20px]">account_tree</span>
+<span class="font-headline-md text-headline-md text-on-surface">前序排查收敛链条</span>
+<span class="px-space-xs py-0.5 rounded bg-surface-container font-code-sm text-code-sm text-secondary">已归档 3 轮推导</span>
+</div>
+<button class="text-secondary hover:text-primary font-label-sm text-label-sm flex items-center gap-0.5" id="toggle-prior-btn" onclick="document.getElementById('prior-details').classList.toggle('hidden')">
+<span>展开全量证据</span>
+<span class="material-symbols-outlined text-[16px]">expand_more</span>
+</button>
+</div>
+<!-- 3 Horizontal Milestone Pills -->
+<div class="grid grid-cols-3 gap-space-sm">
+<!-- Round 1 -->
+<div class="p-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container transition-all cursor-pointer">
+<div class="flex items-center justify-between mb-1">
+<span class="font-code-sm text-code-sm text-text-muted uppercase">Round 01 · 异常收敛</span>
+<span class="material-symbols-outlined text-status-success text-[16px]">check_circle</span>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface font-medium truncate">Top 1 异常路由锁定</p>
+<p class="font-code-sm text-code-sm text-status-danger mt-0.5">/api/v2/payment/notify (41.2%)</p>
+</div>
+<!-- Round 2 -->
+<div class="p-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container transition-all cursor-pointer">
+<div class="flex items-center justify-between mb-1">
+<span class="font-code-sm text-code-sm text-text-muted uppercase">Round 02 · 根因归因</span>
+<span class="material-symbols-outlined text-status-success text-[16px]">check_circle</span>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface font-medium truncate">上游超时 &amp; 核心来源 IP</p>
+<p class="font-code-sm text-code-sm text-primary mt-0.5">10.198.42.15 (58.4% 流量贡献)</p>
+</div>
+<!-- Round 3 -->
+<div class="p-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container transition-all cursor-pointer">
+<div class="flex items-center justify-between mb-1">
+<span class="font-code-sm text-code-sm text-text-muted uppercase">Round 03 · 延迟穿透</span>
+<span class="material-symbols-outlined text-status-success text-[16px]">check_circle</span>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface font-medium truncate">网关 15s 熔断击穿</p>
+<p class="font-code-sm text-code-sm text-status-warning mt-0.5">P95 15,420ms / P99 18,200ms</p>
+</div>
+</div>
+<!-- Collapsible Prior Details (Hidden by default) -->
+<div class="hidden p-space-sm rounded-lg bg-code-bg text-on-surface-variant font-body-sm text-body-sm space-y-1" id="prior-details">
+<div class="text-text-secondary font-label-sm">前 3 轮推导上下文全景：</div>
+<p>• 14:02 网关告警触发：支付中心下游网关 HTTP 500 告警，累计 1,412 次报错。</p>
+<p>• 14:15 堆栈抓取完成：<code>UpstreamConnectTimeoutException</code> 占据 76.8%，明确指向 VPC 内专线通道后端不可用。</p>
+<p>• 14:28 熔断时序核对：上游网关单次请求 timeout 设定为 15,000ms，高延迟大批量吞噬 worker 线程。</p>
+</div>
+</div>
+<!-- Current Turn (Round 4) User Query Bubble -->
+<div class="bg-surface-card rounded-xl p-space-md shadow-sm space-y-space-sm">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center shadow-sm">
+<span class="font-label-sm text-label-sm text-on-secondary-container font-semibold">陈</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<span class="font-headline-md text-headline-md text-on-surface">陈工 · 数据研发专家</span>
+<span class="px-1.5 py-0.5 rounded bg-surface-container font-code-sm text-code-sm text-text-secondary">SecOps Audit ID: #81920</span>
+</div>
+<span class="font-caption text-caption text-text-muted">提问于 14:42:15 · 连续深钻第 4 轮</span>
+</div>
+</div>
+<span class="px-2 py-1 rounded bg-primary-tint text-primary font-label-sm text-label-sm font-medium">追问对齐模式</span>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low text-on-surface font-body-lg text-body-lg">
+          “关联分析该 IP (<code class="font-code-md text-primary font-semibold">10.198.42.15</code>) 在今日 14:00~14:40 期间的每分钟 QPS 流量趋势图，分析流量突发峰值与 HTTP 500 异常发生的时间对齐关系。”
+        </div>
+<!-- Inherited Filter Chips -->
+<div class="flex flex-wrap items-center gap-space-xs pt-1">
+<span class="font-caption text-caption text-text-muted">已继承约束：</span>
+<span class="px-space-sm py-1 rounded bg-surface-container text-on-surface-variant font-code-sm text-code-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-primary">database</span> index: gateway-access-logs-2026
+          </span>
+<span class="px-space-sm py-1 rounded bg-surface-container text-on-surface-variant font-code-sm text-code-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-secondary">schedule</span> 14:00:00 ~ 14:40:00 (UTC+8)
+          </span>
+<span class="px-space-sm py-1 rounded bg-surface-container text-on-surface-variant font-code-sm text-code-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-status-warning">alt_route</span> path: /api/v2/payment/notify
+          </span>
+<span class="px-space-sm py-1 rounded bg-surface-container text-on-surface-variant font-code-sm text-code-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-status-danger">my_location</span> client_ip: 10.198.42.15
+          </span>
+</div>
+</div>
+<!-- Agent Reasoning Response Card -->
+<div class="bg-surface-card rounded-xl p-space-md shadow-sm space-y-space-md">
+<!-- Status Bar -->
+<div class="flex items-center justify-between pb-space-sm bg-surface-card">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-on-primary text-[20px]">psychology</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<span class="font-headline-md text-headline-md text-on-surface">DataMind 诊断推理报告</span>
+<span class="px-space-xs py-0.5 rounded bg-status-success-bg text-status-success font-label-sm text-label-sm font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check_circle</span> 执行完毕
+                </span>
+</div>
+<span class="font-caption text-caption text-text-muted">执行引擎耗时 1.45s · 检索命中 824 条网关日志 · Date Histogram 1m 步长</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="px-space-sm py-1 rounded bg-surface-container-low text-text-secondary hover:text-on-surface font-label-sm text-label-sm flex items-center gap-1 transition-all">
+<span class="material-symbols-outlined text-[15px]">content_copy</span> 复制报告
+            </button>
+<button class="px-space-sm py-1 rounded bg-surface-container-low text-text-secondary hover:text-on-surface font-label-sm text-label-sm flex items-center gap-1 transition-all">
+<span class="material-symbols-outlined text-[15px]">file_download</span> 导出复盘单
+            </button>
+</div>
+</div>
+<!-- Metric KPI Triplet -->
+<div class="grid grid-cols-3 gap-space-sm">
+<div class="p-space-md rounded-xl bg-surface-container-low shadow-sm">
+<div class="flex items-center justify-between text-text-secondary">
+<span class="font-label-sm text-label-sm">突发峰值 QPS (req/s)</span>
+<span class="material-symbols-outlined text-status-danger text-[18px]">trending_up</span>
+</div>
+<div class="mt-2 flex items-baseline gap-2">
+<span class="font-display text-display text-status-danger font-bold">48.2</span>
+<span class="font-code-sm text-code-sm text-status-danger bg-status-danger-bg px-1.5 py-0.5 rounded font-medium">+10.7x 激增</span>
+</div>
+<p class="font-caption text-caption text-text-muted mt-1.5">发生时刻: 14:18:22 · 常态基准 4.5 req/s</p>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-low shadow-sm">
+<div class="flex items-center justify-between text-text-secondary">
+<span class="font-label-sm text-label-sm">异常突增持续时长</span>
+<span class="material-symbols-outlined text-status-warning text-[18px]">timer</span>
+</div>
+<div class="mt-2 flex items-baseline gap-2">
+<span class="font-display text-display text-on-surface font-bold">24</span>
+<span class="font-headline-md text-headline-md text-on-surface">分钟</span>
+<span class="font-code-sm text-code-sm text-status-warning bg-status-warning-bg px-1.5 py-0.5 rounded font-medium">86.4% 错误率</span>
+</div>
+<p class="font-caption text-caption text-text-muted mt-1.5">窗口区间: 14:12:00 ~ 14:36:00</p>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-low shadow-sm">
+<div class="flex items-center justify-between text-text-secondary">
+<span class="font-label-sm text-label-sm">上游连接池击穿时刻</span>
+<span class="material-symbols-outlined text-primary text-[18px]">bolt</span>
+</div>
+<div class="mt-2 flex items-baseline gap-2">
+<span class="font-display text-display text-primary font-bold">14:14:00</span>
+<span class="font-code-sm text-code-sm text-primary bg-primary-tint px-1.5 py-0.5 rounded font-medium">满载 12/12</span>
+</div>
+<p class="font-caption text-caption text-text-muted mt-1.5">HikariPool 活跃满载，排队超时溢出</p>
+</div>
+</div>
+<!-- High Fidelity Dual-Stream Chart (Total QPS vs HTTP 500) -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm space-y-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="font-headline-md text-headline-md text-on-surface">14:00~14:40 每分钟 QPS 流量与 500 异常对齐时序图</span>
+<span class="px-space-xs py-0.5 rounded bg-surface-container font-code-sm text-code-sm text-secondary">Step: 1 min</span>
+</div>
+<div class="flex items-center gap-space-md font-caption text-caption">
+<div class="flex items-center gap-1.5">
+<span class="w-3 h-3 rounded bg-secondary-fixed-dim inline-block"></span>
+<span class="text-text-secondary">总流量 QPS (req/s)</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="w-3 h-3 rounded bg-status-danger inline-block"></span>
+<span class="text-status-danger font-medium">HTTP 500 错误 QPS</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="w-4 h-0.5 border-t border-dashed border-status-warning inline-block"></span>
+<span class="text-status-warning">安全容量阈值 (15 QPS)</span>
+</div>
+</div>
+</div>
+<!-- Interactive High-Information SVG Timeline Chart -->
+<div class="relative w-full h-[270px] pt-4 select-none bg-surface-container-low rounded-lg p-space-sm">
+<svg class="w-full h-full" preserveaspectratio="none" viewbox="0 0 760 210">
+<defs>
+<lineargradient id="grad-500" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#EF4444" stop-opacity="0.85"></stop>
+<stop offset="100%" stop-color="#EF4444" stop-opacity="0.15"></stop>
+</lineargradient>
+<lineargradient id="grad-total" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#b7c4ff" stop-opacity="0.8"></stop>
+<stop offset="100%" stop-color="#dee9fc" stop-opacity="0.2"></stop>
+</lineargradient>
+</defs>
+<!-- Grid Horizontal Lines -->
+<line stroke="#d0dbed" stroke-dasharray="3,3" stroke-width="1" x1="45" x2="745" y1="20" y2="20"></line>
+<text fill="#9CA3AF" font-family="monospace" font-size="10" text-anchor="end" x="36" y="24">50</text>
+<line stroke="#d0dbed" stroke-dasharray="3,3" stroke-width="1" x1="45" x2="745" y1="60" y2="60"></line>
+<text fill="#9CA3AF" font-family="monospace" font-size="10" text-anchor="end" x="36" y="64">35</text>
+<!-- Safety Baseline 15 QPS -->
+<line stroke="#F59E0B" stroke-dasharray="4,4" stroke-width="1.5" x1="45" x2="745" y1="130" y2="130"></line>
+<text fill="#F59E0B" font-family="monospace" font-size="10" text-anchor="end" x="36" y="134">15</text>
+<text fill="#F59E0B" font-family="sans-serif" font-size="9" text-anchor="end" x="740" y="125">容量安全红线 15 QPS</text>
+<line stroke="#d0dbed" stroke-width="1" x1="45" x2="745" y1="170" y2="170"></line>
+<text fill="#9CA3AF" font-family="monospace" font-size="10" text-anchor="end" x="36" y="174">0</text>
+<!-- Total QPS Area Background -->
+<path d="M 50 162 
+                       L 100 162 L 150 160 L 210 158 L 245 152 
+                       L 260 120 L 285 75 L 320 40 L 350 24 
+                       L 380 32 L 420 48 L 470 70 L 520 100 
+                       L 570 145 L 630 160 L 730 162 
+                       L 730 170 L 50 170 Z" fill="url(#grad-total)"></path>
+<!-- HTTP 500 Area Overlay (Starting at 14:14) -->
+<path d="M 285 170 
+                       L 285 125 L 320 52 L 350 28 
+                       L 380 38 L 420 58 L 470 82 L 520 115 
+                       L 570 158 L 590 170 Z" fill="url(#grad-500)"></path>
+<!-- Total QPS Contour Line -->
+<path d="M 50 162 
+                       L 100 162 L 150 160 L 210 158 L 245 152 
+                       L 260 120 L 285 75 L 320 40 L 350 24 
+                       L 380 32 L 420 48 L 470 70 L 520 100 
+                       L 570 145 L 630 160 L 730 162" fill="none" stroke="#2563eb" stroke-width="2"></path>
+<!-- HTTP 500 Contour Line -->
+<path d="M 285 170 
+                       L 285 125 L 320 52 L 350 28 
+                       L 380 38 L 420 58 L 470 82 L 520 115 
+                       L 570 158 L 590 170" fill="none" stroke="#EF4444" stroke-width="2.5"></path>
+<!-- Critical Milestones & Annotations -->
+<!-- Point 1: 14:12 Start rise -->
+<circle cx="260" cy="120" fill="#2563eb" r="4"></circle>
+<line stroke="#2563eb" stroke-dasharray="2,2" stroke-width="1" x1="260" x2="260" y1="120" y2="85"></line>
+<rect fill="#121c2a" fill-opacity="0.85" height="18" rx="3" width="90" x="215" y="65"></rect>
+<text fill="#ffffff" font-size="9" font-weight="500" text-anchor="middle" x="260" y="77">14:12 并发开始陡增</text>
+<!-- Point 2: 14:14 Connection Pool Saturated & First 500 -->
+<circle cx="285" cy="75" fill="#EF4444" r="4"></circle>
+<line stroke="#EF4444" stroke-width="1" x1="285" x2="285" y1="75" y2="35"></line>
+<rect fill="#EF4444" height="18" rx="3" width="112" x="235" y="16"></rect>
+<text fill="#ffffff" font-size="9" font-weight="600" text-anchor="middle" x="291" y="28">14:14 击穿 15 QPS 阈值</text>
+<!-- Point 3: Peak 14:18 (48.2 QPS) -->
+<circle cx="350" cy="24" fill="#EF4444" r="5" stroke="#ffffff" stroke-width="1.5"></circle>
+<rect fill="#121c2a" height="18" rx="3" width="125" x="330" y="2"></rect>
+<text fill="#ffffff" font-size="9" font-weight="600" text-anchor="middle" x="392" y="14">14:18 峰值 48.2 (500占92%)</text>
+<!-- Point 4: 14:32 Recovery drop -->
+<circle cx="570" cy="145" fill="#10B981" r="4"></circle>
+<rect fill="#10B981" height="18" rx="3" width="80" x="545" y="125"></rect>
+<text fill="#ffffff" font-size="9" font-weight="600" text-anchor="middle" x="585" y="137">14:32 盲重试回落</text>
+<!-- Timeline Ticks (Every 5 mins) -->
+<text fill="#6B7280" font-family="monospace" font-size="10" text-anchor="middle" x="50" y="190">14:00</text>
+<text fill="#6B7280" font-family="monospace" font-size="10" text-anchor="middle" x="135" y="190">14:05</text>
+<text fill="#6B7280" font-family="monospace" font-size="10" text-anchor="middle" x="220" y="190">14:10</text>
+<text fill="#6B7280" font-family="monospace" font-size="10" font-weight="600" text-anchor="middle" x="305" y="190">14:15</text>
+<text fill="#6B7280" font-family="monospace" font-size="10" font-weight="600" text-anchor="middle" x="390" y="190">14:20</text>
+<text fill="#6B7280" font-family="monospace" font-size="10" text-anchor="middle" x="475" y="190">14:25</text>
+<text fill="#6B7280" font-family="monospace" font-size="10" text-anchor="middle" x="560" y="190">14:30</text>
+<text fill="#6B7280" font-family="monospace" font-size="10" text-anchor="middle" x="645" y="190">14:35</text>
+<text fill="#6B7280" font-family="monospace" font-size="10" text-anchor="middle" x="730" y="190">14:40</text>
+</svg>
+</div>
+</div>
+<!-- 4-Stage Breakdown Data Table -->
+<div class="space-y-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-headline-md text-headline-md text-on-surface">关键时间窗口分段切片对比</span>
+<span class="font-caption text-caption text-text-muted">基于 ES Bucket 分钟级聚合统计</span>
+</div>
+<div class="overflow-x-auto rounded-lg shadow-sm">
+<table class="w-full text-left bg-surface-card">
+<thead class="bg-surface-container-low font-label-sm text-label-sm text-text-secondary">
+<tr>
+<th class="py-2.5 px-space-md">阶段区间</th>
+<th class="py-2.5 px-space-md">时序特征</th>
+<th class="py-2.5 px-space-md text-right">平均 QPS</th>
+<th class="py-2.5 px-space-md text-right">峰值 QPS</th>
+<th class="py-2.5 px-space-md text-right">HTTP 500 计数</th>
+<th class="py-2.5 px-space-md text-right">P95 延迟</th>
+<th class="py-2.5 px-space-md text-center">状态评估</th>
+</tr>
+</thead>
+<tbody class="font-body-sm text-body-sm divide-none">
+<!-- Stage 1 -->
+<tr class="hover:bg-code-bg transition-all">
+<td class="py-2.5 px-space-md font-code-sm text-code-sm font-medium text-on-surface">14:00 ~ 14:11</td>
+<td class="py-2.5 px-space-md text-text-secondary">基准常态业务流量</td>
+<td class="py-2.5 px-space-md text-right font-code-sm text-code-sm">4.3 req/s</td>
+<td class="py-2.5 px-space-md text-right font-code-sm text-code-sm">6.1 req/s</td>
+<td class="py-2.5 px-space-md text-right font-code-sm text-code-sm text-status-success">0</td>
+<td class="py-2.5 px-space-md text-right font-code-sm text-code-sm">184 ms</td>
+<td class="py-2.5 px-space-md text-center">
+<span class="px-2 py-0.5 rounded bg-status-success-bg text-status-success font-label-sm text-[11px]">健康运行</span>
+</td>
+</tr>
+<!-- Stage 2 -->
+<tr class="hover:bg-code-bg transition-all bg-status-warning-bg/30">
+<td class="py-2.5 px-space-md font-code-sm text-code-sm font-medium text-on-surface">14:12 ~ 14:17</td>
+<td class="py-2.5 px-space-md text-text-secondary">批量重放突发爬升期</td>
+<td class="py-2.5 px-space-md text-right font-code-sm text-code-sm font-semibold text-status-warning">21.8 req/s</td>
+<td class="py-2.5 px-space-md text-right font-code-sm text-code-sm font-semibold text-status-warning">34.5 req/s</td>
+<td class="py-2.5 px-space-md text-right font-code-sm text-code-sm text-status-danger font-semibold">142</td>
+<td class="py-2.5 px-space-md text-right font-code-sm text-code-sm">4,820 ms</td>
+<td class="py-2.5 px-space-md text-center">
+<span class="px-2 py-0.5 rounded bg-status-warning-bg text-status-warning font-label-sm text-[11px]">连接池耗尽</span>
+</td>
+</tr>
+<!-- Stage 3 -->
+<tr class="hover:bg-code-bg transition-all bg-status-danger-bg/40">
+<td class="py-2.5 px-space-md font-code-sm text-code-sm font-medium text-on-surface">14:18 ~ 14:26</td>
+<td class="py-2.5 px-space-md text-text-secondary font-medium text-status-danger">洪峰盲重试全面熔断期</td>
+<td class="py-2.5 px-space-md text-right font-code-sm text-code-sm font-bold text-status-danger">44.6 req/s</td>
+<td class="py-2.5 px-space-md text-right font-code-sm text-code-sm font-bold text-status-danger">48.2 req/s</td>
+<td class="py-2.5 px-space-md text-right font-code-sm text-code-sm text-status-danger font-bold">598</td>
+<td class="py-2.5 px-space-md text-right font-code-sm text-code-sm text-status-danger font-bold">16,210 ms</td>
+<td class="py-2.5 px-space-md text-center">
+<span class="px-2 py-0.5 rounded bg-status-danger-bg text-status-danger font-label-sm text-[11px]">严重雪崩</span>
+</td>
+</tr>
+<!-- Stage 4 -->
+<tr class="hover:bg-code-bg transition-all">
+<td class="py-2.5 px-space-md font-code-sm text-code-sm font-medium text-on-surface">14:27 ~ 14:40</td>
+<td class="py-2.5 px-space-md text-text-secondary">重试衰减回落期</td>
+<td class="py-2.5 px-space-md text-right font-code-sm text-code-sm">11.4 req/s</td>
+<td class="py-2.5 px-space-md text-right font-code-sm text-code-sm">18.0 req/s</td>
+<td class="py-2.5 px-space-md text-right font-code-sm text-code-sm text-status-warning">84</td>
+<td class="py-2.5 px-space-md text-right font-code-sm text-code-sm">1,240 ms</td>
+<td class="py-2.5 px-space-md text-center">
+<span class="px-2 py-0.5 rounded bg-surface-container font-label-sm text-on-surface-variant text-[11px]">逐步自愈</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Diagnostic Expert Attribution & Remediation Findings -->
+<div class="p-space-md rounded-xl bg-surface-container-low space-y-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">verified</span>
+<span class="font-headline-md text-headline-md text-on-surface">专家归因结论与处置建议</span>
+</div>
+<div class="space-y-space-sm">
+<div class="flex items-start gap-space-sm">
+<span class="w-5 h-5 rounded-full bg-primary text-on-primary font-code-sm text-code-sm flex items-center justify-center flex-shrink-0 mt-0.5">1</span>
+<div>
+<p class="font-label-md text-label-md text-on-surface font-semibold">根因明确：定时批量对账回调并发越界</p>
+<p class="font-body-md text-body-md text-on-surface-variant mt-0.5">
+                  客户端金融专线 VPC 节点 <code class="font-code-sm text-primary">10.198.42.15</code> 在 14:12 触发了未经速率平滑的定时批量对账，单机瞬间并发突破 48 QPS，直接打爆后端单租户专用的 HikariPool 连接池（上限 12 连接）。
+                </p>
+</div>
+</div>
+<div class="flex items-start gap-space-sm">
+<span class="w-5 h-5 rounded-full bg-primary text-on-primary font-code-sm text-code-sm flex items-center justify-center flex-shrink-0 mt-0.5">2</span>
+<div>
+<p class="font-label-md text-label-md text-on-surface font-semibold">恶化机制：客户端盲重试（无 Jitter 退避）加剧次生雪崩</p>
+<p class="font-body-md text-body-md text-on-surface-variant mt-0.5">
+                  该外部客户端重试策略未配置指数退避抖动，在收到上游 15s 熔断返回的 HTTP 500 后立即发起 100% 盲重试，将有效负载与无效重试重叠放大，导致 14:18~14:26 异常率攀升至 92.4%。
+                </p>
+</div>
+</div>
+<div class="flex items-start gap-space-sm">
+<span class="w-5 h-5 rounded-full bg-status-success text-on-primary font-code-sm text-code-sm flex items-center justify-center flex-shrink-0 mt-0.5">3</span>
+<div>
+<p class="font-label-md text-label-md text-on-surface font-semibold">即时处置措施与工单建议</p>
+<p class="font-body-md text-body-md text-on-surface-variant mt-0.5">
+                  ① 立即在 API 网关针对 IP <code class="font-code-sm text-primary">10.198.42.15</code> 下发 15 QPS 令牌桶限流；② 同步金融对接方调整回调客户端的重试机制，引入 500ms~2000ms 随机抖动时间。
+                </p>
+</div>
+</div>
+</div>
+<!-- Evidence Tag Footer in Response -->
+<div class="pt-space-sm flex items-center justify-between text-text-muted">
+<div class="flex items-center gap-1.5 font-caption text-caption">
+<span>可信证据关联:</span>
+<a class="px-space-xs py-0.5 rounded bg-primary-tint text-primary font-code-sm text-code-sm font-medium hover:underline flex items-center gap-1" href="javascript:void(0)" onclick="document.getElementById('evidence-drawer').classList.remove('translate-x-full')">
+<span>[1] ES 日期直方图聚合 · date_histogram_1m</span>
+<span class="material-symbols-outlined text-[13px]">open_in_new</span>
+</a>
+</div>
+<span class="font-caption text-caption">SHA-256: e8b94...91c0 (已通过安全审计签名)</span>
+</div>
+</div>
+<!-- Quick Action Trigger Chips -->
+<div class="flex flex-wrap items-center gap-space-sm pt-space-xs">
+<button class="px-space-md py-2 rounded-lg bg-primary text-on-primary font-label-md text-label-md flex items-center gap-1.5 hover:bg-secondary transition-all shadow-sm">
+<span class="material-symbols-outlined text-[18px]">bolt</span>
+            一键下发网关限流工单 (15 QPS 令牌桶)
+          </button>
+<button class="px-space-md py-2 rounded-lg bg-surface-container-high text-on-surface font-label-md text-label-md flex items-center gap-1.5 hover:bg-surface-container-highest transition-all shadow-sm">
+<span class="material-symbols-outlined text-[18px]">monitoring</span>
+            关联核查 HikariPool 连接池监控快照
+          </button>
+<button class="px-space-md py-2 rounded-lg bg-surface-container-high text-on-surface font-label-md text-label-md flex items-center gap-1.5 hover:bg-surface-container-highest transition-all shadow-sm">
+<span class="material-symbols-outlined text-[18px]">domain_verification</span>
+            生成商户端整改通知单
+          </button>
+</div>
+</div>
+<!-- Turn 5 Dynamic Input Composer -->
+<div class="bg-surface-card rounded-xl p-space-md shadow-sm space-y-space-xs">
+<div class="flex items-center justify-between text-text-secondary font-label-sm text-label-sm">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-status-success"></span>
+<span class="font-medium text-on-surface">继续追问 (上下文保持已开启: Round 5)</span>
+</div>
+<span class="font-caption text-caption text-text-muted">按 Enter 发送，Shift+Enter 换行</span>
+</div>
+<div class="relative">
+<textarea class="w-full p-space-sm rounded-lg bg-code-bg text-on-surface font-body-md text-body-md placeholder:text-text-muted focus:outline-none focus:bg-surface-card transition-all resize-none" placeholder="输入下一步排查指令，例如：“比对该 IP 昨天同一时段的对账请求基线” 或 “下钻 14:18:22 秒级 access_log 样本”..." rows="2"></textarea>
+<div class="absolute right-2 bottom-2 flex items-center gap-space-xs">
+<button class="p-1.5 rounded-md hover:bg-surface-container text-text-secondary transition-all" title="上传关联拓扑/日志文件">
+<span class="material-symbols-outlined text-[20px]">attach_file</span>
+</button>
+<button class="h-8 px-space-md rounded-lg bg-primary-container text-on-primary font-label-md text-label-md flex items-center gap-1 hover:bg-primary transition-all shadow-sm">
+<span>发送分析</span>
+<span class="material-symbols-outlined text-[16px]">arrow_upward</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Column 3: Controlled Slide-Out Evidence Drawer (380px fixed) -->
+<aside class="w-[380px] flex-shrink-0 flex flex-col gap-space-sm transition-transform duration-300" id="evidence-drawer">
+<!-- Drawer Container Card -->
+<div class="bg-surface-card rounded-xl p-space-md shadow-sm space-y-space-md sticky top-16">
+<!-- Drawer Header -->
+<div class="flex items-center justify-between pb-2 bg-surface-card">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">terminal</span>
+<div>
+<span class="font-headline-md text-headline-md text-on-surface">证据详情 · ES 聚合执行</span>
+<p class="font-caption text-caption text-text-muted">DSL Payload &amp; Bucket Aggregations</p>
+</div>
+</div>
+<button class="p-1 rounded hover:bg-surface-container text-text-secondary" onclick="document.getElementById('evidence-drawer').classList.toggle('hidden')" title="折叠/展开抽屉">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+<!-- Telemetry Execution Metadata -->
+<div class="grid grid-cols-2 gap-space-xs p-space-sm rounded-lg bg-surface-container-low font-code-sm text-code-sm">
+<div>
+<span class="text-text-muted">Target Index:</span>
+<span class="text-on-surface font-medium block truncate">gateway-access-logs-2026</span>
+</div>
+<div>
+<span class="text-text-muted">Query Took:</span>
+<span class="text-status-success font-medium block">32 ms (Local Cache)</span>
+</div>
+<div>
+<span class="text-text-muted">Total Hits:</span>
+<span class="text-primary font-medium block">824 documents</span>
+</div>
+<div>
+<span class="text-text-muted">Shard Router:</span>
+<span class="text-text-secondary font-medium block">5/5 successful</span>
+</div>
+</div>
+<!-- Real Controlled AST-DSL Code Snippet -->
+<div class="space-y-1">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-text-secondary font-medium uppercase">执行 AST-DSL 代码</span>
+<button class="font-caption text-caption text-primary hover:underline flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[13px]">copy_all</span> 复制 DSL
+            </button>
+</div>
+<pre class="p-space-sm rounded-lg bg-code-bg font-code-sm text-code-sm text-on-surface-variant overflow-x-auto leading-relaxed max-h-[220px]"><code>{
+  <span class="text-secondary font-semibold">"size"</span>: 0,
+  <span class="text-secondary font-semibold">"query"</span>: {
+    <span class="text-primary">"bool"</span>: {
+      <span class="text-primary">"filter"</span>: [
+        { <span class="text-status-warning">"term"</span>: { <span class="text-on-surface">"client_ip"</span>: <span class="text-status-success">"10.198.42.15"</span> } },
+        { <span class="text-status-warning">"term"</span>: { <span class="text-on-surface">"path"</span>: <span class="text-status-success">"/api/v2/payment/notify"</span> } },
+        {
+          <span class="text-status-warning">"range"</span>: {
+            <span class="text-on-surface">"@timestamp"</span>: {
+              <span class="text-on-surface">"gte"</span>: <span class="text-status-success">"2026-09-24T14:00:00Z"</span>,
+              <span class="text-on-surface">"lte"</span>: <span class="text-status-success">"2026-09-24T14:40:00Z"</span>
+            }
+          }
+        }
+      ]
+    }
+  },
+  <span class="text-secondary font-semibold">"aggs"</span>: {
+    <span class="text-on-tertiary-container">"qps_over_time"</span>: {
+      <span class="text-primary">"date_histogram"</span>: {
+        <span class="text-on-surface">"field"</span>: <span class="text-status-success">"@timestamp"</span>,
+        <span class="text-on-surface">"fixed_interval"</span>: <span class="text-status-success">"1m"</span>
+      },
+      <span class="text-secondary font-semibold">"aggs"</span>: {
+        <span class="text-on-tertiary-container">"http_500_count"</span>: {
+          <span class="text-primary">"filter"</span>: { <span class="text-status-warning">"term"</span>: { <span class="text-on-surface">"status"</span>: 500 } }
+        }
+      }
+    }
+  }
+}</code></pre>
+</div>
+<!-- Real-Time Top Minute Bucket Preview -->
+<div class="space-y-1.5">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-text-secondary font-medium uppercase">聚合桶前序采样 (Top 4 峰值桶)</span>
+<span class="font-code-sm text-code-sm text-text-muted">40 buckets</span>
+</div>
+<div class="space-y-1 font-code-sm text-code-sm">
+<div class="p-2 rounded bg-surface-container-low flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-on-surface font-medium">14:18:00</span>
+<span class="text-text-muted text-[10px]">key: 1790259480000</span>
+</div>
+<div class="text-right">
+<span class="text-status-danger font-bold">48.2 req/s</span>
+<span class="text-text-secondary text-[11px] block">500 命中: 266 次</span>
+</div>
+</div>
+<div class="p-2 rounded bg-surface-container-low flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-on-surface font-medium">14:19:00</span>
+<span class="text-text-muted text-[10px]">key: 1790259540000</span>
+</div>
+<div class="text-right">
+<span class="text-status-danger font-bold">46.8 req/s</span>
+<span class="text-text-secondary text-[11px] block">500 命中: 258 次</span>
+</div>
+</div>
+<div class="p-2 rounded bg-surface-container-low flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-on-surface font-medium">14:20:00</span>
+<span class="text-text-muted text-[10px]">key: 1790259600000</span>
+</div>
+<div class="text-right">
+<span class="text-status-warning font-semibold">41.1 req/s</span>
+<span class="text-text-secondary text-[11px] block">500 命中: 210 次</span>
+</div>
+</div>
+<div class="p-2 rounded bg-surface-container-low flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-on-surface font-medium">14:14:00</span>
+<span class="text-text-muted text-[10px]">key: 1790259240000</span>
+</div>
+<div class="text-right">
+<span class="text-primary font-semibold">26.3 req/s</span>
+<span class="text-text-secondary text-[11px] block">500 首见: 24 次</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Export Evidence Bar -->
+<div class="pt-2 flex items-center gap-space-xs">
+<button class="flex-1 py-2 rounded-lg bg-surface-container text-on-surface font-label-sm text-label-sm flex items-center justify-center gap-1 hover:bg-surface-container-high transition-all">
+<span class="material-symbols-outlined text-[16px]">download</span>
+            下载原始 JSON
+          </button>
+<button class="flex-1 py-2 rounded-lg bg-surface-container text-on-surface font-label-sm text-label-sm flex items-center justify-center gap-1 hover:bg-surface-container-high transition-all">
+<span class="material-symbols-outlined text-[16px]">table_view</span>
+            导出聚合 CSV
+          </button>
+</div>
+</div>
+</aside>
+</div>
+</div></main></div></body></html>

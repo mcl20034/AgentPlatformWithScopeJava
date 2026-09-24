@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>404 - 资源未找到 | 智能分析平台</title>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+            }
+          },
+          fontFamily: {
+            mono: ['JetBrains Mono', 'Menlo', 'Monaco', 'Courier New', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+<!-- BEGIN: Custom Styles -->
+<style data-purpose="custom-utilities">
+    /* Subtle background grid pattern for enterprise platform aesthetics */
+    .bg-grid-subtle {
+      background-size: 24px 24px;
+      background-image: radial-gradient(rgba(148, 163, 184, 0.18) 1px, transparent 0);
+    }
+  </style>
+<!-- END: Custom Styles -->
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col justify-between bg-grid-subtle selection:bg-blue-100 selection:text-blue-900">
+<!-- BEGIN: GatewayStatusBanner -->
+<!-- Top narrow indicator notifying operator status -->
+<header class="w-full bg-white/80 backdrop-blur border-b border-slate-200/90 text-xs text-slate-500 py-2 px-4 shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
+<div class="max-w-6xl mx-auto flex items-center justify-between flex-wrap gap-2">
+<div class="flex items-center space-x-2">
+<span class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200/80">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-1 animate-pulse"></span>
+          GATEWAY STATUS: OPERATIONAL
+        </span>
+<span class="text-slate-400">|</span>
+<span class="text-slate-600">基础集群与网关服务均正常运转，已排除底层基础设施故障</span>
+</div>
+<div class="flex items-center space-x-3 text-[11px] text-slate-400">
+<span>Mesh API Gateway <span class="text-slate-600 font-mono">99.98%</span></span>
+<span>•</span>
+<span>KMS 鉴权网关正常</span>
+</div>
+</div>
+</header>
+<!-- END: GatewayStatusBanner -->
+<!-- BEGIN: MainContent -->
+<main class="flex-1 flex items-center justify-center p-4 md:py-10">
+<div class="w-full max-w-[660px] bg-white rounded-2xl shadow-xl shadow-slate-200/60 border border-slate-200/90 p-8 sm:p-10 text-center relative overflow-hidden">
+<!-- Top Subtle Decorative Accent -->
+<div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-indigo-500 to-amber-500"></div>
+<!-- Icon & Error Code Badges -->
+<div class="flex justify-center mb-4">
+<div class="relative p-3.5 rounded-2xl bg-gradient-to-br from-blue-50 via-slate-50 to-rose-50 border border-slate-200/80 shadow-sm">
+<div class="w-12 h-12 rounded-xl bg-white border border-slate-200/70 flex items-center justify-center text-slate-600 shadow-inner">
+<!-- Disconnected / Unreachable Node Icon -->
+<svg class="w-6 h-6 text-slate-500" fill="none" stroke="currentColor" stroke-width="1.75" viewbox="0 0 24 24">
+<path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<span class="absolute -top-1 -right-1 flex h-3.5 w-3.5">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3.5 w-3.5 bg-rose-500 border-2 border-white"></span>
+</span>
+</div>
+</div>
+<!-- Heading & Status Description -->
+<div class="mb-5">
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 font-mono text-[11px] font-medium tracking-wide mb-2">
+<span>HTTP 404</span>
+<span>·</span>
+<span>ROUTING ERROR / Target Unreachable</span>
+</div>
+<h1 class="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight mb-2">
+          抱歉，您请求的资源不存在或已被移除
+        </h1>
+<p class="text-xs sm:text-sm text-slate-500 leading-relaxed max-w-lg mx-auto">
+          平台无法在元数据编排树或会话索引表中解析该实体。该对象可能从未发布、已过保留生命周期，或出于安全隔离策略进行了静默截断。
+        </p>
+</div>
+<!-- BEGIN: AuditContextCard -->
+<!-- Request tracking metadata container -->
+<section class="text-left bg-slate-50 rounded-xl p-4 border border-slate-200/80 my-5 space-y-2 text-xs font-mono text-slate-600" data-purpose="audit-context">
+<div class="flex items-center justify-between pb-1.5 border-b border-slate-200/60 font-sans text-slate-500 text-[11px]">
+<span class="font-medium text-slate-700 flex items-center gap-1">
+<svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+            请求上下文追踪 (Audit Context)
+          </span>
+<span class="text-[10px] text-slate-400">Node: worker-04.ap-east-1</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-[110px_1fr] gap-x-2 gap-y-1">
+<span class="text-slate-400 font-sans">Resource URI:</span>
+<span class="text-slate-800 break-all select-all font-semibold">/chat/session/rec-2026-99014</span>
+<span class="text-slate-400 font-sans">Timestamp:</span>
+<span class="text-slate-700">2026-09-24 16:20:10.428 UTC+8</span>
+<span class="text-slate-400 font-sans">Trace ID:</span>
+<div class="flex items-center gap-1.5 text-slate-800 font-semibold">
+<span id="trace-id">tr-99b83f0a-404c-8e21</span>
+<button class="px-1.5 py-0.5 text-[10px] text-blue-600 hover:text-blue-800 hover:bg-blue-50 border border-blue-200 rounded transition" id="copy-trace-btn" title="复制 Trace ID" type="button">
+              复制
+            </button>
+</div>
+<span class="text-slate-400 font-sans">Auth Mode:</span>
+<span class="text-slate-700">RBAC / Silent-Suppressed</span>
+</div>
+</section>
+<!-- END: AuditContextCard -->
+<!-- BEGIN: DiagnosticCards -->
+<!-- Typical root cause resolution options -->
+<section class="my-5" data-purpose="diagnostic-scenarios">
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-left text-xs">
+<!-- Card 1 -->
+<div class="p-3 bg-white rounded-lg border border-slate-200 hover:border-slate-300 transition-colors shadow-sm">
+<div class="flex items-center gap-1.5 font-medium text-slate-800 mb-1">
+<span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
+              会话隔离或已清理
+            </div>
+<p class="text-[11px] text-slate-500 leading-normal">
+              会话已被所有者删除或归档，租户空间沙箱已隔离。
+            </p>
+</div>
+<!-- Card 2 -->
+<div class="p-3 bg-white rounded-lg border border-slate-200 hover:border-slate-300 transition-colors shadow-sm">
+<div class="flex items-center gap-1.5 font-medium text-slate-800 mb-1">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+              数据源或知识库离线
+            </div>
+<p class="text-[11px] text-slate-500 leading-normal">
+              对应关联模型处于全量重建切片或已被废弃下线。
+            </p>
+</div>
+<!-- Card 3 -->
+<div class="p-3 bg-white rounded-lg border border-slate-200 hover:border-slate-300 transition-colors shadow-sm">
+<div class="flex items-center gap-1.5 font-medium text-slate-800 mb-1">
+<span class="w-1.5 h-1.5 rounded-full bg-purple-500"></span>
+              URL 解析或凭证失效
+            </div>
+<p class="text-[11px] text-slate-500 leading-normal">
+              链接参数未正确转义，或单次路由 Token 已超时过期。
+            </p>
+</div>
+</div>
+</section>
+<!-- END: DiagnosticCards -->
+<!-- BEGIN: ActionButtons -->
+<!-- User operational navigation -->
+<div class="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
+<a class="w-full sm:w-auto inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-medium py-2.5 px-6 rounded-lg text-sm transition-all shadow-sm shadow-blue-500/20 active:scale-95" href="/">
+<svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+          返回智能问答首页
+        </a>
+<div class="flex items-center gap-2 w-full sm:w-auto">
+<button class="flex-1 sm:flex-initial inline-flex items-center justify-center px-4 py-2.5 rounded-lg border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 text-sm font-medium transition active:scale-95" onclick="window.history.back()" type="button">
+            返回上一页
+          </button>
+<button class="flex-1 sm:flex-initial inline-flex items-center justify-center px-4 py-2.5 rounded-lg border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 text-sm font-medium transition active:scale-95" type="button">
+            新建分析会话
+          </button>
+<button class="flex-1 sm:flex-initial inline-flex items-center justify-center px-3 py-2.5 rounded-lg text-slate-500 hover:text-slate-800 text-sm hover:bg-slate-100 transition" title="提交工单反馈" type="button">
+            工单反馈
+          </button>
+</div>
+</div>
+<!-- END: ActionButtons -->
+</div>
+</main>
+<!-- END: MainContent -->
+<!-- BEGIN: Footer -->
+<footer class="w-full py-4 text-center text-xs text-slate-400 border-t border-slate-200/70 bg-white/40">
+<div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-1">
+<div>Stitch Data Platform 2026.4.1 · 遵循 RFC 7231 / SOC-2 Type II 审计标准</div>
+<div class="text-[11px] text-slate-400">
+        租户隔离等级: L4 KMS 沙箱隔离
+      </div>
+</div>
+</footer>
+<!-- END: Footer -->
+<!-- BEGIN: Scripts -->
+<script data-purpose="clipboard-interaction">
+    document.getElementById('copy-trace-btn')?.addEventListener('click', function() {
+      const traceId = document.getElementById('trace-id')?.innerText;
+      if (traceId) {
+        navigator.clipboard.writeText(traceId).then(() => {
+          this.textContent = '已复制!';
+          this.classList.add('bg-emerald-50', 'text-emerald-700', 'border-emerald-300');
+          setTimeout(() => {
+            this.textContent = '复制';
+            this.classList.remove('bg-emerald-50', 'text-emerald-700', 'border-emerald-300');
+          }, 2000);
+        });
+      }
+    });
+  </script>
+<!-- END: Scripts -->
+</body></html>

@@ -1,0 +1,45 @@
+spring:
+  application:
+    name: agent-platform
+  datasource:
+    url: ${PLATFORM_DB_URL:jdbc:postgresql://localhost:5432/agent_platform}
+    username: ${PLATFORM_DB_USERNAME:agent_platform}
+    password: ${PLATFORM_DB_PASSWORD:}
+  flyway:
+    enabled: true
+  session:
+    jdbc:
+      initialize-schema: never
+    timeout: 8h
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 20MB
+server:
+  servlet:
+    session:
+      cookie:
+        name: AGENT_PLATFORM_SESSION
+        http-only: true
+        same-site: lax
+        secure: ${PLATFORM_SECURE_COOKIE:true}
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+platform:
+  secrets:
+    key-id: ${PLATFORM_MASTER_KEY_ID:local-v1}
+    master-key: ${PLATFORM_MASTER_KEY:}
+    master-key-file: ${PLATFORM_MASTER_KEY_FILE:}
+  network:
+    allowed-hosts: ${PLATFORM_ALLOWED_OUTBOUND_HOSTS:localhost,127.0.0.1}
+  storage:
+    root: ${PLATFORM_STORAGE_ROOT:./data}
+  bootstrap:
+    admin-username: ${PLATFORM_ADMIN_USERNAME:admin}
+    admin-password: ${PLATFORM_ADMIN_PASSWORD:}
+    admin-password-file: ${PLATFORM_ADMIN_PASSWORD_FILE:}
+  security:
+    bcrypt-strength: ${PLATFORM_BCRYPT_STRENGTH:12}

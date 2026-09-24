@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter,+-apple-system,+BlinkMacSystemFont,+'PingFang+SC',+sans-serif:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"status-success-bg":"#ECFDF5","secondary-container":"#4069f2","on-primary-fixed-variant":"#003ea8","text-primary":"#1F2937","status-danger":"#EF4444","on-secondary-container":"#fffbff","status-processing":"#3B82F6","status-warning":"#F59E0B","status-danger-bg":"#FEF2F2","border-subtle":"#E5E7EB","status-neutral-bg":"#F3F4F6","inverse-surface":"#27313f","on-background":"#121c2a","on-error-container":"#93000a","tertiary-fixed-dim":"#ffb596","code-bg":"#F9FAFB","on-tertiary-fixed-variant":"#7d2d00","canvas-bg":"#F7F8FA","border-focus":"#2563EB","primary-container":"#2563eb","inverse-primary":"#b4c5ff","tertiary-fixed":"#ffdbcd","surface-card":"#FFFFFF","status-warning-bg":"#FFFBEB","text-secondary":"#6B7280","secondary-fixed":"#dce1ff","primary-fixed":"#dbe1ff","error":"#ba1a1a","status-neutral":"#6B7280","surface-container-lowest":"#ffffff","outline-variant":"#c3c6d7","on-tertiary":"#ffffff","on-tertiary-container":"#ffede6","on-primary-fixed":"#00174b","tertiary":"#943700","text-muted":"#9CA3AF","on-primary-container":"#eeefff","outline":"#737686","on-error":"#ffffff","tertiary-container":"#bc4800","background":"#f8f9ff","on-primary":"#ffffff","error-container":"#ffdad6","surface":"#f8f9ff","inverse-on-surface":"#eaf1ff","surface-dim":"#d0dbed","on-surface-variant":"#434655","surface-container-highest":"#d9e3f6","on-secondary":"#ffffff","on-surface":"#121c2a","surface-container-low":"#eff4ff","surface-container-high":"#dee9fc","primary-tint":"#EFF6FF","surface-variant":"#d9e3f6","primary":"#004ac6","surface-tint":"#0053db","status-success":"#10B981","on-secondary-fixed":"#001551","primary-fixed-dim":"#b4c5ff","secondary":"#1d4ed8","on-secondary-fixed-variant":"#0039b5","surface-container":"#e6eeff","surface-bright":"#f8f9ff","secondary-fixed-dim":"#b7c4ff","on-tertiary-fixed":"#360f00","status-processing-bg":"#EFF6FF"},borderRadius:{DEFAULT:"0.25rem",lg:"0.5rem",xl:"0.75rem",full:"9999px"},spacing:{"space-lg":"1.25rem","margin-desktop":"2rem","space-2xl":"2rem","gutter-desktop":"1.5rem","space-md":"1rem",margin:"1.5rem","space-xs":"0.25rem","space-sm":"0.5rem","space-xl":"1.5rem",gutter:"1.25rem"},fontFamily:{"code-md":["\"JetBrains Mono, Menlo, Monaco, Consolas, monospace\""],display:["\"Inter, -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif\""],"code-sm":["\"JetBrains Mono, Menlo, Monaco, Consolas, monospace\""],caption:["\"Inter, -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif\""],"body-md":["\"Inter, -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif\""],"body-sm":["\"Inter, -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif\""],"label-md":["\"Inter, -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif\""],"label-sm":["\"Inter, -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif\""],"body-lg":["\"Inter, -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif\""],"headline-md":["\"Inter, -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif\""],"headline-lg":["\"Inter, -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif\""]},fontSize:{"code-md":["13px",{lineHeight:"20px",fontWeight:"400"}],display:["24px",{lineHeight:"32px",letterSpacing:"-0.02em",fontWeight:"700"}],"code-sm":["11px",{lineHeight:"16px",fontWeight:"500"}],caption:["12px",{lineHeight:"16px",fontWeight:"400"}],"body-md":["14px",{lineHeight:"20px",fontWeight:"400"}],"body-sm":["13px",{lineHeight:"18px",fontWeight:"400"}],"label-md":["14px",{lineHeight:"20px",fontWeight:"500"}],"label-sm":["12px",{lineHeight:"16px",fontWeight:"500"}],"body-lg":["15px",{lineHeight:"22px",fontWeight:"400"}],"headline-md":["16px",{lineHeight:"24px",fontWeight:"600"}],"headline-lg":["20px",{lineHeight:"28px",letterSpacing:"-0.01em",fontWeight:"600"}]}}}};</script></head><body class="bg-canvas-bg font-body-md text-text-primary antialiased min-h-screen selection:bg-primary-tint selection:text-primary"><aside class="fixed left-0 top-0 h-full w-[224px] bg-surface-card z-50 flex flex-col justify-between shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex flex-col"><div class="h-[60px] px-space-md flex items-center justify-between"><div class="flex items-center gap-space-sm"><div class="w-7 h-7 rounded-lg bg-primary-container flex items-center justify-center text-on-primary shadow-sm"><span class="material-symbols-outlined text-[18px]">hub</span></div><div class="flex flex-col"><span class="font-headline-md text-body-sm font-semibold text-text-primary tracking-tight">智能分析平台</span><span class="font-code-sm text-[10px] text-text-muted leading-tight">v1.0 企业版</span></div></div><button class="w-7 h-7 rounded-lg flex items-center justify-center text-text-secondary hover:bg-status-neutral-bg hover:text-text-primary transition-colors" title="收起侧边栏"><span class="material-symbols-outlined text-[18px]">left_panel_close</span></button></div><div class="px-space-md py-space-sm"><span class="font-label-sm text-[11px] uppercase tracking-wider text-text-muted">工作空间</span></div><nav class="px-space-sm flex flex-col gap-1" data-active-classes="bg-primary-tint text-primary font-semibold"><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-text-secondary hover:bg-status-neutral-bg hover:text-text-primary transition-all font-body-sm" data-path="intelligent-qa" href="#"><span class="material-symbols-outlined text-[18px]">forum</span><span>智能问答</span></a></nav><div class="px-space-md pt-space-lg pb-space-sm"><span class="font-label-sm text-[11px] uppercase tracking-wider text-text-muted">管理与治理</span></div><nav class="px-space-sm flex flex-col gap-1" data-active-classes="bg-primary-tint text-primary font-semibold"><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-text-secondary hover:bg-status-neutral-bg hover:text-text-primary transition-all font-body-sm" data-path="model-management" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[18px]">neurology</span><span>模型管理</span></div><span class="w-1.5 h-1.5 rounded-full bg-primary"></span></a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-text-secondary hover:bg-status-neutral-bg hover:text-text-primary transition-all font-body-sm" data-path="datasource-management" href="#"><span class="material-symbols-outlined text-[18px]">database</span><span>数据源管理</span></a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-text-secondary hover:bg-status-neutral-bg hover:text-text-primary transition-all font-body-sm" data-path="knowledge-base" href="#"><span class="material-symbols-outlined text-[18px]">menu_book</span><span>知识库</span></a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-text-secondary hover:bg-status-neutral-bg hover:text-text-primary transition-all font-body-sm" data-path="account-management" href="#"><span class="material-symbols-outlined text-[18px]">manage_accounts</span><span>账号管理</span></a></nav></div><div class="p-space-sm m-space-sm rounded-lg bg-code-bg"><div class="flex items-center gap-space-xs"><span class="w-2 h-2 rounded-full bg-status-success animate-pulse"></span><span class="font-caption text-[11px] text-text-secondary truncate">安全只读网络 · 运行正常</span></div><div class="mt-1 flex items-center justify-between font-code-sm text-[10px] text-text-muted"><span>隔离区 A-04</span><span>延迟 12ms</span></div></div></aside><div class="pl-[224px]"><header class="fixed top-0 left-[224px] right-0 h-[60px] bg-surface-card/90 backdrop-blur-md z-40 flex items-center justify-between px-gutter shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs font-body-sm text-text-secondary"><span class="hover:text-text-primary cursor-pointer transition-colors">首页</span><span class="material-symbols-outlined text-[14px] text-text-muted">chevron_right</span><span>管理与治理</span><span class="material-symbols-outlined text-[14px] text-text-muted">chevron_right</span><span class="hover:text-text-primary cursor-pointer transition-colors">模型管理</span><span class="material-symbols-outlined text-[14px] text-text-muted">chevron_right</span><span class="text-text-primary font-medium">新建模型</span></div><div class="h-4 w-px bg-border-subtle"></div><div class="flex items-center gap-space-xs"><span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-status-warning-bg text-status-warning font-label-sm text-[11px]"><span class="w-1.5 h-1.5 rounded-full bg-status-warning"></span>生产环境 · 只读安全模式</span><span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-status-success-bg text-status-success font-label-sm text-[11px]"><span class="material-symbols-outlined text-[13px]">check_circle</span>API 与推理网关正常</span></div></div><div class="flex items-center gap-space-md"><button class="flex items-center gap-1 px-space-sm py-1.5 rounded-lg text-text-secondary hover:bg-status-neutral-bg hover:text-text-primary font-body-sm transition-colors"><span class="material-symbols-outlined text-[18px]">help_outline</span><span>帮助文档</span></button><button class="relative p-1.5 rounded-lg text-text-secondary hover:bg-status-neutral-bg hover:text-text-primary transition-colors" title="通知"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-1 right-1 w-2 h-2 rounded-full bg-status-danger"></span></button><div class="h-5 w-px bg-border-subtle"></div><div class="flex items-center gap-space-sm"><div class="flex flex-col text-right"><span class="font-label-md text-body-sm font-medium text-text-primary leading-tight">陈工 (数据研发)</span><span class="font-caption text-[11px] text-text-muted leading-tight">管理员 · KMS 隔离网关接入</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="relative pt-[60px] bg-canvas-bg min-h-screen"><div class="flex flex-col w-full">
+<!-- Main Workflow Container -->
+<div class="w-full max-w-[1400px] mx-auto px-gutter-desktop py-space-xl flex flex-col gap-space-lg">
+<!-- Top Metadata Header & Invariance Warning -->
+<div class="flex flex-col gap-space-md">
+<!-- Breadcrumb Context & DataSource Identity -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-space-xs font-body-sm text-text-secondary">
+<span class="hover:text-text-primary cursor-pointer transition-colors">数据源管理</span>
+<span class="material-symbols-outlined text-[13px] text-text-muted">chevron_right</span>
+<span class="text-text-secondary">Elasticsearch 配置</span>
+<span class="material-symbols-outlined text-[13px] text-text-muted">chevron_right</span>
+<span class="text-text-primary font-medium">安全校验与发布生效</span>
+</div>
+<div class="flex items-center gap-space-sm flex-wrap mt-0.5">
+<div class="w-7 h-7 rounded-lg bg-surface-container flex items-center justify-center text-primary shadow-sm">
+<span class="material-symbols-outlined text-[18px]">terminal</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg font-semibold text-text-primary tracking-tight">
+              网关访问与异常日志 <span class="font-code-md text-body-sm text-text-secondary font-normal">(gateway-access-logs-2026)</span>
+</h1>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-status-neutral-bg text-text-secondary font-code-sm text-[11px]">
+              v1.0-draft
+            </span>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-status-success-bg text-status-success font-label-sm text-[11px] font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-status-success"></span>
+              生产只读正常 · 18ms
+            </span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-surface-container-low text-primary font-code-sm text-[11px]">
+<span class="material-symbols-outlined text-[12px]">fingerprint</span>
+              cs_idx_88fa93c
+            </span>
+</div>
+</div>
+<!-- System Audit Tag Badge -->
+<div class="flex items-center gap-space-sm self-start lg:self-center">
+<div class="px-3 py-1.5 rounded-lg bg-surface-card shadow-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">verified_user</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-[11px] text-text-muted leading-tight">安全治理策略</span>
+<span class="font-code-sm text-[12px] text-text-primary font-semibold">ES-AST-SANDBOX-STRICT</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Single-Index Invariance Enforcement Alert Banner -->
+<div class="bg-surface-card rounded-xl p-space-md shadow-sm flex items-start gap-space-md bg-gradient-to-r from-primary-tint/30 via-surface-card to-surface-card">
+<div class="w-8 h-8 rounded-lg bg-primary-container/10 flex items-center justify-center text-primary flex-shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[20px]">lock_clock</span>
+</div>
+<div class="flex flex-col gap-1 min-w-0 flex-1">
+<div class="flex items-center gap-2 flex-wrap">
+<span class="font-label-md text-body-sm font-semibold text-text-primary">单物理索引管控准则 (Single-Index Invariance Enforcement)</span>
+<span class="px-2 py-0.2 rounded bg-primary-tint text-primary font-code-sm text-[11px] font-medium">强制锁定生效</span>
+</div>
+<p class="font-body-sm text-text-secondary leading-relaxed">
+            平台执行严格的企业级多租户隔离约束：已永久锚定底层单物理索引 <code class="font-code-sm text-[12px] text-primary bg-primary-tint/50 px-1 py-0.5 rounded">gateway-access-logs-2026</code> (UUID: <span class="font-code-sm text-text-primary">cs_idx_88fa93c</span>)。已自动禁用任何跨集群检索 (CCS)、通配符索引展开 (<code class="font-code-sm text-[11px] bg-status-neutral-bg px-1 rounded">logs-*</code>) 与动态索引漂移行为，确保生成的受控 AST-DSL 无法逃逸至非授权物理存储。
+          </p>
+</div>
+</div>
+</div>
+<!-- 4-Step Horizontal Progress Wizard -->
+<div class="bg-surface-card rounded-xl p-space-md shadow-sm">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-space-md relative">
+<!-- Step 1 (Pass) -->
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-status-success-bg text-status-success flex items-center justify-center flex-shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[18px]">check</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-sm text-[11px] text-status-success font-medium flex items-center gap-1">
+              STEP 1 · PASS
+            </span>
+<span class="font-label-md text-body-sm font-medium text-text-primary truncate">集群与物理索引</span>
+<span class="font-code-sm text-[11px] text-text-muted truncate">es-cluster.internal:9200</span>
+</div>
+</div>
+<!-- Step 2 (Pass) -->
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-status-success-bg text-status-success flex items-center justify-center flex-shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[18px]">check</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-sm text-[11px] text-status-success font-medium flex items-center gap-1">
+              STEP 2 · PASS
+            </span>
+<span class="font-label-md text-body-sm font-medium text-text-primary truncate">字段能力与映射</span>
+<span class="font-code-sm text-[11px] text-text-muted truncate">16/24 开放 DocValues 校验通过</span>
+</div>
+</div>
+<!-- Step 3 (Pass) -->
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-status-success-bg text-status-success flex items-center justify-center flex-shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[18px]">check</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-sm text-[11px] text-status-success font-medium flex items-center gap-1">
+              STEP 3 · PASS
+            </span>
+<span class="font-label-md text-body-sm font-medium text-text-primary truncate">查询规则与聚合限制</span>
+<span class="font-code-sm text-[11px] text-text-muted truncate">50桶 / 30s熔断 / 强制时间切片</span>
+</div>
+</div>
+<!-- Step 4 (Active / Current) -->
+<div class="flex items-center gap-space-sm bg-primary-tint/40 p-2 rounded-lg">
+<div class="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center flex-shrink-0 shadow-sm ring-4 ring-primary-tint">
+<span class="material-symbols-outlined text-[18px]">shield_lock</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-sm text-[11px] text-primary font-semibold flex items-center gap-1">
+              STEP 4 · 当前步骤
+            </span>
+<span class="font-label-md text-body-sm font-semibold text-text-primary truncate">校验并发布生效</span>
+<span class="font-code-sm text-[11px] text-primary truncate font-medium">8项底层安全审计通过 · 就绪</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Top Audit Summary Banner -->
+<div class="bg-surface-card rounded-xl p-space-lg shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-space-md bg-gradient-to-r from-status-success-bg/40 via-surface-card to-surface-card">
+<div class="flex items-start gap-space-md">
+<div class="w-12 h-12 rounded-xl bg-status-success flex items-center justify-center text-on-primary flex-shrink-0 shadow-md">
+<span class="material-symbols-outlined text-[26px]">task_alt</span>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2 flex-wrap">
+<span class="font-headline-md text-headline-md font-semibold text-text-primary">合规安全审计全项通过</span>
+<span class="px-2.5 py-0.5 rounded-full bg-status-success-bg text-status-success font-code-sm text-[11px] font-semibold tracking-wider">
+              AUDIT PASS · 8/8 VERIFIED
+            </span>
+<span class="font-caption text-text-muted text-[11px]">校验基准: ISO/IEC 27001 &amp; 企业数据安全管控规范 v2.4</span>
+</div>
+<p class="font-body-sm text-text-secondary max-w-4xl leading-relaxed">
+            平台已针对单物理索引绑定、DocValues 内存聚合安全、AST-DSL 沙箱模板限制、时间切片强制注入与企业数据只读合规完成全自动化审计。发布后该 Elasticsearch 数据源将正式注册至企业智能问答路由，并作为受控 DSL 探针接入生产环境。
+          </p>
+</div>
+</div>
+<div class="flex items-center gap-space-sm flex-shrink-0 self-stretch md:self-auto justify-end">
+<button class="px-space-md py-2 rounded-lg bg-surface-container-low hover:bg-surface-container text-primary font-label-sm text-body-sm flex items-center gap-1.5 transition-colors" id="toggle-json-snapshot">
+<span class="material-symbols-outlined text-[17px]">code</span>
+<span>查看 DSL 沙箱快照与映射清单 (JSON)</span>
+</button>
+</div>
+</div>
+<!-- 4 Key Configuration Metric Cards -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md">
+<!-- Card 1 -->
+<div class="bg-surface-card rounded-xl p-space-md shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between text-text-muted mb-2">
+<span class="font-label-sm text-caption uppercase tracking-wider">物理索引与分片</span>
+<span class="material-symbols-outlined text-[18px] text-status-success">dns</span>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex items-baseline gap-2">
+<span class="font-headline-lg text-headline-lg font-bold text-text-primary">1 物理单索引</span>
+<span class="font-code-sm text-[11px] text-status-success font-medium">Cluster Green</span>
+</div>
+<div class="flex items-center justify-between font-code-sm text-[11px] text-text-secondary pt-1">
+<span>5 Shards / 1 Replica</span>
+<span class="font-medium text-text-primary">42,851,209 Docs</span>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-card rounded-xl p-space-md shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between text-text-muted mb-2">
+<span class="font-label-sm text-caption uppercase tracking-wider">开放受控能力字段</span>
+<span class="material-symbols-outlined text-[18px] text-primary">filter_list</span>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex items-baseline gap-2">
+<span class="font-headline-lg text-headline-lg font-bold text-text-primary">16 / 24 字段</span>
+<span class="font-code-sm text-[11px] text-primary font-medium">66.7% 开放</span>
+</div>
+<div class="flex items-center justify-between font-code-sm text-[11px] text-text-secondary pt-1">
+<span>2 Text · 6 DocValues聚合</span>
+<span class="text-status-danger font-medium">payload_raw 已隔离</span>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-card rounded-xl p-space-md shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between text-text-muted mb-2">
+<span class="font-label-sm text-caption uppercase tracking-wider">聚合与熔断约束</span>
+<span class="material-symbols-outlined text-[18px] text-status-warning">speed</span>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex items-baseline gap-2">
+<span class="font-headline-lg text-headline-lg font-bold text-text-primary">50 桶上限</span>
+<span class="font-code-sm text-[11px] text-text-secondary">嵌套 ≤ 2 层</span>
+</div>
+<div class="flex items-center justify-between font-code-sm text-[11px] text-text-secondary pt-1">
+<span>shard_size 2.0x 溢出收敛</span>
+<span class="text-status-warning font-semibold">30s 熔断保护</span>
+</div>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="bg-surface-card rounded-xl p-space-md shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between text-text-muted mb-2">
+<span class="font-label-sm text-caption uppercase tracking-wider">时间切片与时区</span>
+<span class="material-symbols-outlined text-[18px] text-primary">schedule</span>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex items-baseline gap-2">
+<span class="font-headline-lg text-headline-lg font-bold text-text-primary">强制 7 天过滤</span>
+<span class="font-code-sm text-[11px] text-primary font-medium">UTC+8</span>
+</div>
+<div class="flex items-center justify-between font-code-sm text-[11px] text-text-secondary pt-1">
+<span>必须注入 @timestamp</span>
+<span class="font-medium text-text-primary">单次最长 30 天</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Main Content Area: Two-Column Architecture (65% vs 35%) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+<!-- Left Column (65% width = 8 cols out of 12) -->
+<div class="lg:col-span-8 flex flex-col gap-space-md">
+<!-- Checklist Container -->
+<div class="bg-surface-card rounded-xl p-space-lg shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-sm">
+<div class="w-6 h-6 rounded-md bg-status-success-bg text-status-success flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px]">verified</span>
+</div>
+<h2 class="font-headline-md text-headline-md font-semibold text-text-primary">
+                发布前安全合规检查清单 (Pre-Flight Audit Checklist)
+              </h2>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-code-sm text-[12px] text-text-secondary">审计执行人: <span class="text-text-primary font-medium">Chen.G (KMS Operator)</span></span>
+<span class="px-2 py-0.5 rounded bg-status-success-bg text-status-success font-code-sm text-[11px] font-medium">全量通过</span>
+</div>
+</div>
+<!-- Structured Verification Items List -->
+<div class="flex flex-col gap-2">
+<!-- Item 1 -->
+<div class="p-space-md rounded-lg bg-canvas-bg hover:bg-surface-container-low transition-colors flex items-start justify-between gap-space-md group">
+<div class="flex items-start gap-space-sm min-w-0">
+<span class="material-symbols-outlined text-status-success text-[20px] mt-0.5 flex-shrink-0">check_circle</span>
+<div class="flex flex-col gap-0.5 min-w-0">
+<div class="flex items-center gap-2 flex-wrap">
+<span class="font-label-md text-body-sm font-semibold text-text-primary">1. 集群网络连通与 TLS 隔离探活</span>
+<span class="font-code-sm text-[11px] text-text-muted px-1.5 py-0.2 rounded bg-surface-card">net_tls_handshake_probe</span>
+</div>
+<p class="font-body-sm text-text-secondary text-[13px] leading-relaxed">
+                    专线 VPC 网络往返延迟稳定为 18ms，TLS 1.3 双向双向证书验签有效（有效期剩余 312 天），无公网出入口泄露风险，隔离区 A-04 网关白名单鉴权就绪。
+                  </p>
+</div>
+</div>
+<div class="flex items-center gap-2 flex-shrink-0">
+<span class="font-code-sm text-[11px] text-status-success bg-status-success-bg px-2 py-1 rounded font-semibold">PASS · 18ms</span>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="p-space-md rounded-lg bg-canvas-bg hover:bg-surface-container-low transition-colors flex items-start justify-between gap-space-md group">
+<div class="flex items-start gap-space-sm min-w-0">
+<span class="material-symbols-outlined text-status-success text-[20px] mt-0.5 flex-shrink-0">check_circle</span>
+<div class="flex flex-col gap-0.5 min-w-0">
+<div class="flex items-center gap-2 flex-wrap">
+<span class="font-label-md text-body-sm font-semibold text-text-primary">2. 单物理索引身份锁定与防漂移</span>
+<span class="font-code-sm text-[11px] text-text-muted px-1.5 py-0.2 rounded bg-surface-card">single_index_uuid_invariance</span>
+</div>
+<p class="font-body-sm text-text-secondary text-[13px] leading-relaxed">
+                    物理 Index UUID <code class="font-code-sm text-text-primary text-[12px]">cs_idx_88fa93c</code> 唯一校验成功。已拦截别名多选与一切通配符表达式（例如禁止 <code class="font-code-sm text-text-muted text-[11px]">gateway-*</code>），确保每次 DSL 检索严格作用于唯一的物理分片集。
+                  </p>
+</div>
+</div>
+<div class="flex items-center gap-2 flex-shrink-0">
+<span class="font-code-sm text-[11px] text-status-success bg-status-success-bg px-2 py-1 rounded font-semibold">PASS · UUID LOCKED</span>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="p-space-md rounded-lg bg-canvas-bg hover:bg-surface-container-low transition-colors flex items-start justify-between gap-space-md group">
+<div class="flex items-start gap-space-sm min-w-0">
+<span class="material-symbols-outlined text-status-success text-[20px] mt-0.5 flex-shrink-0">check_circle</span>
+<div class="flex flex-col gap-0.5 min-w-0">
+<div class="flex items-center gap-2 flex-wrap">
+<span class="font-label-md text-body-sm font-semibold text-text-primary">3. DocValues 内存安全与堆内存防护</span>
+<span class="font-code-sm text-[11px] text-text-muted px-1.5 py-0.2 rounded bg-surface-card">doc_values_heap_guard</span>
+</div>
+<p class="font-body-sm text-text-secondary text-[13px] leading-relaxed">
+                    全量字段 DocValues 特征扫描完毕：已开放的 6 个聚合字段均为原生列式存储（`http_status_code`, `service_name`, `client_ip`, `trace_id` 等），未启用 DocValues 的字段全部被禁止聚合，彻底杜绝 FieldData 堆内存 OOM 熔断风险。
+                  </p>
+</div>
+</div>
+<div class="flex items-center gap-2 flex-shrink-0">
+<span class="font-code-sm text-[11px] text-status-success bg-status-success-bg px-2 py-1 rounded font-semibold">PASS · ZERO FIELDDATA</span>
+</div>
+</div>
+<!-- Item 4 -->
+<div class="p-space-md rounded-lg bg-canvas-bg hover:bg-surface-container-low transition-colors flex items-start justify-between gap-space-md group">
+<div class="flex items-start gap-space-sm min-w-0">
+<span class="material-symbols-outlined text-status-success text-[20px] mt-0.5 flex-shrink-0">check_circle</span>
+<div class="flex flex-col gap-0.5 min-w-0">
+<div class="flex items-center gap-2 flex-wrap">
+<span class="font-label-md text-body-sm font-semibold text-text-primary">4. 强制时间分片与默认区间策略</span>
+<span class="font-code-sm text-[11px] text-text-muted px-1.5 py-0.2 rounded bg-surface-card">time_slicing_injection</span>
+</div>
+<p class="font-body-sm text-text-secondary text-[13px] leading-relaxed">
+                    平台已自动编译时间区间注入拦截器：当大模型未显式提供时间范围时，强制默认注入 <code class="font-code-sm text-text-primary text-[12px]">now-7d TO now</code>；单次查询上限严格钳制在 30 天以内，严禁无界全表扫描。
+                  </p>
+</div>
+</div>
+<div class="flex items-center gap-2 flex-shrink-0">
+<span class="font-code-sm text-[11px] text-status-success bg-status-success-bg px-2 py-1 rounded font-semibold">PASS · ENFORCED 7D</span>
+</div>
+</div>
+<!-- Item 5 -->
+<div class="p-space-md rounded-lg bg-canvas-bg hover:bg-surface-container-low transition-colors flex items-start justify-between gap-space-md group">
+<div class="flex items-start gap-space-sm min-w-0">
+<span class="material-symbols-outlined text-status-success text-[20px] mt-0.5 flex-shrink-0">check_circle</span>
+<div class="flex flex-col gap-0.5 min-w-0">
+<div class="flex items-center gap-2 flex-wrap">
+<span class="font-label-md text-body-sm font-semibold text-text-primary">5. 聚合深度与分片开销硬熔断</span>
+<span class="font-code-sm text-[11px] text-text-muted px-1.5 py-0.2 rounded bg-surface-card">agg_circuit_breaker</span>
+</div>
+<p class="font-body-sm text-text-secondary text-[13px] leading-relaxed">
+                    聚合嵌套最大层数锁定为 ≤2 层，单次聚合桶数上限限制为 50 桶，<code class="font-code-sm text-text-primary text-[12px]">shard_size</code> 配置为 2.0 倍精准度补偿；单节点聚合堆内存预估上限小于 12MB。
+                  </p>
+</div>
+</div>
+<div class="flex items-center gap-2 flex-shrink-0">
+<span class="font-code-sm text-[11px] text-status-success bg-status-success-bg px-2 py-1 rounded font-semibold">PASS · MAX 50 BUCKETS</span>
+</div>
+</div>
+<!-- Item 6 -->
+<div class="p-space-md rounded-lg bg-canvas-bg hover:bg-surface-container-low transition-colors flex items-start justify-between gap-space-md group">
+<div class="flex items-start gap-space-sm min-w-0">
+<span class="material-symbols-outlined text-status-success text-[20px] mt-0.5 flex-shrink-0">check_circle</span>
+<div class="flex flex-col gap-0.5 min-w-0">
+<div class="flex items-center gap-2 flex-wrap">
+<span class="font-label-md text-body-sm font-semibold text-text-primary">6. 全文检索白名单与前缀通配符拦截</span>
+<span class="font-code-sm text-[11px] text-text-muted px-1.5 py-0.2 rounded bg-surface-card">search_prefix_wildcard_block</span>
+</div>
+<p class="font-body-sm text-text-secondary text-[13px] leading-relaxed">
+                    仅开放 <code class="font-code-sm text-text-primary text-[12px]">error_message</code> 与 <code class="font-code-sm text-text-primary text-[12px]">request_path</code> 允许 `match_phrase` 与标准全文检索。语法树解析器将自动拦截高危的左侧通配符（如 <code class="font-code-sm text-text-muted text-[11px]">*error</code>），强制执行 <code class="font-code-sm text-text-primary text-[11px]">minimum_should_match: 75%</code>。
+                  </p>
+</div>
+</div>
+<div class="flex items-center gap-2 flex-shrink-0">
+<span class="font-code-sm text-[11px] text-status-success bg-status-success-bg px-2 py-1 rounded font-semibold">PASS · PREFIX SECURE</span>
+</div>
+</div>
+<!-- Item 7 -->
+<div class="p-space-md rounded-lg bg-canvas-bg hover:bg-surface-container-low transition-colors flex items-start justify-between gap-space-md group">
+<div class="flex items-start gap-space-sm min-w-0">
+<span class="material-symbols-outlined text-status-success text-[20px] mt-0.5 flex-shrink-0">check_circle</span>
+<div class="flex flex-col gap-0.5 min-w-0">
+<div class="flex items-center gap-2 flex-wrap">
+<span class="font-label-md text-body-sm font-semibold text-text-primary">7. 敏感报文隔离与高亮安全转义</span>
+<span class="font-code-sm text-[11px] text-text-muted px-1.5 py-0.2 rounded bg-surface-card">sensitive_payload_isolation</span>
+</div>
+<p class="font-body-sm text-text-secondary text-[13px] leading-relaxed">
+                    包含敏感凭据与用户体报文的 <code class="font-code-sm text-status-danger text-[12px]">payload_raw</code> 字段已配置物理遮蔽，不挂载至智能问答路由。检索高亮配置已强制启用 Unified Highlighter HTML 实体编码转义，杜绝 XSS 注入。
+                  </p>
+</div>
+</div>
+<div class="flex items-center gap-2 flex-shrink-0">
+<span class="font-code-sm text-[11px] text-status-success bg-status-success-bg px-2 py-1 rounded font-semibold">PASS · ISOLATED</span>
+</div>
+</div>
+<!-- Item 8 -->
+<div class="p-space-md rounded-lg bg-canvas-bg hover:bg-surface-container-low transition-colors flex items-start justify-between gap-space-md group">
+<div class="flex items-start gap-space-sm min-w-0">
+<span class="material-symbols-outlined text-status-success text-[20px] mt-0.5 flex-shrink-0">check_circle</span>
+<div class="flex flex-col gap-0.5 min-w-0">
+<div class="flex items-center gap-2 flex-wrap">
+<span class="font-label-md text-body-sm font-semibold text-text-primary">8. 受控 DSL 模板沙箱与只读签名核准</span>
+<span class="font-code-sm text-[11px] text-text-muted px-1.5 py-0.2 rounded bg-surface-card">dsl_sandbox_manifest_sign</span>
+</div>
+<p class="font-body-sm text-text-secondary text-[13px] leading-relaxed">
+                    模型端只开放经过 AST 解析校验的受控 JSON 参数插槽（时间、状态码、服务名过滤），不暴露原始集群 HTTP 接入凭据。只读网关证书签名校验通过，具有发布就绪状态。
+                  </p>
+</div>
+</div>
+<div class="flex items-center gap-2 flex-shrink-0">
+<span class="font-code-sm text-[11px] text-status-success bg-status-success-bg px-2 py-1 rounded font-semibold">PASS · SIGNED</span>
+</div>
+</div>
+</div>
+<!-- Bottom Micro Notice -->
+<div class="p-space-sm rounded-lg bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-2 font-caption text-text-secondary text-[12px]">
+<span class="material-symbols-outlined text-[15px] text-primary">info</span>
+<span>8 项合规审计规则由 KMS 自动化安全守护守护引擎每 10 分钟在后台异步复查一次。</span>
+</div>
+<span class="font-code-sm text-[11px] text-text-muted">上次合规校验: 刚刚 (15:42:09 CST)</span>
+</div>
+</div>
+<!-- Hidden / Expandable DSL JSON Sandbox Snapshot Drawer (Toggleable via button) -->
+<div class="hidden bg-surface-card rounded-xl p-space-lg shadow-sm flex-col gap-space-md transition-all" id="json-snapshot-panel">
+<div class="flex items-center justify-between pb-1">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-primary">data_object</span>
+<span class="font-headline-md text-body-md font-semibold text-text-primary">受控 AST-DSL 模板快照定义 (dsl_template_manifest.json)</span>
+</div>
+<button class="px-2 py-1 rounded bg-canvas-bg hover:bg-surface-container text-text-secondary text-[12px] font-label-sm flex items-center gap-1" id="copy-json-btn">
+<span class="material-symbols-outlined text-[14px]">content_copy</span>
+<span>复制 JSON</span>
+</button>
+</div>
+<div class="p-space-md rounded-lg bg-code-bg font-code-sm text-[12px] text-text-primary overflow-x-auto leading-relaxed shadow-inner">
+<pre class="font-code-sm">{
+  <span class="text-primary font-semibold">"manifest_version"</span>: <span class="text-status-success">"1.0.0-PROD"</span>,
+  <span class="text-primary font-semibold">"target_invariance_index"</span>: {
+    <span class="text-primary font-semibold">"index_name"</span>: <span class="text-status-success">"gateway-access-logs-2026"</span>,
+    <span class="text-primary font-semibold">"index_uuid"</span>: <span class="text-status-success">"cs_idx_88fa93c"</span>,
+    <span class="text-primary font-semibold">"allow_wildcards"</span>: <span class="text-status-danger font-semibold">false</span>,
+    <span class="text-primary font-semibold">"allow_ccs"</span>: <span class="text-status-danger font-semibold">false</span>
+  },
+  <span class="text-primary font-semibold">"runtime_guards"</span>: {
+    <span class="text-primary font-semibold">"enforce_time_range_field"</span>: <span class="text-status-success">"@timestamp"</span>,
+    <span class="text-primary font-semibold">"max_time_window"</span>: <span class="text-status-success">"30d"</span>,
+    <span class="text-primary font-semibold">"default_time_window"</span>: <span class="text-status-success">"7d"</span>,
+    <span class="text-primary font-semibold">"max_result_size"</span>: <span class="text-status-warning">1000</span>,
+    <span class="text-primary font-semibold">"max_aggregation_buckets"</span>: <span class="text-status-warning">50</span>,
+    <span class="text-primary font-semibold">"hard_timeout_ms"</span>: <span class="text-status-warning">30000</span>
+  },
+  <span class="text-primary font-semibold">"allowed_query_capabilities"</span>: [
+    <span class="text-status-success">"term_filter"</span>,
+    <span class="text-status-success">"terms_agg"</span>,
+    <span class="text-status-success">"date_histogram"</span>,
+    <span class="text-status-success">"cardinality"</span>,
+    <span class="text-status-success">"match_phrase"</span>
+  ],
+  <span class="text-primary font-semibold">"quarantined_fields"</span>: [
+    <span class="text-status-danger">"payload_raw"</span>,
+    <span class="text-status-danger">"auth_bearer_token"</span>,
+    <span class="text-status-danger">"client_cookie_string"</span>
+  ]
+}</pre>
+</div>
+</div>
+</div>
+<!-- Right Column (35% width = 4 cols out of 12) -->
+<div class="lg:col-span-4 flex flex-col gap-space-md">
+<!-- Manifest Snapshot Card -->
+<div class="bg-surface-card rounded-xl p-space-md shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between pb-1">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-primary">fact_check</span>
+<h3 class="font-headline-md text-body-md font-semibold text-text-primary">
+                发布版本元数据快照 (v1.0)
+              </h3>
+</div>
+<span class="px-2 py-0.5 rounded bg-surface-container-low text-primary font-code-sm text-[11px] font-semibold">STABLE</span>
+</div>
+<!-- Metadata Key-Value pairs -->
+<div class="flex flex-col gap-2 font-body-sm">
+<div class="flex items-center justify-between py-1.5 px-2 rounded bg-canvas-bg">
+<span class="text-text-muted text-[12px]">映射哈希 SHA-256</span>
+<span class="font-code-sm text-[11px] text-text-primary font-medium" title="es8f_9a2b7c4d1e204899acbe0293847290a4">
+                es8f_9a2b7c...90a4
+              </span>
+</div>
+<div class="flex items-center justify-between py-1.5 px-2 rounded bg-canvas-bg">
+<span class="text-text-muted text-[12px]">单次查询熔断超时</span>
+<span class="font-code-sm text-[12px] text-status-warning font-semibold">15 秒硬超时</span>
+</div>
+<div class="flex items-center justify-between py-1.5 px-2 rounded bg-canvas-bg">
+<span class="text-text-muted text-[12px]">最大结果集返回大小</span>
+<span class="font-code-sm text-[12px] text-text-primary">1,000 行限制 (size: 1000)</span>
+</div>
+<div class="flex items-center justify-between py-1.5 px-2 rounded bg-canvas-bg">
+<span class="text-text-muted text-[12px]">索引时区对齐</span>
+<span class="font-code-sm text-[12px] text-text-primary">Asia/Shanghai (UTC+8)</span>
+</div>
+<div class="flex items-center justify-between py-1.5 px-2 rounded bg-canvas-bg">
+<span class="text-text-muted text-[12px]">路由接入工作模式</span>
+<span class="font-code-sm text-[11px] text-primary font-medium">受控 AST-DSL 模板沙箱</span>
+</div>
+<div class="flex items-center justify-between py-1.5 px-2 rounded bg-canvas-bg">
+<span class="text-text-muted text-[12px]">发布安全审计 Trace ID</span>
+<span class="font-code-sm text-[10px] text-text-secondary truncate max-w-[170px]">
+                AUDIT-20260923-ES-GATEWAY
+              </span>
+</div>
+</div>
+</div>
+<!-- Safe Dry-Run Probe Result Card -->
+<div class="bg-surface-card rounded-xl p-space-md shadow-sm flex flex-col gap-space-md bg-gradient-to-b from-surface-card to-surface-container-low/30">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-status-success animate-pulse"></div>
+<h3 class="font-headline-md text-body-md font-semibold text-text-primary">
+                受控 DSL 探针测试 (Dry-Run Probe)
+              </h3>
+</div>
+<span class="font-code-sm text-[11px] text-status-success font-semibold">READY</span>
+</div>
+<p class="font-body-sm text-[12px] text-text-secondary leading-normal">
+            系统已向底层 Elasticsearch 集群发送安全沙箱只读探针 (MatchPhrase + DateHistogram 复合查询)，校验实时响应性能与资源开销：
+          </p>
+<!-- Probe Metrics List -->
+<div class="grid grid-cols-2 gap-2">
+<div class="p-2.5 rounded-lg bg-surface-card shadow-sm flex flex-col">
+<span class="font-label-sm text-[11px] text-text-muted">探针往返耗时</span>
+<span class="font-code-md text-headline-md font-bold text-status-success">21 ms</span>
+</div>
+<div class="p-2.5 rounded-lg bg-surface-card shadow-sm flex flex-col">
+<span class="font-label-sm text-[11px] text-text-muted">集群堆内存开销</span>
+<span class="font-code-md text-headline-md font-bold text-text-primary">1.4 MB</span>
+</div>
+<div class="p-2.5 rounded-lg bg-surface-card shadow-sm flex flex-col">
+<span class="font-label-sm text-[11px] text-text-muted">命中主分片数</span>
+<span class="font-code-md text-body-md font-semibold text-text-primary">5/5 Primary</span>
+</div>
+<div class="p-2.5 rounded-lg bg-surface-card shadow-sm flex flex-col">
+<span class="font-label-sm text-[11px] text-text-muted">探针审计结果</span>
+<span class="font-code-md text-body-md font-semibold text-status-success">基线合规 PASS</span>
+</div>
+</div>
+<!-- Target Mounting Service Target -->
+<div class="p-space-sm rounded-lg bg-primary-tint/60 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-primary">hub</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-[11px] text-primary font-medium">目标挂载服务</span>
+<span class="font-label-md text-body-sm font-semibold text-text-primary">智能问答工作台（生产集群）</span>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded bg-surface-card text-primary font-label-sm text-[11px] font-semibold shadow-xs">
+              发布后自动接入
+            </span>
+</div>
+</div>
+<!-- Release Confirmation Warning Notice -->
+<div class="p-space-md rounded-xl bg-status-warning-bg/60 shadow-sm flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-status-warning text-[20px] flex-shrink-0 mt-0.5">verified</span>
+<div class="flex flex-col gap-1">
+<span class="font-label-md text-body-sm font-semibold text-text-primary">操作提示与审计承诺</span>
+<p class="font-body-sm text-[12px] text-text-secondary leading-relaxed">
+              点击“立即发布数据源”后，本配置将立即通过受控配置中心下发至企业生产推理节点。发布记录将永久记入合规审计日志，不可被篡改。
+            </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Sticky Action Bar -->
+<div class="sticky bottom-0 left-0 right-0 bg-surface-card/95 backdrop-blur-md z-30 shadow-[0_-4px_16px_rgba(0,0,0,0.06)] px-gutter-desktop py-3">
+<div class="max-w-[1400px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-space-md">
+<!-- Left Status Indicator -->
+<div class="flex items-center gap-space-sm w-full sm:w-auto">
+<div class="w-3 h-3 rounded-full bg-status-success ring-4 ring-status-success-bg flex-shrink-0"></div>
+<div class="flex items-center gap-2 flex-wrap">
+<span class="font-label-md text-body-sm font-semibold text-text-primary">8/8 项合规审计全部达标</span>
+<span class="font-body-sm text-text-secondary text-[13px] hidden md:inline">· 物理索引已锁定，就绪可发布至生产问答</span>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex items-center gap-space-sm w-full sm:w-auto justify-end flex-wrap">
+<!-- Return Button -->
+<button class="px-space-md py-2 rounded-lg bg-surface-card hover:bg-canvas-bg text-text-primary font-label-md text-body-sm flex items-center gap-1.5 transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[18px]">arrow_back</span>
+<span>返回上一步修改</span>
+</button>
+<!-- Export Compliance Report Button -->
+<button class="px-space-md py-2 rounded-lg bg-surface-card hover:bg-canvas-bg text-text-primary font-label-md text-body-sm flex items-center gap-1.5 transition-colors shadow-sm" id="export-report-btn">
+<span class="material-symbols-outlined text-[18px] text-primary">download</span>
+<span>导出合规报告 (PDF/JSON)</span>
+</button>
+<!-- Publish Action Button -->
+<button class="px-space-lg py-2 rounded-lg bg-primary hover:bg-secondary text-on-primary font-label-md text-body-sm font-semibold flex items-center gap-2 shadow-md transition-all" id="publish-btn">
+<span class="material-symbols-outlined text-[18px]">rocket_launch</span>
+<span>立即发布数据源 (接入智能问答)</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Interactive JavaScript -->
+<script>
+    // Toggle JSON Sandbox Snapshot Panel
+    const toggleBtn = document.getElementById('toggle-json-snapshot');
+    const jsonPanel = document.getElementById('json-snapshot-panel');
+    if (toggleBtn && jsonPanel) {
+      toggleBtn.addEventListener('click', () => {
+        if (jsonPanel.classList.contains('hidden')) {
+          jsonPanel.classList.remove('hidden');
+          jsonPanel.classList.add('flex');
+          toggleBtn.innerHTML = '<span class="material-symbols-outlined text-[17px]">unfold_less</span><span>收起 DSL 沙箱快照</span>';
+        } else {
+          jsonPanel.classList.add('hidden');
+          jsonPanel.classList.remove('flex');
+          toggleBtn.innerHTML = '<span class="material-symbols-outlined text-[17px]">code</span><span>查看 DSL 沙箱快照与映射清单 (JSON)</span>';
+        }
+      });
+    }
+
+    // Copy JSON Action
+    const copyBtn = document.getElementById('copy-json-btn');
+    if (copyBtn) {
+      copyBtn.addEventListener('click', () => {
+        const originalText = copyBtn.innerHTML;
+        copyBtn.innerHTML = '<span class="material-symbols-outlined text-[14px] text-status-success">done</span><span class="text-status-success">已复制到剪贴板</span>';
+        setTimeout(() => {
+          copyBtn.innerHTML = originalText;
+        }, 2000);
+      });
+    }
+
+    // Export Compliance Report Simulation
+    const exportBtn = document.getElementById('export-report-btn');
+    if (exportBtn) {
+      exportBtn.addEventListener('click', () => {
+        const original = exportBtn.innerHTML;
+        exportBtn.innerHTML = '<span class="material-symbols-outlined text-[18px] animate-spin text-primary">sync</span><span>生成合规审计包中...</span>';
+        setTimeout(() => {
+          exportBtn.innerHTML = '<span class="material-symbols-outlined text-[18px] text-status-success">check</span><span>报告下载成功</span>';
+          setTimeout(() => {
+            exportBtn.innerHTML = original;
+          }, 2500);
+        }, 1200);
+      });
+    }
+
+    // Publish Action Simulation
+    const publishBtn = document.getElementById('publish-btn');
+    if (publishBtn) {
+      publishBtn.addEventListener('click', () => {
+        const confirmed = confirm("确认将数据源「网关访问与异常日志 (gateway-access-logs-2026)」正式发布至生产环境并接入智能问答路由？\n\n- 单物理索引锁定: cs_idx_88fa93c\n- 8项底层安全审计: PASS\n- 接入模式: 受控 AST-DSL 沙箱");
+        if (confirmed) {
+          publishBtn.disabled = true;
+          publishBtn.innerHTML = '<span class="material-symbols-outlined text-[18px] animate-spin">sync</span><span>正在签名发布至网关...</span>';
+          setTimeout(() => {
+            publishBtn.classList.remove('bg-primary');
+            publishBtn.classList.add('bg-status-success');
+            publishBtn.innerHTML = '<span class="material-symbols-outlined text-[18px]">verified</span><span>发布成功 · 问答已接入</span>';
+          }, 1500);
+        }
+      });
+    }
+  </script>
+</div></main></div></body></html>

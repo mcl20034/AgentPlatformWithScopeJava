@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "surface-container-low": "#eff4ff",
+          "on-secondary-container": "#fffbff",
+          "on-tertiary": "#ffffff",
+          "surface-container-lowest": "#ffffff",
+          "surface-dim": "#d0dbed",
+          "border-subtle": "#E5E7EB",
+          "surface-bright": "#f8f9ff",
+          "secondary": "#1d4ed8",
+          "status-success": "#10B981",
+          "text-secondary": "#6B7280",
+          "surface-card": "#FFFFFF",
+          "on-error-container": "#93000a",
+          "on-primary": "#ffffff",
+          "on-primary-fixed": "#00174b",
+          "primary": "#004ac6",
+          "primary-fixed-dim": "#b4c5ff",
+          "status-success-bg": "#ECFDF5",
+          "tertiary-fixed-dim": "#ffb596",
+          "secondary-container": "#4069f2",
+          "primary-tint": "#EFF6FF",
+          "on-secondary-fixed": "#001551",
+          "on-primary-fixed-variant": "#003ea8",
+          "on-tertiary-fixed-variant": "#7d2d00",
+          "on-background": "#121c2a",
+          "surface-container-highest": "#d9e3f6",
+          "secondary-fixed-dim": "#b7c4ff",
+          "code-bg": "#F9FAFB",
+          "status-neutral-bg": "#F3F4F6",
+          "inverse-surface": "#27313f",
+          "status-danger": "#EF4444",
+          "surface": "#f8f9ff",
+          "status-neutral": "#6B7280",
+          "primary-container": "#2563eb",
+          "surface-variant": "#d9e3f6",
+          "status-warning": "#F59E0B",
+          "status-danger-bg": "#FEF2F2",
+          "on-surface-variant": "#434655",
+          "inverse-primary": "#b4c5ff",
+          "tertiary": "#943700",
+          "on-surface": "#121c2a",
+          "secondary-fixed": "#dce1ff",
+          "on-tertiary-container": "#ffede6",
+          "tertiary-fixed": "#ffdbcd",
+          "status-processing-bg": "#EFF6FF",
+          "outline-variant": "#c3c6d7",
+          "error": "#ba1a1a",
+          "border-focus": "#2563EB",
+          "tertiary-container": "#bc4800",
+          "background": "#f8f9ff",
+          "text-primary": "#1F2937",
+          "surface-container": "#e6eeff",
+          "on-secondary": "#ffffff",
+          "status-warning-bg": "#FFFBEB",
+          "surface-tint": "#0053db",
+          "text-muted": "#9CA3AF",
+          "status-processing": "#3B82F6",
+          "on-error": "#ffffff",
+          "on-tertiary-fixed": "#360f00",
+          "on-secondary-fixed-variant": "#0039b5",
+          "canvas-bg": "#F7F8FA",
+          "error-container": "#ffdad6",
+          "outline": "#737686",
+          "inverse-on-surface": "#eaf1ff",
+          "surface-container-high": "#dee9fc",
+          "on-primary-container": "#eeefff",
+          "primary-fixed": "#dbe1ff"
+        },
+        "borderRadius": {
+          "DEFAULT": "0.25rem",
+          "lg": "0.5rem",
+          "xl": "0.75rem",
+          "full": "9999px"
+        },
+        "spacing": {
+          "margin-desktop": "2rem",
+          "space-md": "1rem",
+          "space-sm": "0.5rem",
+          "space-xl": "1.5rem",
+          "gutter-desktop": "1.5rem",
+          "space-2xl": "2rem",
+          "space-xs": "0.25rem",
+          "space-lg": "1.25rem",
+          "margin": "1.5rem",
+          "gutter": "1.25rem"
+        },
+        "fontFamily": {
+          "body-md": [
+            "\"Inter, -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif\""
+          ],
+          "body-lg": [
+            "\"Inter, -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif\""
+          ],
+          "label-sm": [
+            "\"Inter, -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif\""
+          ],
+          "code-md": [
+            "\"JetBrains Mono, Menlo, Monaco, Consolas, monospace\""
+          ],
+          "headline-md": [
+            "\"Inter, -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif\""
+          ],
+          "body-sm": [
+            "\"Inter, -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif\""
+          ],
+          "caption": [
+            "\"Inter, -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif\""
+          ],
+          "code-sm": [
+            "\"JetBrains Mono, Menlo, Monaco, Consolas, monospace\""
+          ],
+          "display": [
+            "\"Inter, -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif\""
+          ],
+          "headline-lg": [
+            "\"Inter, -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif\""
+          ],
+          "label-md": [
+            "\"Inter, -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif\""
+          ]
+        },
+        "fontSize": {
+          "body-md": [
+            "14px",
+            {
+              "lineHeight": "20px",
+              "fontWeight": "400"
+            }
+          ],
+          "body-lg": [
+            "15px",
+            {
+              "lineHeight": "22px",
+              "fontWeight": "400"
+            }
+          ],
+          "label-sm": [
+            "12px",
+            {
+              "lineHeight": "16px",
+              "fontWeight": "500"
+            }
+          ],
+          "code-md": [
+            "13px",
+            {
+              "lineHeight": "20px",
+              "fontWeight": "400"
+            }
+          ],
+          "headline-md": [
+            "16px",
+            {
+              "lineHeight": "24px",
+              "fontWeight": "600"
+            }
+          ],
+          "body-sm": [
+            "13px",
+            {
+              "lineHeight": "18px",
+              "fontWeight": "400"
+            }
+          ],
+          "caption": [
+            "12px",
+            {
+              "lineHeight": "16px",
+              "fontWeight": "400"
+            }
+          ],
+          "code-sm": [
+            "11px",
+            {
+              "lineHeight": "16px",
+              "fontWeight": "500"
+            }
+          ],
+          "display": [
+            "24px",
+            {
+              "lineHeight": "32px",
+              "letterSpacing": "-0.02em",
+              "fontWeight": "700"
+            }
+          ],
+          "headline-lg": [
+            "20px",
+            {
+              "lineHeight": "28px",
+              "letterSpacing": "-0.01em",
+              "fontWeight": "600"
+            }
+          ],
+          "label-md": [
+            "14px",
+            {
+              "lineHeight": "20px",
+              "fontWeight": "500"
+            }
+          ]
+        }
+      },
+    },
+  }</script></head><body class="bg-canvas-bg font-body-md text-on-surface antialiased min-h-screen"><aside class="fixed left-0 top-0 bottom-0 w-[224px] bg-surface-card border-r border-border-subtle z-50 flex flex-col justify-between select-none"><div class="flex flex-col"><div class="h-[60px] px-space-md flex items-center gap-space-sm border-b border-border-subtle"><div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-on-primary shadow-sm flex-shrink-0"><span class="material-symbols-outlined text-[20px]">insights</span></div><div class="flex flex-col min-w-0"><div class="flex items-center gap-1.5"><span class="font-headline-md text-body-md text-text-primary truncate font-semibold">智能分析平台</span></div><span class="font-code-sm text-code-sm text-text-secondary">v1.0 企业版</span></div></div><div class="px-space-sm py-space-sm"><div class="px-space-sm py-1.5 font-label-sm text-label-sm text-text-muted uppercase tracking-wider">核心工作台</div><nav class="flex flex-col gap-0.5 mt-0.5" data-active-classes="bg-primary-tint text-primary font-medium"><a class="flex items-center gap-2.5 px-3 py-2 rounded transition-colors text-on-surface-variant" data-path="intelligent-qa" href="#"><span class="material-symbols-outlined text-[18px] text-secondary">auto_awesome</span><span class="font-body-md text-body-md">智能问答</span></a></nav><div class="px-space-sm pt-space-md pb-1.5 font-label-sm text-label-sm text-text-muted uppercase tracking-wider">管理与治理</div><nav class="flex flex-col gap-0.5" data-active-classes="bg-primary-tint text-primary font-medium"><a class="flex items-center gap-2.5 px-3 py-2 rounded text-text-secondary hover:bg-code-bg hover:text-text-primary transition-colors" data-path="model-management" href="#"><span class="material-symbols-outlined text-[18px] text-text-secondary">memory</span><span class="font-body-md text-body-md">模型管理</span></a><a class="flex items-center gap-2.5 px-3 py-2 rounded text-text-secondary hover:bg-code-bg hover:text-text-primary transition-colors" data-path="datasource-management" href="#"><span class="material-symbols-outlined text-[18px] text-text-secondary">database</span><span class="font-body-md text-body-md">数据源管理</span></a><a class="flex items-center gap-2.5 px-3 py-2 rounded text-text-secondary hover:bg-code-bg hover:text-text-primary transition-colors" data-path="knowledge-base" href="#"><span class="material-symbols-outlined text-[18px] text-text-secondary">menu_book</span><span class="font-body-md text-body-md">知识库</span></a><a class="flex items-center gap-2.5 px-3 py-2 rounded text-text-secondary hover:bg-code-bg hover:text-text-primary transition-colors" data-path="account-management" href="#"><span class="material-symbols-outlined text-[18px] text-text-secondary">manage_accounts</span><span class="font-body-md text-body-md">账号管理</span></a></nav></div></div><div class="p-space-sm border-t border-border-subtle bg-code-bg"><div class="flex items-center justify-between px-2 py-1.5 rounded bg-surface-card border border-border-subtle"><div class="flex items-center gap-2 min-w-0"><span class="w-2 h-2 rounded-full bg-status-success animate-pulse flex-shrink-0"></span><span class="font-label-sm text-label-sm text-text-secondary truncate">安全只读网络</span></div><span class="material-symbols-outlined text-[16px] text-text-muted hover:text-text-primary cursor-pointer">help</span></div></div></aside><div class="pl-[224px]"><header class="fixed top-0 left-[224px] right-0 h-[60px] bg-surface-card border-b border-border-subtle z-40 flex items-center justify-between px-space-lg"><div class="flex items-center gap-2 font-body-sm text-body-sm"><span class="text-text-secondary hover:text-text-primary cursor-pointer transition-colors">智能问答</span><span class="material-symbols-outlined text-[14px] text-text-muted">chevron_right</span><span class="text-text-primary font-medium">新建分析会话</span></div><div class="flex items-center gap-space-md"><div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-status-processing-bg border border-border-subtle"><span class="material-symbols-outlined text-[14px] text-secondary">shield</span><span class="font-label-sm text-label-sm text-secondary font-medium">生产环境 · 只读安全模式</span></div><div class="inline-flex items-center gap-1.5 px-2 py-1 rounded bg-status-success-bg"><span class="w-1.5 h-1.5 rounded-full bg-status-success"></span><span class="font-code-sm text-code-sm text-status-success font-medium">API 正常</span></div><div class="h-4 w-px bg-border-subtle"></div><button class="w-8 h-8 flex items-center justify-center rounded text-text-secondary hover:bg-status-neutral-bg hover:text-text-primary transition-colors relative" type="button"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-1.5 right-1.5 w-2 h-2 bg-status-danger rounded-full ring-2 ring-surface-card"></span></button><div class="flex items-center gap-2 pl-1 cursor-pointer group"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div><div class="flex flex-col text-left"><div class="flex items-center gap-1.5"><span class="font-body-sm text-body-sm text-text-primary font-medium leading-none">陈工 (数据研发)</span><span class="px-1 py-0.5 rounded bg-surface-container-high text-primary font-label-sm text-code-sm leading-none">管理员</span></div></div><span class="material-symbols-outlined text-[16px] text-text-muted group-hover:text-text-primary transition-colors">expand_more</span></div></div></header><main class="w-full pt-[60px] bg-canvas-bg min-h-screen"><div class="flex flex-col w-full">
+<!-- Top Workspace Shell (Layout: Fixed 260px Left Session Panel + Fluid Center Canvas + 640px Right Evidence Drawer) -->
+<div class="flex w-full h-[calc(100vh-60px)] overflow-hidden">
+<!-- LEFT PANEL: Sessions List (260px) -->
+<aside class="w-[260px] flex-shrink-0 bg-surface-card flex flex-col justify-between shadow-sm z-10">
+<!-- Session Header & New Session Button -->
+<div class="p-space-md flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="font-headline-md text-headline-md text-text-primary">分析会话</span>
+<span class="px-1.5 py-0.5 rounded bg-surface-container-high font-code-sm text-code-sm text-primary font-medium">8</span>
+</div>
+<button class="w-7 h-7 rounded bg-surface-container hover:bg-surface-container-high flex items-center justify-center text-primary transition-colors" title="快速筛选" type="button">
+<span class="material-symbols-outlined text-[18px]">filter_list</span>
+</button>
+</div>
+<button class="w-full h-9 rounded bg-primary-container hover:bg-secondary text-on-primary font-label-md text-label-md flex items-center justify-center gap-1.5 shadow-sm transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">add</span>
+<span>新建分析会话</span>
+</button>
+</div>
+<!-- Session List Scrollable Area -->
+<div class="flex-1 overflow-y-auto px-space-sm space-y-1">
+<div class="px-space-xs py-1 font-label-sm text-label-sm text-text-muted">进行与最近</div>
+<!-- Active Selected Session (Finished State) -->
+<div class="p-space-sm rounded bg-surface-container-low cursor-pointer shadow-sm relative group">
+<div class="w-1 absolute left-0 top-1.5 bottom-1.5 bg-secondary rounded-r"></div>
+<div class="flex items-start justify-between gap-1.5 pl-1.5">
+<div class="font-body-sm text-body-sm text-text-primary font-medium line-clamp-2 leading-snug">
+              2026年8月华东与华南大区销售额异常分析
+            </div>
+</div>
+<div class="flex items-center justify-between mt-2 pl-1.5">
+<div class="inline-flex items-center gap-1.5 bg-status-success-bg px-1.5 py-0.5 rounded">
+<span class="w-1.5 h-1.5 rounded-full bg-status-success"></span>
+<span class="font-code-sm text-code-sm text-status-success font-medium">已完成 · 1个证据 · 1个图表</span>
+</div>
+<span class="font-code-sm text-code-sm text-text-muted">10:43</span>
+</div>
+</div>
+<!-- Other Sessions -->
+<div class="p-space-sm rounded hover:bg-surface-container transition-colors cursor-pointer group">
+<div class="font-body-sm text-body-sm text-text-secondary group-hover:text-text-primary truncate">
+            Q3 各品类毛利率波动与采购对账
+          </div>
+<div class="flex items-center justify-between mt-1.5">
+<div class="inline-flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-status-neutral"></span>
+<span class="font-code-sm text-code-sm text-text-muted">历史归档</span>
+</div>
+<span class="font-code-sm text-code-sm text-text-muted">昨天</span>
+</div>
+</div>
+<div class="p-space-sm rounded hover:bg-surface-container transition-colors cursor-pointer group">
+<div class="font-body-sm text-body-sm text-text-secondary group-hover:text-text-primary truncate">
+            华北仓储周转天数与履约时效回溯
+          </div>
+<div class="flex items-center justify-between mt-1.5">
+<div class="inline-flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-status-neutral"></span>
+<span class="font-code-sm text-code-sm text-text-muted">历史归档</span>
+</div>
+<span class="font-code-sm text-code-sm text-text-muted">08-28</span>
+</div>
+</div>
+<div class="p-space-sm rounded hover:bg-surface-container transition-colors cursor-pointer group">
+<div class="font-body-sm text-body-sm text-text-secondary group-hover:text-text-primary truncate">
+            线上渠道与KA大客户回款周期对比
+          </div>
+<div class="flex items-center justify-between mt-1.5">
+<div class="inline-flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-status-neutral"></span>
+<span class="font-code-sm text-code-sm text-text-muted">历史归档</span>
+</div>
+<span class="font-code-sm text-code-sm text-text-muted">08-25</span>
+</div>
+</div>
+<div class="px-space-xs pt-space-md pb-1 font-label-sm text-label-sm text-text-muted">更早会话</div>
+<div class="p-space-sm rounded hover:bg-surface-container transition-colors cursor-pointer group">
+<div class="font-body-sm text-body-sm text-text-secondary group-hover:text-text-primary truncate">
+            2026半年度供应链综合成本审计底稿
+          </div>
+<div class="flex items-center justify-between mt-1.5">
+<span class="font-code-sm text-code-sm text-text-muted">已生成报告</span>
+<span class="font-code-sm text-code-sm text-text-muted">08-15</span>
+</div>
+</div>
+</div>
+<!-- Bottom Status -->
+<div class="p-space-sm bg-surface-container-lowest">
+<div class="flex items-center justify-between text-text-secondary px-2 py-1.5 bg-surface-container-low rounded">
+<span class="font-code-sm text-code-sm">存储空间 34.2 / 500 MB</span>
+<span class="material-symbols-outlined text-[16px] text-text-muted">cloud_done</span>
+</div>
+</div>
+</aside>
+<!-- CENTER PANEL: Q&A Main Canvas (Fluid) -->
+<section class="flex-1 flex flex-col bg-canvas-bg min-w-[540px] h-full overflow-hidden relative">
+<!-- Locked Model & Data Source Readonly Banner -->
+<div class="px-space-lg py-2.5 bg-surface-card shadow-sm flex items-center justify-between flex-shrink-0">
+<div class="flex items-center gap-space-md min-w-0">
+<div class="flex items-center gap-1.5 text-text-secondary">
+<span class="material-symbols-outlined text-[16px] text-primary">memory</span>
+<span class="font-label-sm text-label-sm text-text-muted">模型：</span>
+<span class="font-code-sm text-code-sm text-text-primary font-medium bg-surface-container px-2 py-0.5 rounded">GPT-4.1 业务分析 (OpenAI · gpt-4.1)</span>
+</div>
+<div class="h-3.5 w-0.5 bg-surface-container-highest"></div>
+<div class="flex items-center gap-1.5 text-text-secondary">
+<span class="material-symbols-outlined text-[16px] text-secondary">database</span>
+<span class="font-label-sm text-label-sm text-text-muted">数据源：</span>
+<span class="font-code-sm text-code-sm text-text-primary font-medium bg-surface-container px-2 py-0.5 rounded">销售分析库 (MySQL · orders, refunds)</span>
+</div>
+</div>
+<button class="text-primary hover:text-secondary font-label-sm text-label-sm flex items-center gap-1 transition-colors flex-shrink-0 ml-2" type="button">
+<span>新建会话以更换配置</span>
+<span class="material-symbols-outlined text-[14px]">open_in_new</span>
+</button>
+</div>
+<!-- Scrollable Message Canvas -->
+<div class="flex-1 overflow-y-auto p-space-lg space-y-space-lg">
+<!-- User Question Bubble -->
+<div class="flex justify-end gap-space-sm max-w-4xl ml-auto">
+<div class="flex flex-col items-end max-w-2xl">
+<div class="flex items-center gap-2 mb-1.5">
+<span class="font-code-sm text-code-sm text-text-muted">10:43</span>
+<span class="font-label-sm text-label-sm text-text-primary font-medium">陈工 (数据研发)</span>
+</div>
+<div class="p-space-md rounded-xl rounded-tr-none bg-primary text-on-primary shadow-sm font-body-md text-body-md leading-relaxed">
+              请统计 2026 年 8 月 华东与华南大区的销售额对比，按支付时间统计，并分析是否有退款率异常的品类。
+            </div>
+</div>
+<div class="w-8 h-8 rounded-full bg-primary-fixed flex items-center justify-center text-on-primary-fixed flex-shrink-0 mt-6 shadow-sm">
+<span class="material-symbols-outlined text-[18px]">person</span>
+</div>
+</div>
+<!-- Assistant Answer Card (Enterprise Full-Report Style) -->
+<div class="flex items-start gap-space-sm max-w-5xl">
+<div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-on-primary flex-shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[18px]">smart_toy</span>
+</div>
+<div class="flex-1 bg-surface-card rounded-xl shadow-sm p-space-lg space-y-space-md">
+<!-- Metadata & Execution Status Header -->
+<div class="flex items-center justify-between pb-3 bg-surface-container-low -mx-space-lg -mt-space-lg p-space-md rounded-t-xl">
+<div class="flex items-center gap-2">
+<div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-status-success-bg text-status-success font-label-sm text-label-sm font-medium">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+<span>已完成 · 分析结论已复核</span>
+</div>
+<span class="font-code-sm text-code-sm text-text-secondary">模型：GPT-4.1 业务分析</span>
+</div>
+<div class="flex items-center gap-space-md">
+<span class="font-code-sm text-code-sm text-text-muted">完成时间：10:43:26</span>
+<span class="px-2 py-0.5 rounded bg-surface-container font-code-sm text-code-sm text-secondary font-medium">总耗时 14.2s</span>
+</div>
+</div>
+<!-- Core Conclusion Section -->
+<div class="space-y-2">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-primary">insights</span>
+<h3 class="font-headline-md text-headline-md text-text-primary">核心分析结论</h3>
+</div>
+<div class="bg-surface-container-low p-space-md rounded-lg space-y-2 text-text-primary leading-relaxed font-body-md text-body-md">
+<p>
+                  1. <strong class="text-text-primary font-semibold">规模对比：</strong>2026 年 8 月期间，<span class="text-primary font-medium">华东大区</span>净销售额达到 <strong class="font-semibold text-text-primary">¥4,821.5 万元</strong>（订单量 128,400 单），显著高于<span class="text-secondary font-medium">华南大区</span>的 <strong class="font-semibold text-text-primary">¥3,140.2 万元</strong>（订单量 89,200 单），华东大区在整体销售规模上保持 53.5% 的相对领先。
+                </p>
+<p>
+                  2. <strong class="text-text-primary font-semibold">退款率异常：</strong>华东大区的综合退款率达 <strong class="text-status-warning font-semibold">8.42%</strong>，显著高于 5.0% 的业务健康预警线。进一步下钻显示，主要由<span class="font-medium text-text-primary">数码3C类目</span>集中退款导致；华南大区退款率为 <span class="text-status-success font-medium">3.15%</span>，处于受控健康区间
+                  <button class="inline-flex items-center px-1.5 py-0.5 rounded bg-surface-container-high text-primary font-code-sm text-code-sm hover:bg-primary hover:text-on-primary transition-colors ml-1 align-baseline font-medium cursor-pointer" title="点击展开此证据详情" type="button">
+                    [1]
+                  </button>。
+                </p>
+</div>
+</div>
+<!-- Structured Data Comparison Table -->
+<div class="space-y-2">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-text-primary font-medium flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-secondary">table_chart</span>
+                  数据对比概览 (按支付时间汇总)
+                </span>
+<span class="font-code-sm text-code-sm text-text-muted">单位：人民币万元 / 单 / %</span>
+</div>
+<div class="overflow-hidden rounded-lg bg-surface-container shadow-inner">
+<table class="w-full text-left font-body-sm text-body-sm">
+<thead class="bg-surface-container-high font-label-sm text-label-sm text-text-secondary">
+<tr>
+<th class="px-space-md py-2 font-medium">区域维度</th>
+<th class="px-space-md py-2 font-medium">净销售额 (万元)</th>
+<th class="px-space-md py-2 font-medium">总订单数</th>
+<th class="px-space-md py-2 font-medium">综合退款率</th>
+<th class="px-space-md py-2 font-medium">异常预警</th>
+</tr>
+</thead>
+<tbody class="bg-surface-card divide-y-0">
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-space-md py-2.5 font-medium text-text-primary flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+                        华东大区 (East China)
+                      </td>
+<td class="px-space-md py-2.5 font-code-md text-code-md text-text-primary font-semibold">¥4,821.50</td>
+<td class="px-space-md py-2.5 font-code-md text-code-md text-text-secondary">128,400</td>
+<td class="px-space-md py-2.5 font-code-md text-code-md text-status-warning font-semibold">8.42%</td>
+<td class="px-space-md py-2.5">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-status-warning-bg text-status-warning font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">warning</span>
+                          退款率偏高 [1]
+                        </span>
+</td>
+</tr>
+<tr class="bg-code-bg hover:bg-surface-container-low transition-colors">
+<td class="px-space-md py-2.5 font-medium text-text-primary flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+                        华南大区 (South China)
+                      </td>
+<td class="px-space-md py-2.5 font-code-md text-code-md text-text-primary font-semibold">¥3,140.20</td>
+<td class="px-space-md py-2.5 font-code-md text-code-md text-text-secondary">89,200</td>
+<td class="px-space-md py-2.5 font-code-md text-code-md text-status-success font-semibold">3.15%</td>
+<td class="px-space-md py-2.5">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-status-success-bg text-status-success font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+                          正常
+                        </span>
+</td>
+</tr>
+<tr class="bg-surface-container font-medium text-text-primary">
+<td class="px-space-md py-2 font-medium">合计 / 加权平均</td>
+<td class="px-space-md py-2 font-code-md text-code-md font-bold">¥7,961.70</td>
+<td class="px-space-md py-2 font-code-md text-code-md">217,600</td>
+<td class="px-space-md py-2 font-code-md text-code-md">6.26%</td>
+<td class="px-space-md py-2 font-code-sm text-code-sm text-text-secondary">已包含全量对账单</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Caliber & Audit Scope Block -->
+<div class="p-space-md rounded-lg bg-surface-container-low space-y-1.5">
+<div class="flex items-center gap-1 text-text-secondary font-label-sm text-label-sm font-medium">
+<span class="material-symbols-outlined text-[16px]">verified</span>
+<span>口径说明与审计范围</span>
+</div>
+<div class="grid grid-cols-3 gap-space-md font-body-sm text-body-sm">
+<div>
+<span class="text-text-muted">时间周期：</span>
+<span class="text-text-primary font-code-sm text-code-sm font-medium">2026-08-01 00:00 至 2026-08-31 23:59</span>
+</div>
+<div>
+<span class="text-text-muted">指标口径：</span>
+<span class="text-text-primary font-code-sm text-code-sm">净销售额 = 支付总额 - 退款总额</span>
+</div>
+<div>
+<span class="text-text-muted">底层数据源：</span>
+<span class="text-text-primary font-code-sm text-code-sm">sales_dw (只读) · 表 orders, refunds</span>
+</div>
+</div>
+</div>
+<!-- Evidence References Pill Tags -->
+<div class="flex items-center gap-space-sm flex-wrap pt-1">
+<span class="font-label-sm text-label-sm text-text-muted">已核验依据：</span>
+<button class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-container-high text-primary hover:bg-primary hover:text-on-primary transition-colors cursor-pointer shadow-sm" type="button">
+<span class="material-symbols-outlined text-[14px]">dataset</span>
+<span class="font-code-sm text-code-sm font-medium">[1] 销售与退款分析结果集 (MySQL · 4行数据) · 已核查</span>
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</button>
+<div class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-surface-container text-text-secondary">
+<span class="material-symbols-outlined text-[14px]">menu_book</span>
+<span class="font-label-sm text-label-sm">数据字典口径 v2.4 (指标已绑定)</span>
+</div>
+</div>
+<!-- Limitations / Notes -->
+<div class="flex items-start gap-1.5 text-text-muted font-caption text-caption">
+<span class="material-symbols-outlined text-[14px] mt-0.5">info</span>
+<span>说明：本次分析已过滤测试租户数据，未包含 9 月 1 日后的离线对账补录单。</span>
+</div>
+<!-- Bottom Actions Bar -->
+<div class="flex items-center justify-between pt-space-sm border-t border-surface-container-highest">
+<div class="flex items-center gap-2">
+<button class="h-8 px-3 rounded bg-surface-container hover:bg-surface-container-high text-text-primary font-label-sm text-label-sm flex items-center gap-1.5 transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">content_copy</span>
+<span>复制结论</span>
+</button>
+<button class="h-8 px-3 rounded bg-surface-container hover:bg-surface-container-high text-text-primary font-label-sm text-label-sm flex items-center gap-1.5 transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">account_tree</span>
+<span>查看执行链路 (6步)</span>
+</button>
+</div>
+<div class="flex items-center gap-2">
+<button class="h-8 px-3 rounded bg-surface-container hover:bg-surface-container-high text-text-primary font-label-sm text-label-sm flex items-center gap-1.5 transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">description</span>
+<span>下载分析报告 (MD)</span>
+</button>
+<button class="h-8 px-3 rounded bg-surface-container-high hover:bg-primary-tint text-primary font-label-sm text-label-sm flex items-center gap-1.5 transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">download</span>
+<span>导出结果 (CSV)</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- BOTTOM INPUT CONTAINER: Active, Ready for Follow-up -->
+<div class="p-space-lg bg-surface-card shadow-md flex-shrink-0 z-10">
+<!-- Active Constraints Tag bar -->
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center gap-2">
+<span class="font-code-sm text-code-sm text-text-muted">当前上下文约束：</span>
+<span class="px-2 py-0.5 rounded bg-surface-container font-code-sm text-code-sm text-secondary">时间 2026-08-01~08-31</span>
+<span class="px-2 py-0.5 rounded bg-surface-container font-code-sm text-code-sm text-secondary">华东 / 华南</span>
+<span class="px-2 py-0.5 rounded bg-surface-container font-code-sm text-code-sm text-secondary">支付时间口径</span>
+</div>
+<button class="text-text-muted hover:text-text-secondary font-label-sm text-label-sm flex items-center gap-0.5" type="button">
+<span>清除限定</span>
+<span class="material-symbols-outlined text-[14px]">close</span>
+</button>
+</div>
+<!-- Composer Box -->
+<div class="relative bg-code-bg rounded-lg p-2.5 focus-within:bg-surface-card transition-colors shadow-inner">
+<textarea class="w-full bg-transparent resize-none border-none outline-none font-body-md text-body-md text-text-primary placeholder:text-text-muted" placeholder="在此会话中追问或深化分析... (例如：列出华东大区退款率前三的具体数码3C单品及退款原因)" rows="2"></textarea>
+<div class="flex items-center justify-between pt-1 mt-1 border-t border-surface-container-highest">
+<div class="flex items-center gap-2 text-text-muted">
+<button class="w-7 h-7 rounded hover:bg-surface-container flex items-center justify-center transition-colors" title="添加补充数据附件" type="button">
+<span class="material-symbols-outlined text-[18px]">attach_file</span>
+</button>
+<button class="w-7 h-7 rounded hover:bg-surface-container flex items-center justify-center transition-colors" title="插入指标公式" type="button">
+<span class="material-symbols-outlined text-[18px]">function</span>
+</button>
+<span class="font-code-sm text-code-sm text-text-muted">按 Enter 发送，Shift+Enter 换行</span>
+</div>
+<button class="h-8 px-4 rounded bg-primary-container hover:bg-secondary text-on-primary font-label-md text-label-md flex items-center gap-1.5 shadow-sm transition-colors cursor-pointer" type="button">
+<span>发送追问</span>
+<span class="material-symbols-outlined text-[16px]">send</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- RIGHT PANEL: Evidence Drawer (640px) -->
+<aside class="w-[640px] flex-shrink-0 bg-surface-card shadow-2xl flex flex-col justify-between z-20 overflow-hidden">
+<!-- Drawer Header -->
+<div class="p-space-lg bg-surface-card shadow-sm flex-shrink-0">
+<div class="flex items-start justify-between">
+<div class="space-y-1">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-primary font-code-sm text-code-sm font-semibold">[1] 证据溯源</span>
+<h2 class="font-headline-md text-headline-md text-text-primary">销售与退款分析结果集</h2>
+</div>
+<p class="font-caption text-caption text-text-secondary">
+              数据源：销售分析库 (MySQL · 只读集群) | 执行时间：10:43:18 | 耗时：9.4s
+            </p>
+</div>
+<button class="w-8 h-8 rounded hover:bg-surface-container-high flex items-center justify-center text-text-muted hover:text-text-primary transition-colors cursor-pointer" title="收起抽屉" type="button">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<!-- Security & Validation Badge Strip -->
+<div class="mt-3 flex items-center gap-2">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-status-success-bg text-status-success font-code-sm text-code-sm font-medium">
+<span class="material-symbols-outlined text-[14px]">verified_user</span>
+            只读执行完毕 · AST 安全校验通过 · 结果未截断
+          </span>
+<span class="font-code-sm text-code-sm text-text-muted">隔离沙箱 ID: sandbox_mysql_r492</span>
+</div>
+</div>
+<!-- Drawer Scrollable Content -->
+<div class="flex-1 overflow-y-auto p-space-lg space-y-space-lg">
+<!-- Module 1: Executed SQL Query Block -->
+<div class="space-y-2">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5 font-label-md text-label-md text-text-primary font-medium">
+<span class="material-symbols-outlined text-[16px] text-primary">terminal</span>
+<span>实际执行的只读 SQL (AST 解析核验)</span>
+</div>
+<button class="text-primary hover:text-secondary font-code-sm text-code-sm flex items-center gap-1 cursor-pointer" type="button">
+<span class="material-symbols-outlined text-[14px]">content_copy</span>
+<span>复制 SQL</span>
+</button>
+</div>
+<div class="bg-inverse-surface rounded-lg p-space-md overflow-x-auto shadow-sm">
+<pre class="font-code-md text-code-md text-inverse-on-surface leading-relaxed whitespace-pre-wrap select-all"><code><span class="text-primary-fixed-dim font-bold">SELECT</span> 
+  o.region_name,
+  <span class="text-secondary-fixed-dim">COUNT</span>(<span class="text-primary-fixed-dim">DISTINCT</span> o.order_id) <span class="text-primary-fixed-dim">AS</span> order_cnt,
+  <span class="text-secondary-fixed-dim">SUM</span>(o.pay_amount) / <span class="text-tertiary-fixed-dim">10000</span> <span class="text-primary-fixed-dim">AS</span> gross_sales_w,
+  <span class="text-secondary-fixed-dim">SUM</span>(<span class="text-secondary-fixed-dim">IFNULL</span>(r.refund_amount, <span class="text-tertiary-fixed-dim">0</span>)) / <span class="text-tertiary-fixed-dim">10000</span> <span class="text-primary-fixed-dim">AS</span> refund_amount_w,
+  (<span class="text-secondary-fixed-dim">SUM</span>(o.pay_amount) - <span class="text-secondary-fixed-dim">SUM</span>(<span class="text-secondary-fixed-dim">IFNULL</span>(r.refund_amount, <span class="text-tertiary-fixed-dim">0</span>))) / <span class="text-tertiary-fixed-dim">10000</span> <span class="text-primary-fixed-dim">AS</span> net_sales_w,
+  <span class="text-secondary-fixed-dim">ROUND</span>(<span class="text-secondary-fixed-dim">SUM</span>(<span class="text-secondary-fixed-dim">IFNULL</span>(r.refund_amount, <span class="text-tertiary-fixed-dim">0</span>)) / <span class="text-secondary-fixed-dim">SUM</span>(o.pay_amount) * <span class="text-tertiary-fixed-dim">100</span>, <span class="text-tertiary-fixed-dim">2</span>) <span class="text-primary-fixed-dim">AS</span> refund_rate_pct
+<span class="text-primary-fixed-dim font-bold">FROM</span> orders o
+<span class="text-primary-fixed-dim font-bold">LEFT JOIN</span> refunds r <span class="text-primary-fixed-dim font-bold">ON</span> o.order_id = r.order_id
+<span class="text-primary-fixed-dim font-bold">WHERE</span> o.pay_time &gt;= <span class="text-status-success">'2026-08-01 00:00:00'</span>
+  <span class="text-primary-fixed-dim font-bold">AND</span> o.pay_time &lt; <span class="text-status-success">'2026-09-01 00:00:00'</span>
+  <span class="text-primary-fixed-dim font-bold">AND</span> o.region_name <span class="text-primary-fixed-dim font-bold">IN</span> (<span class="text-status-success">'East_China'</span>, <span class="text-status-success">'South_China'</span>)
+<span class="text-primary-fixed-dim font-bold">GROUP BY</span> o.region_name;</code></pre>
+</div>
+</div>
+<!-- Module 2: Metric Performance Indicators Bar -->
+<div class="grid grid-cols-4 gap-2 bg-surface-container p-space-sm rounded-lg text-center">
+<div class="bg-surface-card p-2 rounded shadow-xs">
+<div class="font-caption text-caption text-text-muted">扫描行数</div>
+<div class="font-code-md text-code-md text-text-primary font-bold">3,480</div>
+</div>
+<div class="bg-surface-card p-2 rounded shadow-xs">
+<div class="font-caption text-caption text-text-muted">返回记录</div>
+<div class="font-code-md text-code-md text-text-primary font-bold">2 行</div>
+</div>
+<div class="bg-surface-card p-2 rounded shadow-xs">
+<div class="font-caption text-caption text-text-muted">内存占用</div>
+<div class="font-code-md text-code-md text-text-primary font-bold">128 KB</div>
+</div>
+<div class="bg-surface-card p-2 rounded shadow-xs">
+<div class="font-caption text-caption text-text-muted">截断状态</div>
+<div class="font-code-sm text-code-sm text-status-success font-medium">完整输出</div>
+</div>
+</div>
+<!-- Module 3: Raw Result Table Preview with Types -->
+<div class="space-y-2">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5 font-label-md text-label-md text-text-primary font-medium">
+<span class="material-symbols-outlined text-[16px] text-secondary">view_list</span>
+<span>结果集预览 (完整 2 行记录)</span>
+</div>
+<span class="font-code-sm text-code-sm text-text-muted">UTF-8 · 浮点精度保留2位</span>
+</div>
+<div class="overflow-x-auto rounded-lg bg-surface-container">
+<table class="w-full text-left font-code-sm text-code-sm">
+<thead class="bg-surface-container-high text-text-secondary">
+<tr>
+<th class="px-3 py-2">
+<div>region_name</div>
+<div class="text-[10px] text-text-muted font-normal">VARCHAR(32)</div>
+</th>
+<th class="px-3 py-2">
+<div>order_cnt</div>
+<div class="text-[10px] text-text-muted font-normal">BIGINT</div>
+</th>
+<th class="px-3 py-2">
+<div>gross_sales_w</div>
+<div class="text-[10px] text-text-muted font-normal">DECIMAL(18,2)</div>
+</th>
+<th class="px-3 py-2">
+<div>refund_amount_w</div>
+<div class="text-[10px] text-text-muted font-normal">DECIMAL(18,2)</div>
+</th>
+<th class="px-3 py-2">
+<div>net_sales_w</div>
+<div class="text-[10px] text-text-muted font-normal">DECIMAL(18,2)</div>
+</th>
+<th class="px-3 py-2">
+<div>refund_rate_pct</div>
+<div class="text-[10px] text-text-muted font-normal">DOUBLE</div>
+</th>
+</tr>
+</thead>
+<tbody class="bg-surface-card">
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-3 py-2.5 font-medium text-text-primary">East_China</td>
+<td class="px-3 py-2.5 text-text-secondary">128400</td>
+<td class="px-3 py-2.5 text-text-secondary">5264.80</td>
+<td class="px-3 py-2.5 text-status-warning font-semibold">443.30</td>
+<td class="px-3 py-2.5 font-bold text-text-primary">4821.50</td>
+<td class="px-3 py-2.5 font-bold text-status-warning">8.42</td>
+</tr>
+<tr class="bg-code-bg hover:bg-surface-container-low transition-colors">
+<td class="px-3 py-2.5 font-medium text-text-primary">South_China</td>
+<td class="px-3 py-2.5 text-text-secondary">89200</td>
+<td class="px-3 py-2.5 text-text-secondary">3242.33</td>
+<td class="px-3 py-2.5 text-text-secondary">102.13</td>
+<td class="px-3 py-2.5 font-bold text-text-primary">3140.20</td>
+<td class="px-3 py-2.5 font-bold text-status-success">3.15</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Module 4: Caliber Alignment Description -->
+<div class="p-space-md rounded-lg bg-surface-container-low space-y-1.5">
+<div class="font-label-sm text-label-sm text-text-primary font-medium flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-primary">balance</span>
+<span>口径对齐说明</span>
+</div>
+<p class="font-body-sm text-body-sm text-text-secondary leading-relaxed">
+            1. 关联键为 <code class="font-code-sm text-code-sm bg-surface-container px-1 py-0.5 rounded text-text-primary">o.order_id = r.order_id</code>，已针对未退款订单使用 <code class="font-code-sm text-code-sm bg-surface-container px-1 py-0.5 rounded text-text-primary">IFNULL(..., 0)</code> 补零。<br/>
+            2. 退款金额统计仅包含已审核通过的有效退款（过滤 <code class="font-code-sm text-code-sm bg-surface-container px-1 py-0.5 rounded text-text-primary">refund_status = 2</code>），作废订单与待审批退款已前置剔除。
+          </p>
+</div>
+</div>
+<!-- Drawer Bottom Action Footer -->
+<div class="p-space-md bg-surface-card shadow-lg flex-shrink-0 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<button class="h-8 px-3 rounded bg-surface-container hover:bg-surface-container-high text-text-primary font-label-sm text-label-sm flex items-center gap-1 transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">terminal</span>
+<span>复制完整 SQL</span>
+</button>
+<button class="h-8 px-3 rounded bg-surface-container hover:bg-surface-container-high text-text-secondary font-label-sm text-label-sm flex items-center gap-1 transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">visibility</span>
+<span>查看底层审计日志</span>
+</button>
+</div>
+<button class="h-8 px-3.5 rounded bg-primary-container hover:bg-secondary text-on-primary font-label-sm text-label-sm flex items-center gap-1.5 shadow-sm transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">file_download</span>
+<span>下载此结果集 CSV</span>
+</button>
+</div>
+</aside>
+</div>
+</div></main></div></body></html>

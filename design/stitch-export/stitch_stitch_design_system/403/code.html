@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>403 - 访问受限 | 智能分析平台</title>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Custom Styling -->
+<style data-purpose="custom-styling">
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 min-h-screen text-slate-800 antialiased flex flex-col justify-between selection:bg-blue-100 selection:text-blue-700">
+<!-- BEGIN: TopBrandHeader -->
+<header class="w-full border-b border-slate-200/80 bg-white/70 backdrop-blur-md px-6 py-3.5 flex items-center justify-between sticky top-0 z-10">
+<div class="flex items-center space-x-3">
+<!-- Platform Logo Icon -->
+<div class="h-8 w-8 rounded-lg bg-blue-600 flex items-center justify-center text-white shadow-sm shadow-blue-500/20">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M13 10V3L4 14h7v7l9-11h-7z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<div>
+<div class="text-sm font-semibold text-slate-900 leading-tight">智能分析平台</div>
+<div class="text-[11px] text-slate-400 font-mono">大模型与数据中台 · KMS 企业安全网关</div>
+</div>
+</div>
+<!-- Status indicator badge -->
+<div class="flex items-center space-x-2 text-xs text-slate-500 bg-slate-100 px-3 py-1.5 rounded-full border border-slate-200/60 font-mono">
+<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+<span>KMS-RBAC 策略引擎在线</span>
+</div>
+</header>
+<!-- END: TopBrandHeader -->
+<!-- BEGIN: MainContent -->
+<main class="flex-1 flex items-center justify-center px-4 py-12">
+<!-- Elevated Modal Card Container -->
+<div class="w-full max-w-[560px] bg-white rounded-2xl shadow-xl shadow-slate-200/60 border border-slate-200/80 p-8 sm:p-10 text-center relative overflow-hidden" data-purpose="403-error-card">
+<!-- Subtle top decorative accent bar -->
+<div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-400 via-rose-500 to-blue-600"></div>
+<!-- BEGIN: ErrorIconHeader -->
+<div class="mb-5 flex flex-col items-center">
+<!-- Shield & Lock Security Icon -->
+<div class="w-16 h-16 rounded-2xl bg-amber-50 border border-amber-200/80 flex items-center justify-center shadow-inner mb-4 relative">
+<svg class="w-8 h-8 text-amber-600" fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24">
+<path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<!-- Small badge on the icon corner -->
+<span class="absolute -top-1 -right-1 flex h-4 w-4">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-4 w-4 bg-rose-500 text-[9px] text-white font-bold items-center justify-center">!</span>
+</span>
+</div>
+<!-- HTTP Status Tagline -->
+<span class="text-xs font-mono font-semibold tracking-wider text-slate-400 uppercase mb-1">
+          HTTP 403 · ACCESS DENIED
+        </span>
+<!-- Main Title -->
+<h1 class="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
+          您暂无访问该模块的管理权限
+        </h1>
+<!-- Subtitle -->
+<p class="text-xs sm:text-sm text-slate-500 mt-1.5 leading-relaxed">
+          当前操作已被平台安全策略引擎阻断并记录审计事件
+        </p>
+</div>
+<!-- END: ErrorIconHeader -->
+<!-- BEGIN: AuditContextDetails -->
+<div class="text-left bg-slate-50 rounded-xl p-4 sm:p-5 border border-slate-200/80 my-6 space-y-3 text-xs text-slate-600" data-purpose="audit-metadata-container">
+<!-- Item: Identity -->
+<div class="flex items-start">
+<span class="w-24 shrink-0 font-medium text-slate-500">当前登录身份：</span>
+<div class="flex items-center space-x-1.5 flex-1">
+<span class="font-mono text-slate-800 font-semibold bg-white px-1.5 py-0.5 rounded border border-slate-200 text-[11px]">li.analyst</span>
+<span class="text-slate-500">(业务分析组 · 普通用户)</span>
+</div>
+</div>
+<!-- Item: Path Requested -->
+<div class="flex items-start">
+<span class="w-24 shrink-0 font-medium text-slate-500">尝试访问路径：</span>
+<div class="flex items-center flex-wrap gap-1 flex-1">
+<code class="font-mono text-rose-600 font-medium bg-rose-50 px-1.5 py-0.5 rounded border border-rose-200/60 text-[11px]">/console/models/manage</code>
+<span class="text-slate-500">(模型管理与凭证配置)</span>
+</div>
+</div>
+<div class="border-t border-slate-200/60 my-1"></div>
+<!-- Item: Reason -->
+<div class="flex items-start">
+<span class="w-24 shrink-0 font-medium text-slate-500">原因说明：</span>
+<p class="flex-1 text-slate-600 leading-normal">
+            根据企业权限隔离规范，模型管理、数据源配置、知识库重建及账号管理仅对<span class="font-medium text-slate-800">「系统管理员」</span>开放。普通用户仅拥有<span class="font-medium text-slate-800">「智能问答」</span>与个人分析结果导出权限。
+          </p>
+</div>
+<!-- Item: Solution / Request path -->
+<div class="flex items-start bg-blue-50/60 -mx-2 -mb-2 p-2.5 rounded-lg border border-blue-100 text-blue-900">
+<svg class="w-4 h-4 text-blue-600 shrink-0 mr-1.5 mt-0.5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<div class="text-[11px] leading-relaxed">
+<span class="font-semibold text-blue-800">权限申请指引：</span>
+            如业务需要配置数据源或模型参数，请联系系统管理员 <strong class="font-semibold text-blue-950">陈工 (工号 81920)</strong> 或在 OA 提交权限审批单。
+          </div>
+</div>
+</div>
+<!-- END: AuditContextDetails -->
+<!-- BEGIN: ActionButtonsGroup -->
+<div class="space-y-3" data-purpose="action-buttons">
+<!-- Primary Action -->
+<a class="w-full inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-medium py-2.5 px-6 rounded-lg shadow-sm transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 text-sm group" href="#/chat">
+<span>返回智能问答工作台</span>
+<svg class="w-4 h-4 ml-1.5 transform group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</a>
+<!-- Secondary Actions -->
+<div class="flex items-center justify-center space-x-3 text-xs">
+<button class="px-3.5 py-2 rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-colors font-medium" type="button">
+            查看我的权限清单
+          </button>
+<span class="text-slate-300">|</span>
+<button class="px-3.5 py-2 rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-colors font-medium" type="button">
+            联系管理员
+          </button>
+</div>
+</div>
+<!-- END: ActionButtonsGroup -->
+<!-- BEGIN: SecOpsAuditWatermark -->
+<div class="mt-8 pt-4 border-t border-slate-100 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[11px] text-slate-400 font-mono" data-purpose="secops-trace-footer">
+<div class="flex items-center space-x-1">
+<span>Trace ID:</span>
+<span class="text-slate-600 font-semibold select-all" id="traceId">err-403-20260924-819a</span>
+<!-- Copy Trace ID button -->
+<button class="text-slate-400 hover:text-blue-600 transition-colors p-0.5" id="copyBtn" onclick="copyTraceId()" title="复制 Trace ID">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+</div>
+<span>•</span>
+<div>Client IP: 10.198.42.15</div>
+<span>•</span>
+<div class="flex items-center text-emerald-600">
+<svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+          审计日志已记录
+        </div>
+</div>
+<!-- END: SecOpsAuditWatermark -->
+</div>
+</main>
+<!-- END: MainContent -->
+<!-- BEGIN: PageFooter -->
+<footer class="w-full py-4 text-center text-xs text-slate-400 border-t border-slate-200/50 bg-white/40">
+<p>© 2026 智能分析平台 · 安全与权限隔离中心 (RBAC v4.2)</p>
+</footer>
+<!-- END: PageFooter -->
+<!-- BEGIN: InteractiveScripts -->
+<script data-purpose="clipboard-interaction">
+    function copyTraceId() {
+      const traceText = document.getElementById('traceId').innerText;
+      navigator.clipboard.writeText(traceText).then(() => {
+        const btn = document.getElementById('copyBtn');
+        const originalHtml = btn.innerHTML;
+        btn.innerHTML = `<svg class="w-3.5 h-3.5 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>`;
+        setTimeout(() => {
+          btn.innerHTML = originalHtml;
+        }, 1500);
+      });
+    }
+  </script>
+<!-- END: InteractiveScripts -->
+</body></html>

@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>智能分析平台 · 模型管理中心</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-secondary-fixed": "#001551",
+            "inverse-on-surface": "#eaf1ff",
+            "on-tertiary-container": "#ffede6",
+            "surface-container-highest": "#d9e3f6",
+            "status-danger-bg": "#FEF2F2",
+            "on-secondary-fixed-variant": "#0039b5",
+            "on-error": "#ffffff",
+            "on-surface-variant": "#434655",
+            "surface-tint": "#0053db",
+            "tertiary-container": "#bc4800",
+            "status-neutral-bg": "#F3F4F6",
+            "inverse-primary": "#b4c5ff",
+            "on-primary-container": "#eeefff",
+            "status-danger": "#EF4444",
+            "on-error-container": "#93000a",
+            "background": "#f8f9ff",
+            "text-secondary": "#6B7280",
+            "on-surface": "#121c2a",
+            "on-tertiary-fixed": "#360f00",
+            "on-tertiary-fixed-variant": "#7d2d00",
+            "surface-container-low": "#eff4ff",
+            "status-success-bg": "#ECFDF5",
+            "border-focus": "#2563EB",
+            "tertiary-fixed-dim": "#ffb596",
+            "surface-container-lowest": "#ffffff",
+            "outline": "#737686",
+            "secondary": "#1d4ed8",
+            "surface-bright": "#f8f9ff",
+            "on-primary": "#ffffff",
+            "primary-fixed": "#dbe1ff",
+            "surface-container": "#e6eeff",
+            "on-background": "#121c2a",
+            "status-neutral": "#6B7280",
+            "on-primary-fixed-variant": "#003ea8",
+            "error": "#ba1a1a",
+            "secondary-fixed-dim": "#b7c4ff",
+            "primary-fixed-dim": "#b4c5ff",
+            "primary": "#2563eb",
+            "tertiary": "#943700",
+            "on-tertiary": "#ffffff",
+            "canvas-bg": "#F7F8FA",
+            "outline-variant": "#c3c6d7",
+            "primary-container": "#2563eb",
+            "status-warning-bg": "#FFFBEB",
+            "on-secondary": "#ffffff",
+            "secondary-fixed": "#dce1ff",
+            "code-bg": "#F9FAFB",
+            "status-processing-bg": "#EFF6FF",
+            "secondary-container": "#4069f2",
+            "status-processing": "#3B82F6",
+            "inverse-surface": "#27313f",
+            "status-warning": "#F59E0B",
+            "error-container": "#ffdad6",
+            "on-primary-fixed": "#00174b",
+            "border-subtle": "#E5E7EB",
+            "tertiary-fixed": "#ffdbcd",
+            "surface-card": "#FFFFFF",
+            "surface-dim": "#d0dbed",
+            "primary-tint": "#EFF6FF",
+            "surface-variant": "#d9e3f6",
+            "text-muted": "#9CA3AF",
+            "on-secondary-container": "#fffbff",
+            "surface": "#f8f9ff",
+            "status-success": "#10B981",
+            "surface-container-high": "#dee9fc",
+            "text-primary": "#1F2937"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "fontFamily": {
+            "body-md": ["\"Inter, -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif\""],
+            "headline-lg": ["\"Inter, -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif\""],
+            "code-md": ["\"JetBrains Mono, Menlo, Monaco, Consolas, monospace\""],
+            "body-sm": ["\"Inter, -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif\""],
+            "code-sm": ["\"JetBrains Mono, Menlo, Monaco, Consolas, monospace\""]
+          }
+        },
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+  </style>
+</head>
+<body class="bg-background font-['Inter',-apple-system,sans-serif] text-text-primary antialiased min-h-screen flex">
+<!-- Left Global Fixed Sidebar (240px wide) -->
+<aside class="w-60 bg-surface-card border-r border-border-subtle flex flex-col shrink-0 min-h-screen sticky top-0 h-screen z-30 select-none">
+<!-- Brand Header -->
+<div class="h-16 px-4 flex items-center gap-3 border-b border-border-subtle bg-surface-card shrink-0">
+<div class="size-9 rounded-lg bg-primary text-on-primary flex items-center justify-center font-bold shadow-sm shadow-primary/25 shrink-0">
+<span class="material-symbols-outlined text-[20px]">smart_toy</span>
+</div>
+<div class="min-w-0">
+<h2 class="text-on-surface text-sm font-bold leading-tight truncate tracking-tight">智能分析平台</h2>
+<span class="text-[11px] text-text-secondary leading-tight block">v1.0 企业版</span>
+</div>
+</div>
+<!-- Nav Menu Links -->
+<div class="flex-1 py-4 px-3 space-y-6 overflow-y-auto">
+<!-- Group 1: 核心工作台 -->
+<div>
+<p class="px-3 mb-2 text-[11px] font-semibold text-text-muted uppercase tracking-wider">核心工作台</p>
+<nav class="space-y-1">
+<a class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs font-medium text-text-secondary hover:text-text-primary hover:bg-canvas-bg transition-colors" href="#">
+<span class="material-symbols-outlined text-base">chat_paste_go</span>
+<span>智能问答</span>
+</a>
+</nav>
+</div>
+<!-- Group 2: 管理与治理 -->
+<div>
+<p class="px-3 mb-2 text-[11px] font-semibold text-text-muted uppercase tracking-wider">管理与治理</p>
+<nav class="space-y-1">
+<!-- Active Tab: 模型管理 -->
+<a class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs font-semibold bg-[#eff6ff] text-[#2563eb] border border-[#2563eb]/20 shadow-sm" href="#">
+<span class="material-symbols-outlined text-base text-[#2563eb]">tune</span>
+<span class="flex-1">模型管理</span>
+<span class="size-1.5 rounded-full bg-[#2563eb]"></span>
+</a>
+<a class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs font-medium text-text-secondary hover:text-text-primary hover:bg-canvas-bg transition-colors" href="#">
+<span class="material-symbols-outlined text-base">database</span>
+<span>数据源管理</span>
+</a>
+<a class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs font-medium text-text-secondary hover:text-text-primary hover:bg-canvas-bg transition-colors" href="#">
+<span class="material-symbols-outlined text-base">menu_book</span>
+<span>知识库</span>
+</a>
+<a class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs font-medium text-text-secondary hover:text-text-primary hover:bg-canvas-bg transition-colors" href="#">
+<span class="material-symbols-outlined text-base">manage_accounts</span>
+<span>账号管理</span>
+</a>
+</nav>
+</div>
+</div>
+<!-- Bottom Status Footer in Sidebar -->
+<div class="p-3 border-t border-border-subtle bg-canvas-bg/60 shrink-0">
+<div class="flex items-center justify-between text-xs text-text-secondary">
+<div class="flex items-center gap-2 min-w-0">
+<span class="size-2 rounded-full bg-status-success shrink-0"></span>
+<span class="text-[11px] font-medium text-text-secondary truncate">安全只读网络 · 运行正常</span>
+</div>
+<span class="material-symbols-outlined text-xs text-text-muted shrink-0">verified_user</span>
+</div>
+</div>
+</aside>
+<!-- Right Area: Top Header + Main Content + Footer -->
+<div class="flex-1 flex flex-col min-w-0 bg-background">
+<!-- Top Global Header Bar (h-16 / 64px) -->
+<header class="h-16 flex items-center justify-between whitespace-nowrap border-b border-border-subtle bg-surface-card px-6 sticky top-0 z-20 shadow-sm shrink-0">
+<!-- Breadcrumbs & Status -->
+<div class="flex items-center gap-3">
+<div class="flex items-center gap-1.5 text-xs text-text-secondary">
+<a class="hover:text-primary transition-colors" href="#">首页</a>
+<span class="text-text-muted">/</span>
+<span>管理与治理</span>
+<span class="text-text-muted">/</span>
+<span class="font-semibold text-text-primary">模型管理</span>
+</div>
+<span class="text-border-subtle">|</span>
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[11px] font-medium bg-status-success-bg text-status-success border border-status-success/20">
+<span class="size-1.5 rounded-full bg-status-success"></span>
+        只读安全模式 · API与推理网关正常
+      </span>
+</div>
+<!-- Right Side: Search / Actions / User Profile -->
+<div class="flex items-center gap-3">
+<button class="flex items-center gap-1.5 cursor-pointer rounded-lg h-8 px-3 bg-surface-container-low hover:bg-surface-container text-on-surface text-xs font-medium border border-border-subtle transition-all">
+<span class="material-symbols-outlined text-sm">help_outline</span>
+<span>帮助文档</span>
+</button>
+<button class="size-8 flex items-center justify-center rounded-lg bg-surface-container-low hover:bg-surface-container text-text-secondary hover:text-text-primary border border-border-subtle transition-colors relative">
+<span class="material-symbols-outlined text-base">notifications</span>
+<span class="absolute top-1.5 right-1.5 size-1.5 rounded-full bg-status-danger"></span>
+</button>
+<div class="w-px h-5 bg-border-subtle mx-0.5"></div>
+<div class="flex items-center gap-2.5">
+<div class="size-8 rounded-full bg-primary-tint border border-primary/20 flex items-center justify-center text-primary font-bold text-xs">
+          陈
+        </div>
+<div class="text-left text-xs hidden md:block">
+<p class="font-semibold text-text-primary leading-tight">陈工 (数据研发) · 管理员</p>
+<p class="text-text-muted text-[10px]">KMS 隔离网关接入</p>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Container -->
+<main class="flex-1 w-full max-w-[1520px] mx-auto px-6 py-6 space-y-6">
+<!-- 1. Page Header -->
+<div class="flex flex-wrap items-center justify-between gap-4">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2.5">
+<h1 class="text-on-surface text-2xl font-bold tracking-tight">模型管理 Model Hub v2.4</h1>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-primary-tint text-primary border border-primary/20">
+            Enterprise Engine v2.4
+          </span>
+</div>
+<p class="text-text-secondary text-sm">配置与管理用于数据问答的 OpenAI 与 Ollama 对话大模型，监控连接状态与工具调用能力</p>
+</div>
+<div class="flex items-center gap-3">
+<button class="inline-flex items-center justify-center gap-2 rounded-lg h-9 px-3.5 bg-surface-card hover:bg-surface-container-low border border-border-subtle text-on-surface text-xs font-semibold shadow-sm transition-all hover:border-outline">
+<span class="material-symbols-outlined text-secondary text-base">radar</span>
+<span>批量测试所有模型</span>
+</button>
+<button class="inline-flex items-center justify-center gap-1.5 rounded-lg h-9 px-3.5 bg-primary hover:bg-secondary text-on-primary text-xs font-semibold shadow-sm shadow-primary/25 transition-all">
+<span class="material-symbols-outlined text-base">add</span>
+<span>+ 新建模型</span>
+</button>
+</div>
+</div>
+<!-- 2. Metrics Banner (4 Cards) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+<!-- Card 1 -->
+<div class="flex flex-col justify-between rounded-xl p-4 bg-surface-card border border-border-subtle shadow-sm hover:border-outline-variant transition-colors">
+<div class="flex items-center justify-between">
+<span class="text-xs font-semibold text-text-secondary uppercase tracking-wider">已配置模型总数</span>
+<div class="p-1.5 rounded-lg bg-surface-container text-primary">
+<span class="material-symbols-outlined text-sm">dataset</span>
+</div>
+</div>
+<div class="mt-3">
+<div class="flex items-baseline gap-2">
+<span class="text-2xl font-bold tracking-tight text-text-primary">6</span>
+<span class="text-xs font-medium text-text-secondary">台实例</span>
+</div>
+<div class="flex items-center gap-2 mt-1.5">
+<span class="inline-flex items-center text-xs font-medium text-text-secondary">
+              OpenAI: <strong class="text-text-primary ml-1">4</strong>
+</span>
+<span class="text-border-subtle">|</span>
+<span class="inline-flex items-center text-xs font-medium text-text-secondary">
+              Ollama: <strong class="text-text-primary ml-1">2</strong>
+</span>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="flex flex-col justify-between rounded-xl p-4 bg-surface-card border border-border-subtle shadow-sm hover:border-outline-variant transition-colors">
+<div class="flex items-center justify-between">
+<span class="text-xs font-semibold text-text-secondary uppercase tracking-wider">在线高可用模型</span>
+<div class="p-1.5 rounded-lg bg-status-success-bg text-status-success">
+<span class="material-symbols-outlined text-sm">check_circle</span>
+</div>
+</div>
+<div class="mt-3">
+<div class="flex items-baseline gap-2">
+<span class="text-2xl font-bold tracking-tight text-status-success">4</span>
+<span class="text-xs font-medium text-text-secondary">台正常</span>
+</div>
+<p class="text-xs text-text-secondary mt-1.5 flex items-center gap-1">
+<span class="material-symbols-outlined text-status-success text-xs">verified</span>
+<span>工具调用全部通过率 100%</span>
+</p>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="flex flex-col justify-between rounded-xl p-4 bg-surface-card border border-border-subtle shadow-sm hover:border-outline-variant transition-colors">
+<div class="flex items-center justify-between">
+<span class="text-xs font-semibold text-status-danger uppercase tracking-wider">需关注 / 异常</span>
+<div class="p-1.5 rounded-lg bg-status-danger-bg text-status-danger">
+<span class="material-symbols-outlined text-sm">warning</span>
+</div>
+</div>
+<div class="mt-3">
+<div class="flex items-baseline gap-2">
+<span class="text-2xl font-bold tracking-tight text-status-danger">2</span>
+<span class="text-xs font-medium text-text-secondary">台受限</span>
+</div>
+<p class="text-xs text-status-danger mt-1.5 flex items-center gap-1">
+<span>1台校验失败 · 1台变更待重测</span>
+</p>
+</div>
+</div>
+<!-- Card 4 (Embedding Guidance) -->
+<div class="flex flex-col justify-between rounded-xl p-4 bg-surface-container-low border border-primary/20 shadow-sm relative overflow-hidden group">
+<div class="flex items-center justify-between">
+<span class="text-xs font-semibold text-primary uppercase tracking-wider">向量检索模型指引</span>
+<span class="material-symbols-outlined text-primary text-base group-hover:translate-x-0.5 transition-transform">open_in_new</span>
+</div>
+<div class="mt-2">
+<p class="text-xs text-on-surface leading-relaxed">
+            当前列表仅管理对话与数据分析模型，向量化 <strong class="text-primary font-semibold">Embedding 模型</strong> 请移步知识库模块配置。
+          </p>
+<a class="inline-flex items-center gap-1 mt-2 text-xs font-semibold text-primary hover:underline" href="#">
+<span>前往知识库模块配置</span>
+<span class="material-symbols-outlined text-xs">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+<!-- 3. Filter Toolbar -->
+<div class="flex flex-wrap items-center justify-between gap-3 p-3.5 bg-surface-card border border-border-subtle rounded-xl shadow-sm">
+<div class="flex flex-wrap items-center gap-2.5 flex-1 min-w-[280px]">
+<!-- Search -->
+<div class="relative min-w-[260px] max-w-sm flex-1">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-muted text-lg pointer-events-none">search</span>
+<input class="w-full h-9 pl-9 pr-3 rounded-lg bg-canvas-bg border border-border-subtle focus:border-border-focus focus:ring-1 focus:ring-border-focus text-xs placeholder:text-text-muted text-on-surface transition-all" placeholder="搜索模型显示名称、标识或服务地址..." type="text"/>
+</div>
+<!-- Provider Dropdown -->
+<div class="relative">
+<select class="appearance-none h-9 pl-3 pr-8 rounded-lg bg-canvas-bg border border-border-subtle text-xs font-medium text-text-primary focus:border-border-focus focus:ring-0 cursor-pointer">
+<option>全部提供方</option>
+<option>OpenAI</option>
+<option>Ollama</option>
+<option>兼容网关</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-text-muted text-sm pointer-events-none">expand_more</span>
+</div>
+<!-- Status Dropdown -->
+<div class="relative">
+<select class="appearance-none h-9 pl-3 pr-8 rounded-lg bg-canvas-bg border border-border-subtle text-xs font-medium text-text-primary focus:border-border-focus focus:ring-0 cursor-pointer">
+<option>全部状态</option>
+<option>已启用</option>
+<option>已停用</option>
+<option>配置变更待重测</option>
+<option>草稿</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-text-muted text-sm pointer-events-none">expand_more</span>
+</div>
+<!-- Capabilities Dropdown -->
+<div class="relative">
+<select class="appearance-none h-9 pl-3 pr-8 rounded-lg bg-canvas-bg border border-border-subtle text-xs font-medium text-text-primary focus:border-border-focus focus:ring-0 cursor-pointer">
+<option>能力状态: 全部</option>
+<option>全项通过</option>
+<option>测试失败 / 受限</option>
+<option>待重新测试</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-text-muted text-sm pointer-events-none">expand_more</span>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<span class="text-xs text-text-secondary font-medium">当前呈现: <strong class="text-text-primary">5</strong> 个配置项</span>
+<button class="h-9 w-9 flex items-center justify-center rounded-lg bg-canvas-bg hover:bg-surface-container border border-border-subtle text-text-secondary hover:text-text-primary transition-colors" title="刷新列表状态">
+<span class="material-symbols-outlined text-base">refresh</span>
+</button>
+</div>
+</div>
+<!-- 4. Model Management Table -->
+<div class="bg-surface-card border border-border-subtle rounded-xl shadow-sm overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-canvas-bg/80 border-b border-border-subtle text-[11px] font-semibold text-text-secondary uppercase tracking-wider select-none">
+<th class="py-3 px-4 w-[240px]">显示名称与标签</th>
+<th class="py-3 px-3 w-[110px]">提供方</th>
+<th class="py-3 px-3 w-[180px]">实际模型标识</th>
+<th class="py-3 px-3 w-[220px]">服务地址（脱敏）</th>
+<th class="py-3 px-4 min-w-[280px]">能力矩阵验证 (对话 / 工具调用 / 流式)</th>
+<th class="py-3 px-3 w-[150px]">发布状态</th>
+<th class="py-3 px-3 w-[150px]">最近测试</th>
+<th class="py-3 px-4 text-right w-[160px]">操作</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border-subtle text-xs">
+<!-- ROW 1: OpenAI GPT-4.1 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="py-3.5 px-4">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2">
+<span class="font-bold text-text-primary text-[13px] group-hover:text-primary transition-colors">GPT-4.1 业务分析</span>
+<span class="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-primary-tint text-primary border border-primary/20">默认推荐</span>
+</div>
+<span class="text-text-muted text-[11px]">核心库问答引擎 · 生产环境主用</span>
+</div>
+</td>
+<td class="py-3.5 px-3">
+<span class="inline-flex items-center gap-1 px-2 py-1 rounded-md text-[11px] font-semibold bg-surface-container text-secondary border border-secondary/20">
+<span class="material-symbols-outlined text-xs">cloud_queue</span>
+                  OpenAI
+                </span>
+</td>
+<td class="py-3.5 px-3">
+<code class="font-['JetBrains_Mono'] text-text-primary text-[11px] bg-canvas-bg px-2 py-0.5 rounded border border-border-subtle">gpt-4.1</code>
+</td>
+<td class="py-3.5 px-3">
+<div class="flex items-center gap-1.5 text-text-secondary" title="密钥走统一 KMS 网关反向代理托管">
+<span class="material-symbols-outlined text-xs text-status-success">lock</span>
+<span class="font-['JetBrains_Mono'] text-[11px] truncate max-w-[190px]">https://api.openai.com/v1</span>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-2 flex-wrap">
+<div class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-status-success-bg text-status-success border border-status-success/20 text-[10px] font-medium" title="基础对话连通测试正常">
+<span class="size-1.5 rounded-full bg-status-success"></span>
+<span>对话 120ms</span>
+</div>
+<div class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-status-success-bg text-status-success border border-status-success/20 text-[10px] font-medium" title="严格 Schema AST 工具调用验证完全通过">
+<span class="material-symbols-outlined text-[10px]">build_circle</span>
+<span>工具调用 310ms</span>
+</div>
+<div class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-status-success-bg text-status-success border border-status-success/20 text-[10px] font-medium" title="SSE流式输出支持">
+<span class="material-symbols-outlined text-[10px]">stream</span>
+<span>流式输出</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-3">
+<div class="inline-flex items-center gap-1.5 px-2 py-1 rounded-full text-xs font-semibold bg-status-success-bg text-status-success border border-status-success/20">
+<span class="size-2 rounded-full bg-status-success animate-pulse"></span>
+<span>已启用</span>
+</div>
+</td>
+<td class="py-3.5 px-3">
+<div class="text-text-primary text-[11px] font-medium">今天 10:30</div>
+<div class="text-text-muted text-[10px]">陈工 执行 · 耗时 48ms</div>
+</td>
+<td class="py-3.5 px-4 text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="px-2 py-1 text-xs font-medium text-text-primary hover:text-primary hover:bg-canvas-bg rounded transition-colors">编辑</button>
+<button class="px-2 py-1 text-xs font-medium text-secondary hover:bg-canvas-bg rounded transition-colors">测试</button>
+<button class="px-2 py-1 text-xs font-medium text-status-danger hover:bg-status-danger-bg rounded transition-colors">停用</button>
+<button class="p-1 text-text-muted hover:text-text-primary hover:bg-canvas-bg rounded transition-colors">
+<span class="material-symbols-outlined text-sm">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- ROW 2: DeepSeek-R1 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group bg-status-danger-bg/20">
+<td class="py-3.5 px-4">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2">
+<span class="font-bold text-text-primary text-[13px] group-hover:text-primary transition-colors">DeepSeek-R1 本地推理引擎</span>
+<span class="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-status-neutral-bg text-text-secondary border border-border-subtle">开源私有部署</span>
+</div>
+<span class="text-text-muted text-[11px]">深度思考推演 · 暂未开放生产调度</span>
+</div>
+</td>
+<td class="py-3.5 px-3">
+<span class="inline-flex items-center gap-1 px-2 py-1 rounded-md text-[11px] font-semibold bg-canvas-bg text-text-primary border border-border-subtle">
+<span class="material-symbols-outlined text-xs">dns</span>
+                  Ollama
+                </span>
+</td>
+<td class="py-3.5 px-3">
+<code class="font-['JetBrains_Mono'] text-text-primary text-[11px] bg-canvas-bg px-2 py-0.5 rounded border border-border-subtle">deepseek-r1:32b</code>
+</td>
+<td class="py-3.5 px-3">
+<div class="flex items-center gap-1.5 text-text-secondary">
+<span class="material-symbols-outlined text-xs text-text-muted">shield</span>
+<span class="font-['JetBrains_Mono'] text-[11px] truncate max-w-[190px]">http://10.20.12.8:11434</span>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-2 flex-wrap">
+<div class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-status-success-bg text-status-success border border-status-success/20 text-[10px] font-medium">
+<span class="size-1.5 rounded-full bg-status-success"></span>
+<span>对话 85ms</span>
+</div>
+<div class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-status-danger-bg text-status-danger border border-status-danger/30 text-[10px] font-medium" title="模型未返回受控 JSON 结构，阻断启用">
+<span class="material-symbols-outlined text-[10px]">cancel</span>
+<span>失败: 工具调用格式未遵从</span>
+</div>
+<div class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-status-success-bg text-status-success border border-status-success/20 text-[10px] font-medium">
+<span class="material-symbols-outlined text-[10px]">stream</span>
+<span>流式支持</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-3">
+<div class="inline-flex flex-col gap-0.5">
+<div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-xs font-semibold bg-status-neutral-bg text-status-neutral border border-border-subtle">
+<span class="size-2 rounded-full bg-status-neutral"></span>
+<span>已停用</span>
+</div>
+<span class="text-[10px] text-status-danger font-medium">工具校验未通，禁止启用</span>
+</div>
+</td>
+<td class="py-3.5 px-3">
+<div class="text-text-primary text-[11px] font-medium">昨天 16:45</div>
+<div class="text-text-muted text-[10px]">系统自动回归测试</div>
+</td>
+<td class="py-3.5 px-4 text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="px-2 py-1 text-xs font-medium text-text-primary hover:text-primary hover:bg-canvas-bg rounded transition-colors">编辑</button>
+<button class="px-2 py-1 text-xs font-medium text-secondary hover:bg-canvas-bg rounded transition-colors">重新测试</button>
+<button class="px-2 py-1 text-xs font-medium text-text-muted cursor-not-allowed bg-canvas-bg/50 rounded" disabled="" title="必须全项通过后才可启用">启用</button>
+<button class="p-1 text-text-muted hover:text-text-primary hover:bg-canvas-bg rounded transition-colors">
+<span class="material-symbols-outlined text-sm">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- ROW 3: Qwen-2.5 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group bg-status-warning-bg/20">
+<td class="py-3.5 px-4">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2">
+<span class="font-bold text-text-primary text-[13px] group-hover:text-primary transition-colors">Qwen-2.5 14B 财务专区</span>
+<span class="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-status-warning-bg text-status-warning border border-status-warning/20">离线受限环境</span>
+</div>
+<span class="text-text-muted text-[11px]">财务指标与合规报表分析专用</span>
+</div>
+</td>
+<td class="py-3.5 px-3">
+<span class="inline-flex items-center gap-1 px-2 py-1 rounded-md text-[11px] font-semibold bg-canvas-bg text-text-primary border border-border-subtle">
+<span class="material-symbols-outlined text-xs">dns</span>
+                  Ollama
+                </span>
+</td>
+<td class="py-3.5 px-3">
+<code class="font-['JetBrains_Mono'] text-text-primary text-[11px] bg-canvas-bg px-2 py-0.5 rounded border border-border-subtle">qwen2.5:14b-instruct</code>
+</td>
+<td class="py-3.5 px-3">
+<div class="flex items-center gap-1.5 text-text-secondary">
+<span class="material-symbols-outlined text-xs text-text-muted">shield</span>
+<span class="font-['JetBrains_Mono'] text-[11px] truncate max-w-[190px]">http://10.20.12.19:11434</span>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-2 flex-wrap">
+<div class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-status-warning-bg text-status-warning border border-status-warning/30 text-[10px] font-medium">
+<span class="material-symbols-outlined text-[10px]">schedule</span>
+<span>对话 待重测</span>
+</div>
+<div class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-status-warning-bg text-status-warning border border-status-warning/30 text-[10px] font-medium">
+<span class="material-symbols-outlined text-[10px]">schedule</span>
+<span>工具 待重测</span>
+</div>
+<div class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-status-warning-bg text-status-warning border border-status-warning/30 text-[10px] font-medium">
+<span class="material-symbols-outlined text-[10px]">schedule</span>
+<span>流式 待重测</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-3">
+<div class="inline-flex flex-col gap-0.5">
+<div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-xs font-semibold bg-status-warning-bg text-status-warning border border-status-warning/30">
+<span class="size-2 rounded-full bg-status-warning"></span>
+<span>配置变更待重测</span>
+</div>
+<span class="text-[10px] text-text-secondary">修改了服务超时时间与系统指令</span>
+</div>
+</td>
+<td class="py-3.5 px-3">
+<div class="text-text-primary text-[11px] font-medium">2026-09-21</div>
+<div class="text-text-muted text-[10px]">变更前状态已失效</div>
+</td>
+<td class="py-3.5 px-4 text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="px-2 py-1 text-xs font-medium text-text-primary hover:text-primary hover:bg-canvas-bg rounded transition-colors">编辑</button>
+<button class="px-2 py-1 text-xs font-bold text-primary hover:bg-primary-tint rounded transition-colors">立即测试</button>
+<button class="px-2 py-1 text-xs font-medium text-text-muted cursor-not-allowed bg-canvas-bg/50 rounded" disabled="">启用</button>
+<button class="p-1 text-text-muted hover:text-text-primary hover:bg-canvas-bg rounded transition-colors">
+<span class="material-symbols-outlined text-sm">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- ROW 4: GPT-4o-mini -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="py-3.5 px-4">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2">
+<span class="font-bold text-text-primary text-[13px] group-hover:text-primary transition-colors">GPT-4o 快速推理</span>
+<span class="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-status-neutral-bg text-text-secondary border border-border-subtle">低延迟通道</span>
+</div>
+<span class="text-text-muted text-[11px]">通用业务日常初筛与意图路由</span>
+</div>
+</td>
+<td class="py-3.5 px-3">
+<span class="inline-flex items-center gap-1 px-2 py-1 rounded-md text-[11px] font-semibold bg-surface-container text-secondary border border-secondary/20">
+<span class="material-symbols-outlined text-xs">cloud_queue</span>
+                  OpenAI
+                </span>
+</td>
+<td class="py-3.5 px-3">
+<code class="font-['JetBrains_Mono'] text-text-primary text-[11px] bg-canvas-bg px-2 py-0.5 rounded border border-border-subtle">gpt-4o-mini</code>
+</td>
+<td class="py-3.5 px-3">
+<div class="flex items-center gap-1.5 text-text-secondary">
+<span class="material-symbols-outlined text-xs text-status-success">lock</span>
+<span class="font-['JetBrains_Mono'] text-[11px] truncate max-w-[190px]">https://api.openai.com/v1</span>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-2 flex-wrap">
+<div class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-status-success-bg text-status-success border border-status-success/20 text-[10px] font-medium">
+<span class="size-1.5 rounded-full bg-status-success"></span>
+<span>对话 80ms</span>
+</div>
+<div class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-status-success-bg text-status-success border border-status-success/20 text-[10px] font-medium">
+<span class="material-symbols-outlined text-[10px]">build_circle</span>
+<span>工具 190ms</span>
+</div>
+<div class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-status-success-bg text-status-success border border-status-success/20 text-[10px] font-medium">
+<span class="material-symbols-outlined text-[10px]">stream</span>
+<span>流式支持</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-3">
+<div class="inline-flex items-center gap-1.5 px-2 py-1 rounded-full text-xs font-semibold bg-status-success-bg text-status-success border border-status-success/20">
+<span class="size-2 rounded-full bg-status-success"></span>
+<span>已启用</span>
+</div>
+</td>
+<td class="py-3.5 px-3">
+<div class="text-text-primary text-[11px] font-medium">今天 09:15</div>
+<div class="text-text-muted text-[10px]">自动化巡检 · 正常</div>
+</td>
+<td class="py-3.5 px-4 text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="px-2 py-1 text-xs font-medium text-text-primary hover:text-primary hover:bg-canvas-bg rounded transition-colors">编辑</button>
+<button class="px-2 py-1 text-xs font-medium text-secondary hover:bg-canvas-bg rounded transition-colors">测试</button>
+<button class="px-2 py-1 text-xs font-medium text-status-danger hover:bg-status-danger-bg rounded transition-colors">停用</button>
+<button class="p-1 text-text-muted hover:text-text-primary hover:bg-canvas-bg rounded transition-colors">
+<span class="material-symbols-outlined text-sm">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- ROW 5: Claude-3.5 Sonnet -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="py-3.5 px-4">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2">
+<span class="font-bold text-text-primary text-[13px] group-hover:text-primary transition-colors">Claude-3.5 Sonnet 预研实例</span>
+<span class="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-status-neutral-bg text-text-secondary border border-border-subtle">前沿评估</span>
+</div>
+<span class="text-text-muted text-[11px]">代码生成与数据清洗场景适配性验证</span>
+</div>
+</td>
+<td class="py-3.5 px-3">
+<span class="inline-flex items-center gap-1 px-2 py-1 rounded-md text-[11px] font-semibold bg-surface-container text-on-surface-variant border border-border-subtle">
+<span class="material-symbols-outlined text-xs">hub</span>
+                  兼容网关
+                </span>
+</td>
+<td class="py-3.5 px-3">
+<code class="font-['JetBrains_Mono'] text-text-primary text-[11px] bg-canvas-bg px-2 py-0.5 rounded border border-border-subtle">claude-3-5-sonnet-20241022</code>
+</td>
+<td class="py-3.5 px-3">
+<div class="flex items-center gap-1.5 text-text-secondary">
+<span class="material-symbols-outlined text-xs text-text-muted">vpn_key</span>
+<span class="font-['JetBrains_Mono'] text-[11px] truncate max-w-[190px]">https://gateway.internal.corp/ai/v1</span>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-status-neutral-bg text-text-muted border border-border-subtle text-[11px]">
+<span class="material-symbols-outlined text-xs">hourglass_empty</span>
+<span>草稿态未测试（需先配置测试凭据）</span>
+</div>
+</td>
+<td class="py-3.5 px-3">
+<div class="inline-flex items-center gap-1.5 px-2 py-1 rounded-full text-xs font-semibold bg-status-neutral-bg text-text-muted border border-border-subtle">
+<span class="size-2 rounded-full bg-text-muted"></span>
+<span>草稿</span>
+</div>
+</td>
+<td class="py-3.5 px-3">
+<div class="text-text-muted text-[11px]">未曾测试</div>
+</td>
+<td class="py-3.5 px-4 text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="px-2 py-1 text-xs font-semibold text-primary hover:bg-canvas-bg rounded transition-colors">继续编辑</button>
+<button class="px-2 py-1 text-xs font-medium text-secondary hover:bg-canvas-bg rounded transition-colors">运行测试</button>
+<button class="px-2 py-1 text-xs font-medium text-status-danger hover:bg-status-danger-bg rounded transition-colors">删除</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- 5. Table Footer & Pagination -->
+<div class="flex flex-wrap items-center justify-between gap-4 px-4 py-3 border-t border-border-subtle bg-canvas-bg/50">
+<div class="flex items-center gap-2 text-xs text-text-secondary">
+<span class="material-symbols-outlined text-sm text-status-success">verified_user</span>
+<span>共 <strong>5</strong> 条模型配置项 · 凭据掩码全域生效 · 未在浏览器客户端持久化明文 API Key</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="text-xs text-text-secondary">每页 10 条</span>
+<div class="flex items-center gap-1">
+<button class="size-7 flex items-center justify-center rounded border border-border-subtle bg-surface-card text-text-muted cursor-not-allowed">
+<span class="material-symbols-outlined text-sm">chevron_left</span>
+</button>
+<button class="size-7 flex items-center justify-center rounded bg-primary text-on-primary text-xs font-semibold">1</button>
+<button class="size-7 flex items-center justify-center rounded border border-border-subtle bg-surface-card text-text-muted cursor-not-allowed">
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+<span class="text-xs text-text-secondary">第 1 / 1 页</span>
+</div>
+</div>
+</div>
+<!-- 6. Bottom Automated Verification Inspection Card -->
+<div class="rounded-xl border border-border-subtle bg-surface-card p-4 shadow-sm">
+<div class="flex flex-wrap items-center justify-between gap-2 border-b border-border-subtle pb-3">
+<div class="flex items-center gap-2">
+<div class="size-2 rounded-full bg-status-success animate-ping"></div>
+<h3 class="text-sm font-bold text-text-primary">自动化能力校验流水线回溯 · 最近任务</h3>
+<span class="text-xs font-mono bg-canvas-bg px-2 py-0.5 rounded text-text-secondary border border-border-subtle">
+            Trace ID: trc-20260923-gpt41-098 · Target: GPT-4.1 (gpt-4.1)
+          </span>
+</div>
+<div class="flex items-center gap-3 text-xs text-text-muted">
+<span>校验执行时间: 2026-09-23 10:30:12 CST</span>
+<button class="text-primary hover:underline text-xs flex items-center gap-0.5">
+<span>查看完整审计日志</span>
+<span class="material-symbols-outlined text-xs">arrow_outward</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-3 text-xs">
+<!-- Step 1: 握手测试 -->
+<div class="flex items-start gap-2.5 p-2.5 rounded-lg bg-surface-container-low border border-border-subtle">
+<span class="material-symbols-outlined text-status-success text-base shrink-0 mt-0.5">check_circle</span>
+<div class="space-y-1">
+<p class="font-semibold text-text-primary">连接握手测试 (Handshake)</p>
+<p class="text-text-secondary leading-relaxed font-mono">HTTP 200 OK · 48ms</p>
+<p class="text-[11px] text-text-muted">TLS 1.3 双向验证正常，响应标头符合标准规范</p>
+</div>
+</div>
+<!-- Step 2: AST 验证 -->
+<div class="flex items-start gap-2.5 p-2.5 rounded-lg bg-surface-container-low border border-border-subtle">
+<span class="material-symbols-outlined text-status-success text-base shrink-0 mt-0.5">check_circle</span>
+<div class="space-y-1">
+<p class="font-semibold text-text-primary">结构化 AST 验证 (Tool Schema)</p>
+<p class="text-text-secondary leading-relaxed font-mono">Function: query_sales_db</p>
+<p class="text-[11px] text-text-muted">已正确解析参数 JSON Schema，无幻觉参数注入，符合取数标准</p>
+</div>
+</div>
+<!-- Step 3: SSE 流式响应 -->
+<div class="flex items-start gap-2.5 p-2.5 rounded-lg bg-surface-container-low border border-border-subtle">
+<span class="material-symbols-outlined text-status-success text-base shrink-0 mt-0.5">stream</span>
+<div class="space-y-1">
+<p class="font-semibold text-text-primary">SSE 流式响应测试 (Streaming)</p>
+<p class="text-text-secondary leading-relaxed font-mono">First Chunk: 120ms</p>
+<p class="text-[11px] text-text-muted">Server-Sent Events 协议完整，分块推流无缓冲中断</p>
+</div>
+</div>
+<!-- Step 4: KMS 密钥托管说明 -->
+<div class="flex items-start gap-2.5 p-2.5 rounded-lg bg-surface-container-low border border-border-subtle">
+<span class="material-symbols-outlined text-status-success text-base shrink-0 mt-0.5">shield_lock</span>
+<div class="space-y-1">
+<p class="font-semibold text-text-primary">KMS 密钥托管与隔离说明</p>
+<p class="text-text-secondary leading-relaxed font-mono">统一网关 KMS 托管</p>
+<p class="text-[11px] text-text-muted">前端无明文持久化，凭据经内网专用隧道安全注入反向代理</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="mt-auto border-t border-border-subtle py-4 bg-surface-card text-center text-xs text-text-muted shrink-0">
+    智能分析平台 · 模型管理中心 © 2026 数据智能研发中心
+  </footer>
+</div>
+</body></html>

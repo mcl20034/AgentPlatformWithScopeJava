@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter,+-apple-system,+BlinkMacSystemFont,+'PingFang+SC',+sans-serif:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"status-success-bg":"#ECFDF5","secondary-container":"#4069f2","on-primary-fixed-variant":"#003ea8","text-primary":"#1F2937","status-danger":"#EF4444","on-secondary-container":"#fffbff","status-processing":"#3B82F6","status-warning":"#F59E0B","status-danger-bg":"#FEF2F2","border-subtle":"#E5E7EB","status-neutral-bg":"#F3F4F6","inverse-surface":"#27313f","on-background":"#121c2a","on-error-container":"#93000a","tertiary-fixed-dim":"#ffb596","code-bg":"#F9FAFB","on-tertiary-fixed-variant":"#7d2d00","canvas-bg":"#F7F8FA","border-focus":"#2563EB","primary-container":"#2563eb","inverse-primary":"#b4c5ff","tertiary-fixed":"#ffdbcd","surface-card":"#FFFFFF","status-warning-bg":"#FFFBEB","text-secondary":"#6B7280","secondary-fixed":"#dce1ff","primary-fixed":"#dbe1ff","error":"#ba1a1a","status-neutral":"#6B7280","surface-container-lowest":"#ffffff","outline-variant":"#c3c6d7","on-tertiary":"#ffffff","on-tertiary-container":"#ffede6","on-primary-fixed":"#00174b","tertiary":"#943700","text-muted":"#9CA3AF","on-primary-container":"#eeefff","outline":"#737686","on-error":"#ffffff","tertiary-container":"#bc4800","background":"#f8f9ff","on-primary":"#ffffff","error-container":"#ffdad6","surface":"#f8f9ff","inverse-on-surface":"#eaf1ff","surface-dim":"#d0dbed","on-surface-variant":"#434655","surface-container-highest":"#d9e3f6","on-secondary":"#ffffff","on-surface":"#121c2a","surface-container-low":"#eff4ff","surface-container-high":"#dee9fc","primary-tint":"#EFF6FF","surface-variant":"#d9e3f6","primary":"#004ac6","surface-tint":"#0053db","status-success":"#10B981","on-secondary-fixed":"#001551","primary-fixed-dim":"#b4c5ff","secondary":"#1d4ed8","on-secondary-fixed-variant":"#0039b5","surface-container":"#e6eeff","surface-bright":"#f8f9ff","secondary-fixed-dim":"#b7c4ff","on-tertiary-fixed":"#360f00","status-processing-bg":"#EFF6FF"},borderRadius:{DEFAULT:"0.25rem",lg:"0.5rem",xl:"0.75rem",full:"9999px"},spacing:{"space-lg":"1.25rem","margin-desktop":"2rem","space-2xl":"2rem","gutter-desktop":"1.5rem","space-md":"1rem",margin:"1.5rem","space-xs":"0.25rem","space-sm":"0.5rem","space-xl":"1.5rem",gutter:"1.25rem"},fontFamily:{"code-md":["\"JetBrains Mono, Menlo, Monaco, Consolas, monospace\""],display:["\"Inter, -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif\""],"code-sm":["\"JetBrains Mono, Menlo, Monaco, Consolas, monospace\""],caption:["\"Inter, -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif\""],"body-md":["\"Inter, -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif\""],"body-sm":["\"Inter, -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif\""],"label-md":["\"Inter, -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif\""],"label-sm":["\"Inter, -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif\""],"body-lg":["\"Inter, -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif\""],"headline-md":["\"Inter, -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif\""],"headline-lg":["\"Inter, -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif\""]},fontSize:{"code-md":["13px",{lineHeight:"20px",fontWeight:"400"}],display:["24px",{lineHeight:"32px",letterSpacing:"-0.02em",fontWeight:"700"}],"code-sm":["11px",{lineHeight:"16px",fontWeight:"500"}],caption:["12px",{lineHeight:"16px",fontWeight:"400"}],"body-md":["14px",{lineHeight:"20px",fontWeight:"400"}],"body-sm":["13px",{lineHeight:"18px",fontWeight:"400"}],"label-md":["14px",{lineHeight:"20px",fontWeight:"500"}],"label-sm":["12px",{lineHeight:"16px",fontWeight:"500"}],"body-lg":["15px",{lineHeight:"22px",fontWeight:"400"}],"headline-md":["16px",{lineHeight:"24px",fontWeight:"600"}],"headline-lg":["20px",{lineHeight:"28px",letterSpacing:"-0.01em",fontWeight:"600"}]}}}};</script></head><body class="bg-canvas-bg font-body-md text-text-primary antialiased min-h-screen selection:bg-primary-tint selection:text-primary"><aside class="fixed left-0 top-0 h-full w-[224px] bg-surface-card z-50 flex flex-col justify-between shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex flex-col"><div class="h-[60px] px-space-md flex items-center justify-between"><div class="flex items-center gap-space-sm"><div class="w-7 h-7 rounded-lg bg-primary-container flex items-center justify-center text-on-primary shadow-sm"><span class="material-symbols-outlined text-[18px]">hub</span></div><div class="flex flex-col"><span class="font-headline-md text-body-sm font-semibold text-text-primary tracking-tight">智能分析平台</span><span class="font-code-sm text-[10px] text-text-muted leading-tight">v1.0 企业版</span></div></div><button class="w-7 h-7 rounded-lg flex items-center justify-center text-text-secondary hover:bg-status-neutral-bg hover:text-text-primary transition-colors" title="收起侧边栏"><span class="material-symbols-outlined text-[18px]">left_panel_close</span></button></div><div class="px-space-md py-space-sm"><span class="font-label-sm text-[11px] uppercase tracking-wider text-text-muted">工作空间</span></div><nav class="px-space-sm flex flex-col gap-1" data-active-classes="bg-primary-tint text-primary font-semibold"><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-text-secondary hover:bg-status-neutral-bg hover:text-text-primary transition-all font-body-sm" data-path="intelligent-qa" href="#"><span class="material-symbols-outlined text-[18px]">forum</span><span>智能问答</span></a></nav><div class="px-space-md pt-space-lg pb-space-sm"><span class="font-label-sm text-[11px] uppercase tracking-wider text-text-muted">管理与治理</span></div><nav class="px-space-sm flex flex-col gap-1" data-active-classes="bg-primary-tint text-primary font-semibold"><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-text-secondary hover:bg-status-neutral-bg hover:text-text-primary transition-all font-body-sm" data-path="model-management" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[18px]">neurology</span><span>模型管理</span></div><span class="w-1.5 h-1.5 rounded-full bg-primary"></span></a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-text-secondary hover:bg-status-neutral-bg hover:text-text-primary transition-all font-body-sm" data-path="datasource-management" href="#"><span class="material-symbols-outlined text-[18px]">database</span><span>数据源管理</span></a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-text-secondary hover:bg-status-neutral-bg hover:text-text-primary transition-all font-body-sm" data-path="knowledge-base" href="#"><span class="material-symbols-outlined text-[18px]">menu_book</span><span>知识库</span></a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-text-secondary hover:bg-status-neutral-bg hover:text-text-primary transition-all font-body-sm" data-path="account-management" href="#"><span class="material-symbols-outlined text-[18px]">manage_accounts</span><span>账号管理</span></a></nav></div><div class="p-space-sm m-space-sm rounded-lg bg-code-bg"><div class="flex items-center gap-space-xs"><span class="w-2 h-2 rounded-full bg-status-success animate-pulse"></span><span class="font-caption text-[11px] text-text-secondary truncate">安全只读网络 · 运行正常</span></div><div class="mt-1 flex items-center justify-between font-code-sm text-[10px] text-text-muted"><span>隔离区 A-04</span><span>延迟 12ms</span></div></div></aside><div class="pl-[224px]"><header class="fixed top-0 left-[224px] right-0 h-[60px] bg-surface-card/90 backdrop-blur-md z-40 flex items-center justify-between px-gutter shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs font-body-sm text-text-secondary"><span class="hover:text-text-primary cursor-pointer transition-colors">首页</span><span class="material-symbols-outlined text-[14px] text-text-muted">chevron_right</span><span>管理与治理</span><span class="material-symbols-outlined text-[14px] text-text-muted">chevron_right</span><span class="hover:text-text-primary cursor-pointer transition-colors">模型管理</span><span class="material-symbols-outlined text-[14px] text-text-muted">chevron_right</span><span class="text-text-primary font-medium">新建模型</span></div><div class="h-4 w-px bg-border-subtle"></div><div class="flex items-center gap-space-xs"><span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-status-warning-bg text-status-warning font-label-sm text-[11px]"><span class="w-1.5 h-1.5 rounded-full bg-status-warning"></span>生产环境 · 只读安全模式</span><span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-status-success-bg text-status-success font-label-sm text-[11px]"><span class="material-symbols-outlined text-[13px]">check_circle</span>API 与推理网关正常</span></div></div><div class="flex items-center gap-space-md"><button class="flex items-center gap-1 px-space-sm py-1.5 rounded-lg text-text-secondary hover:bg-status-neutral-bg hover:text-text-primary font-body-sm transition-colors"><span class="material-symbols-outlined text-[18px]">help_outline</span><span>帮助文档</span></button><button class="relative p-1.5 rounded-lg text-text-secondary hover:bg-status-neutral-bg hover:text-text-primary transition-colors" title="通知"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-1 right-1 w-2 h-2 rounded-full bg-status-danger"></span></button><div class="h-5 w-px bg-border-subtle"></div><div class="flex items-center gap-space-sm"><div class="flex flex-col text-right"><span class="font-label-md text-body-sm font-medium text-text-primary leading-tight">陈工 (数据研发)</span><span class="font-caption text-[11px] text-text-muted leading-tight">管理员 · KMS 隔离网关接入</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="relative pt-[60px] bg-canvas-bg min-h-screen"><div class="flex flex-col w-full">
+<!-- Top Operational Banner & Metrics Overview -->
+<div class="px-gutter py-space-md space-y-space-md">
+<!-- Header Section with Direct Actions -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="space-y-1">
+<div class="flex items-center gap-space-sm">
+<h1 class="font-headline-lg text-headline-lg font-bold text-text-primary tracking-tight">数据源管理 <span class="font-code-md text-body-sm font-normal text-text-muted ml-1">Data Sources Hub</span></h1>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-primary-tint text-primary font-label-sm text-[11px]">
+<span class="material-symbols-outlined text-[13px]">verified_user</span>
+            只读隔离沙箱模式
+          </span>
+</div>
+<p class="font-body-sm text-body-sm text-text-secondary leading-relaxed">
+          管理可用于智能问答与受控分析的只读 MySQL 数据库和单索引 Elasticsearch，监控连接拓扑、授权字段与业务口径就绪度。
+        </p>
+</div>
+<!-- Main Action Controls -->
+<div class="flex items-center gap-space-sm shrink-0">
+<button class="inline-flex items-center gap-1.5 px-space-md py-2 rounded-lg bg-surface-card text-text-primary shadow-sm hover:bg-status-neutral-bg transition-colors font-label-md text-label-md" id="batch-probe-btn">
+<span class="material-symbols-outlined text-[18px] text-text-secondary">network_ping</span>
+<span>批量探活连接</span>
+</button>
+<!-- Dropdown Container for Add Data Source -->
+<div class="relative" id="create-datasource-menu-container">
+<button class="inline-flex items-center gap-1.5 px-space-md py-2 rounded-lg bg-primary-container text-on-primary shadow-sm hover:bg-secondary transition-colors font-label-md text-label-md" id="create-datasource-btn">
+<span class="material-symbols-outlined text-[18px]">add</span>
+<span>新建数据源</span>
+<span class="material-symbols-outlined text-[16px] ml-0.5">arrow_drop_down</span>
+</button>
+<div class="hidden absolute right-0 mt-1.5 w-60 bg-surface-card rounded-lg shadow-xl py-1 z-50" id="datasource-dropdown">
+<div class="px-space-sm py-1.5 font-label-sm text-[11px] text-text-muted uppercase tracking-wider">选择结构化/半结构化引擎</div>
+<a class="flex items-center gap-space-sm px-space-md py-2.5 text-text-primary hover:bg-canvas-bg transition-colors font-body-sm text-body-sm" href="#">
+<span class="material-symbols-outlined text-secondary text-[20px]">database</span>
+<div class="flex flex-col">
+<span class="font-medium">MySQL 数据库</span>
+<span class="font-caption text-[11px] text-text-muted">支持 5.7 / 8.0+ 只读实例绑定</span>
+</div>
+</a>
+<a class="flex items-center gap-space-sm px-space-md py-2.5 text-text-primary hover:bg-canvas-bg transition-colors font-body-sm text-body-sm" href="#">
+<span class="material-symbols-outlined text-status-warning text-[20px]">manage_search</span>
+<div class="flex flex-col">
+<span class="font-medium">Elasticsearch 单索引</span>
+<span class="font-caption text-[11px] text-text-muted">精准绑定 Mapping &amp; 聚合 DSL</span>
+</div>
+</a>
+<div class="my-1 h-px bg-border-subtle"></div>
+<div class="px-space-sm py-1 font-caption text-[11px] text-text-muted flex items-center justify-between">
+<span>非结构化文档?</span>
+<a class="text-primary hover:underline" href="#">去知识库 →</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Notice Banner: Knowledge Base Redirection -->
+<div class="rounded-lg bg-surface-card p-space-md shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-space-sm">
+<div class="flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[20px] mt-0.5">menu_book</span>
+<div class="flex flex-col">
+<span class="font-label-md text-body-sm font-semibold text-text-primary">非结构化知识库文档提示</span>
+<span class="font-body-sm text-body-sm text-text-secondary">
+            非结构化文档知识库（PDF / Word / Markdown / API 手册）请在「知识库」模块单独创建与分块切分，构建向量检索后可自动作为问答上下文数据源。
+          </span>
+</div>
+</div>
+<a class="inline-flex items-center gap-1 font-label-sm text-body-sm text-primary hover:text-secondary shrink-0 font-medium" href="#">
+<span>前往知识库管理</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+<!-- Metric Dashboard Tiles -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md">
+<!-- Total Configured -->
+<div class="rounded-lg bg-surface-card p-space-md shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-body-sm text-text-secondary font-medium">已配置数据源总数</span>
+<span class="material-symbols-outlined text-text-muted text-[20px]">dataset</span>
+</div>
+<div class="mt-space-sm flex items-baseline gap-space-sm">
+<span class="font-headline-lg text-[28px] font-bold text-text-primary">8</span>
+<span class="font-code-sm text-code-sm text-text-muted">MySQL: 5 · ES: 3</span>
+</div>
+<div class="mt-2 text-[11px] font-caption text-text-secondary flex items-center gap-1">
+<span class="inline-block w-1.5 h-1.5 rounded-full bg-primary"></span>
+<span>连接池健康率 100% (8/8 实例在线)</span>
+</div>
+</div>
+<!-- Published & Operational -->
+<div class="rounded-lg bg-surface-card p-space-md shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-body-sm text-text-secondary font-medium">已发布可用</span>
+<span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-status-success-bg text-status-success">
+<span class="material-symbols-outlined text-[16px]">task_alt</span>
+</span>
+</div>
+<div class="mt-space-sm flex items-baseline gap-space-sm">
+<span class="font-headline-lg text-[28px] font-bold text-status-success">5</span>
+<span class="font-code-sm text-code-sm text-text-muted">占总数 62.5%</span>
+</div>
+<div class="mt-2 text-[11px] font-caption text-text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px] text-status-success">chat</span>
+<span>业务问答已授权生产访问</span>
+</div>
+</div>
+<!-- In Configuration / Drafts -->
+<div class="rounded-lg bg-surface-card p-space-md shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-body-sm text-text-secondary font-medium">配置中 / 待完善</span>
+<span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-status-processing-bg text-status-processing">
+<span class="material-symbols-outlined text-[16px]">tune</span>
+</span>
+</div>
+<div class="mt-space-sm flex items-baseline gap-space-sm">
+<span class="font-headline-lg text-[28px] font-bold text-status-processing">2</span>
+<span class="font-code-sm text-code-sm text-text-muted">草稿未发布</span>
+</div>
+<div class="mt-2 text-[11px] font-caption text-text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px] text-status-processing">pending_actions</span>
+<span>需补充授权表或口径定义</span>
+</div>
+</div>
+<!-- Restricted / Blocked (Safety Red) -->
+<div class="rounded-lg bg-surface-card p-space-md shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-body-sm text-status-danger font-medium">需关注 / 受限阻断</span>
+<span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-status-danger-bg text-status-danger animate-pulse">
+<span class="material-symbols-outlined text-[16px]">security</span>
+</span>
+</div>
+<div class="mt-space-sm flex items-baseline gap-space-sm">
+<span class="font-headline-lg text-[28px] font-bold text-status-danger">1</span>
+<span class="font-code-sm text-code-sm text-status-danger font-semibold">高危阻断</span>
+</div>
+<div class="mt-2 text-[11px] font-caption text-status-danger flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">block</span>
+<span>检测到非只读账号，禁止发布</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Filter & Search Toolbar -->
+<div class="px-gutter pb-space-sm">
+<div class="rounded-lg bg-surface-card p-space-sm shadow-sm flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-space-sm">
+<!-- Left Filters -->
+<div class="flex flex-wrap items-center gap-space-sm">
+<!-- Search Field -->
+<div class="relative min-w-[280px]">
+<span class="material-symbols-outlined absolute left-2.5 top-1/2 -translate-y-1/2 text-text-muted text-[18px]">search</span>
+<input class="w-full pl-9 pr-space-md py-1.5 bg-canvas-bg text-text-primary placeholder:text-text-muted rounded-lg font-body-sm text-body-sm focus:outline-none focus:bg-surface-card focus:shadow-[0_0_0_2px_#2563EB]" placeholder="搜索数据源名称、库名/索引名或业务描述..." type="text"/>
+</div>
+<!-- Filter: Engine Type -->
+<div class="flex items-center bg-canvas-bg rounded-lg px-2.5 py-1.5">
+<span class="font-label-sm text-[12px] text-text-secondary mr-2">类型:</span>
+<select class="bg-transparent font-body-sm text-body-sm text-text-primary focus:outline-none cursor-pointer">
+<option>全部类型 (All Types)</option>
+<option>MySQL 数据库</option>
+<option>Elasticsearch 索引</option>
+</select>
+</div>
+<!-- Filter: Publish Status -->
+<div class="flex items-center bg-canvas-bg rounded-lg px-2.5 py-1.5">
+<span class="font-label-sm text-[12px] text-text-secondary mr-2">发布状态:</span>
+<select class="bg-transparent font-body-sm text-body-sm text-text-primary focus:outline-none cursor-pointer">
+<option>全部状态</option>
+<option>已发布 (Published)</option>
+<option>草稿配置中 (Draft)</option>
+<option>安全阻断 (Blocked)</option>
+<option>已停用 (Disabled)</option>
+</select>
+</div>
+<!-- Filter: Schema & Connection Status -->
+<div class="flex items-center bg-canvas-bg rounded-lg px-2.5 py-1.5">
+<span class="font-label-sm text-[12px] text-text-secondary mr-2">连接与结构:</span>
+<select class="bg-transparent font-body-sm text-body-sm text-text-primary focus:outline-none cursor-pointer">
+<option>全部状态</option>
+<option>连接正常</option>
+<option>结构有变更待同步</option>
+<option>账号权限异常</option>
+</select>
+</div>
+</div>
+<!-- Right Table Aux Actions -->
+<div class="flex items-center gap-space-sm justify-end">
+<span class="font-code-sm text-code-sm text-text-muted whitespace-nowrap">呈现 5 / 8 个数据源</span>
+<div class="h-4 w-px bg-border-subtle"></div>
+<button class="p-1.5 rounded-lg text-text-secondary hover:bg-canvas-bg hover:text-text-primary transition-colors" title="刷新列表状态">
+<span class="material-symbols-outlined text-[18px]">sync</span>
+</button>
+<button class="p-1.5 rounded-lg text-text-secondary hover:bg-canvas-bg hover:text-text-primary transition-colors" title="列显示与字段自定义">
+<span class="material-symbols-outlined text-[18px]">view_column</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Primary Governance Table Area -->
+<div class="px-gutter pb-space-lg">
+<div class="rounded-lg bg-surface-card shadow-sm overflow-hidden">
+<div class="overflow-x-auto min-w-full">
+<table class="w-full text-left font-body-sm text-body-sm divide-y divide-border-subtle">
+<!-- Sticky Table Head with Explicit Governance Headings -->
+<thead class="bg-code-bg sticky top-0 z-10">
+<tr>
+<th class="py-3 px-space-md font-label-sm text-[11px] font-semibold text-text-secondary uppercase tracking-wider min-w-[210px]" scope="col">
+                数据源名称与业务标签
+              </th>
+<th class="py-3 px-space-sm font-label-sm text-[11px] font-semibold text-text-secondary uppercase tracking-wider min-w-[130px]" scope="col">
+                类型
+              </th>
+<th class="py-3 px-space-sm font-label-sm text-[11px] font-semibold text-text-secondary uppercase tracking-wider min-w-[220px]" scope="col">
+                目标摘要 (Host / DB / 索引)
+              </th>
+<th class="py-3 px-space-sm font-label-sm text-[11px] font-semibold text-text-secondary uppercase tracking-wider min-w-[170px]" scope="col">
+                授权范围
+              </th>
+<th class="py-3 px-space-sm font-label-sm text-[11px] font-semibold text-text-secondary uppercase tracking-wider min-w-[180px]" scope="col">
+                业务口径就绪度
+              </th>
+<th class="py-3 px-space-sm font-label-sm text-[11px] font-semibold text-text-secondary uppercase tracking-wider min-w-[220px]" scope="col">
+                连接与结构状态
+              </th>
+<th class="py-3 px-space-sm font-label-sm text-[11px] font-semibold text-text-secondary uppercase tracking-wider min-w-[120px]" scope="col">
+                发布状态
+              </th>
+<th class="py-3 px-space-sm font-label-sm text-[11px] font-semibold text-text-secondary uppercase tracking-wider min-w-[120px]" scope="col">
+                最近刷新 / 操作人
+              </th>
+<th class="py-3 px-space-md font-label-sm text-[11px] font-semibold text-text-secondary uppercase tracking-wider text-right min-w-[180px]" scope="col">
+                操作
+              </th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border-subtle bg-surface-card">
+<!-- Row 1: MySQL Standard Production (Published) -->
+<tr class="hover:bg-code-bg/60 transition-colors">
+<!-- Name & Tag -->
+<td class="py-3.5 px-space-md align-top">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-1.5">
+<span class="font-headline-md text-body-md font-semibold text-text-primary hover:text-primary cursor-pointer transition-colors">销售分析库</span>
+<span class="font-code-sm text-[11px] px-1.5 py-0.5 rounded bg-status-neutral-bg text-text-secondary">dw_sales_prod</span>
+</div>
+<div class="flex flex-wrap gap-1">
+<span class="px-1.5 py-0.5 rounded text-[10px] font-label-sm bg-primary-tint text-primary font-medium">核心业务</span>
+<span class="px-1.5 py-0.5 rounded text-[10px] font-label-sm bg-status-success-bg text-status-success font-medium">生产只读</span>
+</div>
+</div>
+</td>
+<!-- Type -->
+<td class="py-3.5 px-space-sm align-top">
+<div class="flex items-center gap-1.5">
+<span class="w-6 h-6 rounded bg-status-processing-bg text-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[16px]">database</span>
+</span>
+<div class="flex flex-col">
+<span class="font-medium text-text-primary text-[13px]">MySQL</span>
+<span class="font-code-sm text-[11px] text-text-muted">v8.0.32</span>
+</div>
+</div>
+</td>
+<!-- Target Summary -->
+<td class="py-3.5 px-space-sm align-top">
+<div class="flex flex-col font-code-sm text-code-sm leading-tight text-text-secondary space-y-0.5">
+<div class="text-text-primary font-mono truncate" title="mysql-read-cluster.prod.internal:3306">
+                    mysql-read-cluster.prod.internal:3306
+                  </div>
+<div class="text-text-muted">
+                    Database: <span class="text-text-primary font-semibold">dw_sales_prod</span>
+</div>
+<div class="text-[10px] text-text-muted">
+                    IP: 10.20.12.*** (已做网闸隔离)
+                  </div>
+</div>
+</td>
+<!-- Authorized Scope -->
+<td class="py-3.5 px-space-sm align-top">
+<div class="flex flex-col space-y-1">
+<div class="flex items-center gap-1 text-[12px] font-medium text-text-primary">
+<span class="material-symbols-outlined text-[14px] text-status-success">table_chart</span>
+<span>已授权 4 张表 · 38 个字段</span>
+</div>
+<div class="text-text-muted font-code-sm text-[11px] truncate max-w-[160px]" title="orders, refunds, order_items, users">
+                    orders, refunds, order_items, users
+                  </div>
+</div>
+</td>
+<!-- Business Metrics Ready -->
+<td class="py-3.5 px-space-sm align-top">
+<div class="flex flex-col space-y-1">
+<div class="flex items-center justify-between text-[11px] font-label-sm">
+<span class="text-text-secondary">口径就绪 100%</span>
+<span class="text-status-success font-semibold">6/6 已定义</span>
+</div>
+<div class="w-full bg-status-neutral-bg h-1.5 rounded-full overflow-hidden">
+<div class="bg-status-success h-full rounded-full" style="width: 100%"></div>
+</div>
+<div class="text-[11px] text-text-muted">含净销售额、退款率等口径</div>
+</div>
+</td>
+<!-- Connection & Schema Status (Strict distinction) -->
+<td class="py-3.5 px-space-sm align-top">
+<div class="flex flex-col space-y-1">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-status-success"></span>
+<span class="font-medium text-text-primary text-[12px]">连接正常 (延迟 12ms)</span>
+</div>
+<div class="flex items-center gap-1 text-[11px] text-status-success bg-status-success-bg px-1.5 py-0.5 rounded w-fit">
+<span class="material-symbols-outlined text-[13px]">verified</span>
+<span>只读账号校验通过 (SELECT ONLY)</span>
+</div>
+<div class="font-caption text-[11px] text-text-muted">结构与生产元数据快照一致</div>
+</div>
+</td>
+<!-- Publish Status -->
+<td class="py-3.5 px-space-sm align-top">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-status-success-bg text-status-success font-label-sm text-[11px] font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-status-success"></span>
+                  已发布可用
+                </span>
+</td>
+<!-- Last Sync -->
+<td class="py-3.5 px-space-sm align-top">
+<div class="flex flex-col font-caption text-[11px] text-text-muted leading-tight">
+<span class="text-text-primary">今天 10:15</span>
+<span>操作人: 陈工</span>
+</div>
+</td>
+<!-- Actions -->
+<td class="py-3.5 px-space-md align-top text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="px-2 py-1 rounded hover:bg-canvas-bg text-primary hover:text-secondary font-label-sm text-[12px] font-medium transition-colors">
+                    配置业务语义
+                  </button>
+<button class="px-2 py-1 rounded hover:bg-canvas-bg text-text-secondary hover:text-text-primary font-label-sm text-[12px] transition-colors">
+                    编辑
+                  </button>
+<button class="p-1 rounded text-text-muted hover:text-text-primary hover:bg-canvas-bg" title="更多操作">
+<span class="material-symbols-outlined text-[16px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2: MySQL Safety Blocked (Connected BUT NOT READ-ONLY) -->
+<tr class="bg-status-danger-bg/20 hover:bg-status-danger-bg/40 transition-colors">
+<!-- Name & Tag -->
+<td class="py-3.5 px-space-md align-top">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-1.5">
+<span class="font-headline-md text-body-md font-semibold text-text-primary">财务结算账期库</span>
+<span class="font-code-sm text-[11px] px-1.5 py-0.5 rounded bg-status-neutral-bg text-text-secondary">finance_settle_db</span>
+</div>
+<div class="flex flex-wrap gap-1">
+<span class="px-1.5 py-0.5 rounded text-[10px] font-label-sm bg-status-neutral-bg text-text-secondary font-medium">财务结算</span>
+<span class="px-1.5 py-0.5 rounded text-[10px] font-label-sm bg-status-danger-bg text-status-danger font-medium flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[12px]">gpp_bad</span>
+                      权限越权
+                    </span>
+</div>
+</div>
+</td>
+<!-- Type -->
+<td class="py-3.5 px-space-sm align-top">
+<div class="flex items-center gap-1.5">
+<span class="w-6 h-6 rounded bg-status-neutral-bg text-text-secondary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[16px]">database</span>
+</span>
+<div class="flex flex-col">
+<span class="font-medium text-text-primary text-[13px]">MySQL</span>
+<span class="font-code-sm text-[11px] text-text-muted">v5.7.40</span>
+</div>
+</div>
+</td>
+<!-- Target Summary -->
+<td class="py-3.5 px-space-sm align-top">
+<div class="flex flex-col font-code-sm text-code-sm leading-tight text-text-secondary space-y-0.5">
+<div class="text-text-primary font-mono truncate" title="fin-db-cluster.internal:3306">
+                    fin-db-cluster.internal:3306
+                  </div>
+<div class="text-text-muted">
+                    Database: <span class="text-text-primary font-semibold">finance_settle_db</span>
+</div>
+</div>
+</td>
+<!-- Authorized Scope -->
+<td class="py-3.5 px-space-sm align-top">
+<div class="flex flex-col space-y-1">
+<div class="flex items-center gap-1 text-[12px] font-medium text-text-primary">
+<span class="material-symbols-outlined text-[14px] text-text-muted">table_chart</span>
+<span>已选 2 张表</span>
+</div>
+<div class="text-text-muted font-code-sm text-[11px] truncate max-w-[160px]" title="settlement_bills, merchant_ledger">
+                    settlement_bills, merchant_ledger
+                  </div>
+</div>
+</td>
+<!-- Business Metrics Ready -->
+<td class="py-3.5 px-space-sm align-top">
+<div class="flex flex-col space-y-1">
+<div class="flex items-center justify-between text-[11px] font-label-sm">
+<span class="text-text-secondary">口径就绪 40%</span>
+<span class="text-status-warning font-semibold">2/5 待补充</span>
+</div>
+<div class="w-full bg-status-neutral-bg h-1.5 rounded-full overflow-hidden">
+<div class="bg-status-warning h-full rounded-full" style="width: 40%"></div>
+</div>
+<div class="text-[11px] text-text-muted">缺少回款周期定义</div>
+</div>
+</td>
+<!-- Connection & Schema Status -->
+<td class="py-3.5 px-space-sm align-top">
+<div class="flex flex-col space-y-1">
+<div class="p-2 rounded bg-status-danger-bg text-status-danger space-y-1">
+<div class="flex items-center gap-1 font-semibold text-[12px]">
+<span class="material-symbols-outlined text-[15px]">warning</span>
+<span>非只读高危账号阻断</span>
+</div>
+<p class="font-caption text-[11px] leading-tight text-status-danger">
+                      物理连接成功，但账号检测到 <span class="font-mono font-bold">INSERT / UPDATE</span> 写入权限！违反生产只读安全底线。
+                    </p>
+</div>
+</div>
+</td>
+<!-- Publish Status (Strictly Blocked) -->
+<td class="py-3.5 px-space-sm align-top">
+<div class="flex flex-col space-y-1">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-status-danger text-on-primary font-label-sm text-[11px] font-semibold w-fit">
+<span class="material-symbols-outlined text-[12px]">do_not_disturb_on</span>
+                    安全阻断发布
+                  </span>
+<span class="font-caption text-[10px] text-status-danger leading-tight">
+                    必须替换为只读账号
+                  </span>
+</div>
+</td>
+<!-- Last Sync -->
+<td class="py-3.5 px-space-sm align-top">
+<div class="flex flex-col font-caption text-[11px] text-text-muted leading-tight">
+<span class="text-text-primary">昨天 16:30</span>
+<span>操作人: 王工</span>
+</div>
+</td>
+<!-- Actions -->
+<td class="py-3.5 px-space-md align-top text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="px-2 py-1 rounded bg-status-danger text-on-primary font-label-sm text-[12px] font-medium hover:bg-error transition-colors">
+                    更换只读账号
+                  </button>
+<button class="px-2 py-1 rounded hover:bg-canvas-bg text-text-secondary hover:text-text-primary font-label-sm text-[12px] transition-colors">
+                    权限审计
+                  </button>
+<button class="p-1 rounded text-status-danger hover:bg-status-danger-bg" title="删除草稿">
+<span class="material-symbols-outlined text-[16px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3: Elasticsearch Standard (Single Index Bound & Published) -->
+<tr class="hover:bg-code-bg/60 transition-colors">
+<!-- Name & Tag -->
+<td class="py-3.5 px-space-md align-top">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-1.5">
+<span class="font-headline-md text-body-md font-semibold text-text-primary hover:text-primary cursor-pointer transition-colors">网关访问与异常日志</span>
+</div>
+<div class="font-code-sm text-[11px] text-text-muted truncate">gateway-logs-prod</div>
+<div class="flex flex-wrap gap-1">
+<span class="px-1.5 py-0.5 rounded text-[10px] font-label-sm bg-status-neutral-bg text-text-secondary font-medium">运维排障</span>
+<span class="px-1.5 py-0.5 rounded text-[10px] font-label-sm bg-status-processing-bg text-status-processing font-medium">秒级检索</span>
+</div>
+</div>
+</td>
+<!-- Type -->
+<td class="py-3.5 px-space-sm align-top">
+<div class="flex items-center gap-1.5">
+<span class="w-6 h-6 rounded bg-status-warning-bg text-status-warning flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[16px]">manage_search</span>
+</span>
+<div class="flex flex-col">
+<span class="font-medium text-text-primary text-[13px]">Elasticsearch</span>
+<span class="font-code-sm text-[11px] text-text-muted">v8.12.0</span>
+</div>
+</div>
+</td>
+<!-- Target Summary -->
+<td class="py-3.5 px-space-sm align-top">
+<div class="flex flex-col font-code-sm text-code-sm leading-tight text-text-secondary space-y-0.5">
+<div class="text-text-primary font-mono truncate" title="es-cluster.corp.internal:9200">
+                    es-cluster.corp.internal:9200
+                  </div>
+<div class="text-text-muted truncate">
+                    索引: <span class="text-text-primary font-semibold">gateway-access-logs-2026</span>
+</div>
+<div class="text-[10px] text-text-muted font-mono">
+                    UUID: xK92jL-***
+                  </div>
+</div>
+</td>
+<!-- Authorized Scope -->
+<td class="py-3.5 px-space-sm align-top">
+<div class="flex flex-col space-y-1">
+<div class="flex items-center gap-1 text-[12px] font-medium text-text-primary">
+<span class="material-symbols-outlined text-[14px] text-status-success">filter_none</span>
+<span>单索引 · 开放 16 个字段</span>
+</div>
+<div class="text-text-muted font-code-sm text-[11px] truncate max-w-[160px]" title="url, status_code, latency, client_ip">
+                    url, status_code, latency, client_ip...
+                  </div>
+</div>
+</td>
+<!-- Business Metrics Ready -->
+<td class="py-3.5 px-space-sm align-top">
+<div class="flex flex-col space-y-1">
+<div class="flex items-center justify-between text-[11px] font-label-sm">
+<span class="text-text-secondary">聚合控制</span>
+<span class="text-status-success font-semibold">桶上限 ≤ 100</span>
+</div>
+<div class="w-full bg-status-neutral-bg h-1.5 rounded-full overflow-hidden">
+<div class="bg-status-success h-full rounded-full" style="width: 100%"></div>
+</div>
+<div class="text-[11px] text-text-muted font-mono">默认时间: @timestamp</div>
+</div>
+</td>
+<!-- Connection & Schema Status -->
+<td class="py-3.5 px-space-sm align-top">
+<div class="flex flex-col space-y-1">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-status-success"></span>
+<span class="font-medium text-text-primary text-[12px]">集群健康 (Green)</span>
+</div>
+<div class="flex items-center gap-1 text-[11px] text-status-success bg-status-success-bg px-1.5 py-0.5 rounded w-fit">
+<span class="material-symbols-outlined text-[13px]">check</span>
+<span>Mapping 校验一致 · doc_values 开启</span>
+</div>
+<div class="font-caption text-[11px] text-text-muted">单索引隔离保护生效中</div>
+</div>
+</td>
+<!-- Publish Status -->
+<td class="py-3.5 px-space-sm align-top">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-status-success-bg text-status-success font-label-sm text-[11px] font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-status-success"></span>
+                  已发布可用
+                </span>
+</td>
+<!-- Last Sync -->
+<td class="py-3.5 px-space-sm align-top">
+<div class="flex flex-col font-caption text-[11px] text-text-muted leading-tight">
+<span class="text-text-primary">2026-09-22</span>
+<span>操作人: 陈工</span>
+</div>
+</td>
+<!-- Actions -->
+<td class="py-3.5 px-space-md align-top text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="px-2 py-1 rounded hover:bg-canvas-bg text-primary hover:text-secondary font-label-sm text-[12px] font-medium transition-colors">
+                    字段与聚合
+                  </button>
+<button class="px-2 py-1 rounded hover:bg-canvas-bg text-text-secondary hover:text-text-primary font-label-sm text-[12px] transition-colors">
+                    测试检索
+                  </button>
+<button class="p-1 rounded text-text-muted hover:text-text-primary hover:bg-canvas-bg" title="更多操作">
+<span class="material-symbols-outlined text-[16px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4: Elasticsearch Schema Drift / Mapping Changed -->
+<tr class="hover:bg-code-bg/60 transition-colors bg-status-warning-bg/10">
+<!-- Name & Tag -->
+<td class="py-3.5 px-space-md align-top">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-1.5">
+<span class="font-headline-md text-body-md font-semibold text-text-primary hover:text-primary cursor-pointer transition-colors">商品搜索与留存库</span>
+</div>
+<div class="font-code-sm text-[11px] text-text-muted truncate">mall_goods_search</div>
+<div class="flex flex-wrap gap-1">
+<span class="px-1.5 py-0.5 rounded text-[10px] font-label-sm bg-status-neutral-bg text-text-secondary font-medium">电商检索</span>
+</div>
+</div>
+</td>
+<!-- Type -->
+<td class="py-3.5 px-space-sm align-top">
+<div class="flex items-center gap-1.5">
+<span class="w-6 h-6 rounded bg-status-warning-bg text-status-warning flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[16px]">manage_search</span>
+</span>
+<div class="flex flex-col">
+<span class="font-medium text-text-primary text-[13px]">Elasticsearch</span>
+<span class="font-code-sm text-[11px] text-text-muted">v7.17.9</span>
+</div>
+</div>
+</td>
+<!-- Target Summary -->
+<td class="py-3.5 px-space-sm align-top">
+<div class="flex flex-col font-code-sm text-code-sm leading-tight text-text-secondary space-y-0.5">
+<div class="text-text-primary font-mono truncate" title="es-mall-node.internal:9200">
+                    es-mall-node.internal:9200
+                  </div>
+<div class="text-text-muted truncate">
+                    索引: <span class="text-text-primary font-semibold">mall_sku_search_v2</span>
+</div>
+</div>
+</td>
+<!-- Authorized Scope -->
+<td class="py-3.5 px-space-sm align-top">
+<div class="flex flex-col space-y-1">
+<div class="flex items-center gap-1 text-[12px] font-medium text-text-primary">
+<span class="material-symbols-outlined text-[14px] text-status-warning">published_with_changes</span>
+<span>单索引 · 原授权 24 字段</span>
+</div>
+<div class="text-status-warning font-caption text-[11px]">发现 3 个新增未授权字段</div>
+</div>
+</td>
+<!-- Business Metrics Ready -->
+<td class="py-3.5 px-space-sm align-top">
+<div class="flex flex-col space-y-1">
+<div class="flex items-center justify-between text-[11px] font-label-sm">
+<span class="text-text-secondary">字段说明完成度</span>
+<span class="text-primary font-semibold">85%</span>
+</div>
+<div class="w-full bg-status-neutral-bg h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 85%"></div>
+</div>
+<div class="text-[11px] text-text-muted">1 个类型从 keyword 变 text</div>
+</div>
+</td>
+<!-- Connection & Schema Status (Schema Alert) -->
+<td class="py-3.5 px-space-sm align-top">
+<div class="flex flex-col space-y-1">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-status-warning"></span>
+<span class="font-medium text-text-primary text-[12px]">集群在线 · Mapping 有差异</span>
+</div>
+<div class="p-1.5 rounded bg-status-warning-bg text-status-warning text-[11px] leading-tight">
+                    检测到远程 Schema 变更，问答暂使用快照版本运行
+                  </div>
+</div>
+</td>
+<!-- Publish Status -->
+<td class="py-3.5 px-space-sm align-top">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-status-warning-bg text-status-warning font-label-sm text-[11px] font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-status-warning"></span>
+                  结构待确认
+                </span>
+</td>
+<!-- Last Sync -->
+<td class="py-3.5 px-space-sm align-top">
+<div class="flex flex-col font-caption text-[11px] text-text-muted leading-tight">
+<span class="text-text-primary">2026-09-21</span>
+<span>操作人: 李工</span>
+</div>
+</td>
+<!-- Actions -->
+<td class="py-3.5 px-space-md align-top text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="px-2 py-1 rounded bg-primary-tint text-primary hover:bg-primary hover:text-on-primary font-label-sm text-[12px] font-medium transition-colors">
+                    确认结构差异
+                  </button>
+<button class="px-2 py-1 rounded hover:bg-canvas-bg text-text-secondary hover:text-text-primary font-label-sm text-[12px] transition-colors">
+                    同步 Mapping
+                  </button>
+<button class="p-1 rounded text-text-muted hover:text-text-primary hover:bg-canvas-bg" title="更多操作">
+<span class="material-symbols-outlined text-[16px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 5: MySQL Unfinished Draft (Connected, Read-only valid, but NOT configured) -->
+<tr class="hover:bg-code-bg/60 transition-colors opacity-90">
+<!-- Name & Tag -->
+<td class="py-3.5 px-space-md align-top">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-1.5">
+<span class="font-headline-md text-body-md font-semibold text-text-primary">仓储物流时效库</span>
+</div>
+<div class="font-code-sm text-[11px] text-text-muted truncate">wms_logistics_hub</div>
+<div class="flex flex-wrap gap-1">
+<span class="px-1.5 py-0.5 rounded text-[10px] font-label-sm bg-status-neutral-bg text-text-secondary font-medium">草稿</span>
+</div>
+</div>
+</td>
+<!-- Type -->
+<td class="py-3.5 px-space-sm align-top">
+<div class="flex items-center gap-1.5">
+<span class="w-6 h-6 rounded bg-status-processing-bg text-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[16px]">database</span>
+</span>
+<div class="flex flex-col">
+<span class="font-medium text-text-primary text-[13px]">MySQL</span>
+<span class="font-code-sm text-[11px] text-text-muted">v8.0.28</span>
+</div>
+</div>
+</td>
+<!-- Target Summary -->
+<td class="py-3.5 px-space-sm align-top">
+<div class="flex flex-col font-code-sm text-code-sm leading-tight text-text-secondary space-y-0.5">
+<div class="text-text-primary font-mono truncate" title="wms-db.corp.internal:3306">
+                    wms-db.corp.internal:3306
+                  </div>
+<div class="text-text-muted">
+                    Database: <span class="text-text-primary font-semibold">wms_trace_db</span>
+</div>
+</div>
+</td>
+<!-- Authorized Scope -->
+<td class="py-3.5 px-space-sm align-top">
+<div class="flex flex-col space-y-1">
+<div class="flex items-center gap-1 text-[12px] font-medium text-text-muted">
+<span class="material-symbols-outlined text-[14px]">grid_off</span>
+<span>未选择任何表</span>
+</div>
+<div class="text-[11px] text-text-muted">需勾选问答允许的数据表</div>
+</div>
+</td>
+<!-- Business Metrics Ready -->
+<td class="py-3.5 px-space-sm align-top">
+<div class="flex flex-col space-y-1">
+<div class="flex items-center justify-between text-[11px] font-label-sm">
+<span class="text-text-muted">口径定义</span>
+<span class="text-text-muted">0%</span>
+</div>
+<div class="w-full bg-status-neutral-bg h-1.5 rounded-full overflow-hidden">
+<div class="bg-text-muted h-full rounded-full" style="width: 0%"></div>
+</div>
+<div class="text-[11px] text-text-muted">尚未添加业务语义标签</div>
+</div>
+</td>
+<!-- Connection & Schema Status (Connected OK, but incomplete) -->
+<td class="py-3.5 px-space-sm align-top">
+<div class="flex flex-col space-y-1">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-status-success"></span>
+<span class="font-medium text-text-primary text-[12px]">连接测试通过</span>
+</div>
+<div class="flex items-center gap-1 text-[11px] text-status-success bg-status-success-bg px-1.5 py-0.5 rounded w-fit">
+<span class="material-symbols-outlined text-[13px]">check</span>
+<span>只读账号检查通过</span>
+</div>
+</div>
+</td>
+<!-- Publish Status -->
+<td class="py-3.5 px-space-sm align-top">
+<div class="flex flex-col space-y-0.5">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-status-neutral-bg text-text-secondary font-label-sm text-[11px] font-medium w-fit">
+<span class="w-1.5 h-1.5 rounded-full bg-text-muted"></span>
+                    草稿未发布
+                  </span>
+<span class="text-[10px] text-text-muted">需至少授权 1 张表</span>
+</div>
+</td>
+<!-- Last Sync -->
+<td class="py-3.5 px-space-sm align-top">
+<div class="flex flex-col font-caption text-[11px] text-text-muted leading-tight">
+<span class="text-text-primary">今天 09:20</span>
+<span>操作人: 陈工</span>
+</div>
+</td>
+<!-- Actions -->
+<td class="py-3.5 px-space-md align-top text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="px-2 py-1 rounded bg-primary-container text-on-primary font-label-sm text-[12px] font-medium hover:bg-secondary transition-colors">
+                    继续配置授权表
+                  </button>
+<button class="px-2 py-1 rounded hover:bg-canvas-bg text-text-secondary hover:text-text-primary font-label-sm text-[12px] transition-colors">
+                    编辑连接
+                  </button>
+<button class="p-1 rounded text-text-muted hover:text-status-danger hover:bg-canvas-bg" title="放弃草稿">
+<span class="material-symbols-outlined text-[16px]">close</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination and Density Footer -->
+<div class="px-space-md py-3 bg-code-bg border-t border-border-subtle flex flex-col sm:flex-row items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-md text-text-secondary font-body-sm text-[12px]">
+<span>共 <strong class="text-text-primary font-semibold">5</strong> 条数据源配置</span>
+<div class="flex items-center gap-1">
+<span>每页</span>
+<select class="bg-surface-card rounded px-1.5 py-0.5 text-text-primary text-[12px] focus:outline-none shadow-sm">
+<option>10 条</option>
+<option>20 条</option>
+<option>50 条</option>
+</select>
+</div>
+</div>
+<div class="flex items-center gap-1">
+<button class="p-1 rounded text-text-muted hover:bg-surface-card hover:text-text-primary disabled:opacity-30 disabled:pointer-events-none transition-colors" disabled="">
+<span class="material-symbols-outlined text-[18px]">chevron_left</span>
+</button>
+<button class="w-7 h-7 rounded bg-primary-container text-on-primary font-label-sm text-[12px] font-semibold flex items-center justify-center shadow-sm">
+            1
+          </button>
+<button class="p-1 rounded text-text-muted hover:bg-surface-card hover:text-text-primary disabled:opacity-30 disabled:pointer-events-none transition-colors" disabled="">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Enterprise Security Footnote -->
+<div class="px-gutter pb-space-xl">
+<div class="rounded-lg bg-surface-container-low p-space-md flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[20px] shrink-0 mt-0.5">policy</span>
+<div class="flex flex-col space-y-1">
+<span class="font-label-sm text-[12px] font-semibold text-text-primary tracking-wide">平台只读隔离与安全执行守则 (Enterprise Security &amp; Compliance)</span>
+<p class="font-caption text-caption text-text-secondary leading-relaxed">
+          平台所有接入的数据源仅通过安全只读隔离网关运行探活探测与受限元数据拉取；在自然语言转 SQL/DSL 查询执行阶段，内核采用严格 AST 语法树遍历校验，物理拦截任何写入、更新及 DDL 变更语句，并实施单次查询最大 15 秒超时熔断保护。数据库密码与 Token 均经由企业内部 KMS (Key Management Service) 硬件加密托管，前端界面与客户端浏览器不留存任何明文凭证。
+        </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Interactive Client-side Script for Menu & Probing Feedbacks -->
+<script>
+  (function() {
+    // Dropdown toggle logic
+    const createBtn = document.getElementById('create-datasource-btn');
+    const dropdown = document.getElementById('datasource-dropdown');
+    const probeBtn = document.getElementById('batch-probe-btn');
+
+    if (createBtn && dropdown) {
+      createBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        dropdown.classList.toggle('hidden');
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!dropdown.contains(e.target) && e.target !== createBtn) {
+          dropdown.classList.add('hidden');
+        }
+      });
+    }
+
+    // Batch probe interaction feedback
+    if (probeBtn) {
+      probeBtn.addEventListener('click', function() {
+        const originalContent = this.innerHTML;
+        this.disabled = true;
+        this.innerHTML = `
+          <span class="inline-block w-3.5 h-3.5 border-2 border-primary border-t-transparent rounded-full animate-spin"></span>
+          <span>探活探测中 (8个实例)...</span>
+        `;
+        
+        setTimeout(() => {
+          this.disabled = false;
+          this.innerHTML = `
+            <span class="material-symbols-outlined text-[18px] text-status-success">check_circle</span>
+            <span class="text-status-success font-medium">8个实例探测完毕</span>
+          `;
+          setTimeout(() => {
+            this.innerHTML = originalContent;
+          }, 2500);
+        }, 1200);
+      });
+    }
+  })();
+</script></main></div></body></html>

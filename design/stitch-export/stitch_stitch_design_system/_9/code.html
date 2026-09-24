@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter,+-apple-system,+BlinkMacSystemFont,+'PingFang+SC',+sans-serif:wght@100..900&display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"surface-container-lowest":"#ffffff","inverse-on-surface":"#eaf1ff","code-bg":"#F9FAFB","on-tertiary-fixed":"#360f00","surface-container-high":"#dee9fc","on-tertiary-fixed-variant":"#7d2d00","status-neutral":"#6B7280","error":"#ba1a1a","primary-container":"#2563eb","on-background":"#121c2a","surface-dim":"#d0dbed","tertiary-fixed":"#ffdbcd","inverse-primary":"#b4c5ff","on-primary-fixed-variant":"#003ea8","status-neutral-bg":"#F3F4F6","border-subtle":"#E5E7EB","surface-variant":"#d9e3f6","status-warning":"#F59E0B","surface-container-highest":"#d9e3f6","tertiary-container":"#bc4800","on-primary":"#ffffff","surface":"#f8f9ff","status-processing-bg":"#EFF6FF","on-primary-container":"#eeefff","surface-container":"#e6eeff","secondary-fixed":"#dce1ff","primary-tint":"#EFF6FF","on-primary-fixed":"#00174b","surface-tint":"#0053db","on-error":"#ffffff","surface-container-low":"#eff4ff","on-tertiary-container":"#ffede6","text-primary":"#1F2937","inverse-surface":"#27313f","status-success":"#10B981","on-secondary-fixed-variant":"#0039b5","on-secondary":"#ffffff","text-secondary":"#6B7280","outline":"#737686","on-surface":"#121c2a","surface-card":"#FFFFFF","status-warning-bg":"#FFFBEB","error-container":"#ffdad6","on-tertiary":"#ffffff","canvas-bg":"#F7F8FA","tertiary-fixed-dim":"#ffb596","status-processing":"#3B82F6","status-danger-bg":"#FEF2F2","on-secondary-container":"#fffbff","background":"#f8f9ff","primary":"#004ac6","primary-fixed":"#dbe1ff","outline-variant":"#c3c6d7","secondary-fixed-dim":"#b7c4ff","on-surface-variant":"#434655","tertiary":"#943700","border-focus":"#2563EB","on-error-container":"#93000a","status-success-bg":"#ECFDF5","on-secondary-fixed":"#001551","primary-fixed-dim":"#b4c5ff","surface-bright":"#f8f9ff","status-danger":"#EF4444","text-muted":"#9CA3AF","secondary-container":"#4069f2","secondary":"#1d4ed8"},borderRadius:{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},spacing:{"margin":"1.5rem","space-lg":"1.25rem","space-2xl":"2rem","margin-desktop":"2rem","space-sm":"0.5rem","space-xs":"0.25rem","space-xl":"1.5rem","space-md":"1rem","gutter":"1.25rem","gutter-desktop":"1.5rem"},fontFamily:{"headline-md":["\"Inter, -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif\""],"display":["\"Inter, -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif\""],"headline-lg":["\"Inter, -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif\""],"label-md":["\"Inter, -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif\""],"label-sm":["\"Inter, -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif\""],"body-md":["\"Inter, -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif\""],"code-sm":["\"JetBrains Mono, Menlo, Monaco, Consolas, monospace\""],"caption":["\"Inter, -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif\""],"code-md":["\"JetBrains Mono, Menlo, Monaco, Consolas, monospace\""],"body-lg":["\"Inter, -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif\""],"body-sm":["\"Inter, -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif\""]},fontSize:{"headline-md":["16px",{lineHeight:"24px",fontWeight:"600"}],"display":["24px",{lineHeight:"32px",letterSpacing:"-0.02em",fontWeight:"700"}],"headline-lg":["20px",{lineHeight:"28px",letterSpacing:"-0.01em",fontWeight:"600"}],"label-md":["14px",{lineHeight:"20px",fontWeight:"500"}],"label-sm":["12px",{lineHeight:"16px",fontWeight:"500"}],"body-md":["14px",{lineHeight:"20px",fontWeight:"400"}],"code-sm":["11px",{lineHeight:"16px",fontWeight:"500"}],"caption":["12px",{lineHeight:"16px",fontWeight:"400"}],"code-md":["13px",{lineHeight:"20px",fontWeight:"400"}],"body-lg":["15px",{lineHeight:"22px",fontWeight:"400"}],"body-sm":["13px",{lineHeight:"18px",fontWeight:"400"}]}}}}</script></head><body class="bg-surface font-body-md text-body-md text-on-surface"><aside class="fixed left-0 top-0 h-full w-[220px] bg-surface-container-lowest z-50 flex flex-col justify-between shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex flex-col"><div class="h-14 px-space-md flex items-center justify-between bg-surface-container-low"><div class="flex items-center gap-space-sm"><div class="w-7 h-7 rounded-lg bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">neurology</span></div><div class="flex flex-col"><span class="font-headline-md text-body-sm font-semibold text-text-primary leading-tight">智能分析平台</span><span class="font-caption text-caption text-text-secondary leading-none">大模型与数据中台</span></div></div><span class="font-code-sm text-code-sm px-1.5 py-0.5 rounded bg-primary-tint text-primary font-medium">v1.0</span></div><nav class="flex flex-col gap-1 p-space-sm" data-active-classes="bg-status-processing-bg text-primary font-label-md"><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="ai-qa" href="#"><span class="material-symbols-outlined text-[20px]">chat</span><span class="font-label-md text-label-md">智能问答</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="model-management" href="#"><span class="material-symbols-outlined text-[20px]">memory</span><span class="font-label-md text-label-md">模型管理</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="datasource-management" href="#"><span class="material-symbols-outlined text-[20px]">database</span><span class="font-label-md text-label-md">数据源管理</span></a><a aria-current="page" class="flex items-center gap-space-sm px-space-md py-2.5 rounded-lg transition-colors bg-status-processing-bg text-primary font-label-md" data-path="knowledge-base" href="#"><span class="material-symbols-outlined text-[20px]">folder_supervised</span><span class="font-label-md text-label-md">知识库</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="account-management" href="#"><span class="material-symbols-outlined text-[20px]">manage_accounts</span><span class="font-label-md text-label-md">账号管理</span></a></nav></div><div class="p-space-md bg-canvas-bg m-space-sm rounded-lg flex flex-col gap-1"><div class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-status-success animate-pulse"></span><span class="font-caption text-caption text-text-primary font-medium">API只读安全模式</span></div><p class="font-caption text-caption text-text-muted leading-tight">隔离网关正常运行</p></div></aside><div class="pl-[220px]"><header class="fixed top-0 left-[220px] right-0 h-14 bg-surface-container-lowest/90 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-space-xl"><div class="flex items-center gap-space-sm text-text-secondary"><span class="material-symbols-outlined text-[18px]">grid_view</span><span class="font-caption text-caption">/</span><span class="font-label-sm text-label-sm text-text-primary font-medium">知识库</span><span class="font-caption text-caption">/</span><span class="font-label-sm text-label-sm text-text-secondary">知识库列表</span></div><div class="flex items-center gap-space-lg"><div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-status-success-bg text-status-success font-label-sm text-label-sm"><span class="w-1.5 h-1.5 rounded-full bg-status-success"></span><span>生产环境 · KMS隔离</span></div><a class="inline-flex items-center gap-1 text-text-secondary hover:text-text-primary transition-colors font-label-sm text-label-sm" href="#"><span class="material-symbols-outlined text-[18px]">help_outline</span><span>帮助文档</span></a><button class="relative p-1.5 text-text-secondary hover:text-text-primary transition-colors rounded-lg hover:bg-surface-container-high"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-1 right-1 w-2 h-2 bg-error rounded-full"></span></button><div class="flex items-center gap-space-sm pl-space-sm"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div><div class="flex flex-col text-left"><span class="font-label-sm text-label-sm font-medium text-text-primary leading-tight">陈工 (数据研发)</span><span class="font-caption text-caption text-text-muted leading-tight">系统管理员</span></div></div></div></header><main class="w-full pt-14 px-space-xl py-space-xl bg-canvas-bg min-h-screen"><div class="flex flex-col w-full">
+<!-- Knowledge Base Details Header -->
+<div class="relative overflow-hidden rounded-xl bg-surface-container-lowest shadow-sm mb-space-lg">
+<!-- Ambient Engineering Grid Background Decorator -->
+<div class="absolute -right-20 -top-24 w-96 h-96 rounded-full bg-primary-tint/60 blur-3xl pointer-events-none"></div>
+<div class="absolute right-48 -bottom-24 w-80 h-80 rounded-full bg-surface-container-high/40 blur-2xl pointer-events-none"></div>
+<div class="p-space-xl flex flex-col gap-space-lg relative z-10">
+<!-- Breadcrumb & Status Badges -->
+<div class="flex flex-wrap items-center justify-between gap-space-md">
+<div class="flex items-center gap-2">
+<a class="font-label-sm text-label-sm text-text-secondary hover:text-primary transition-colors flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-[16px]">folder_supervised</span>
+            知识库管理
+          </a>
+<span class="text-text-muted font-caption text-caption">/</span>
+<span class="font-code-sm text-code-sm px-2 py-0.5 rounded bg-surface-container-high text-primary font-medium tracking-tight">kb_ops_runbook</span>
+<span class="text-text-muted font-caption text-caption">/</span>
+<span class="font-label-sm text-label-sm text-text-primary font-semibold">企业技术运维故障排查知识库</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-status-processing-bg text-primary font-label-sm text-label-sm">
+<span class="w-2 h-2 rounded-full bg-status-processing animate-pulse"></span>
+<span>增量重建索引中 68%</span>
+</div>
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-status-success-bg text-status-success font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+<span>混合检索就绪 (Vector + BM25)</span>
+</div>
+</div>
+</div>
+<!-- Title & Main Actions -->
+<div class="flex flex-wrap items-start justify-between gap-space-lg">
+<div class="flex flex-col gap-1 max-w-2xl">
+<div class="flex items-center gap-3">
+<h1 class="font-display text-display text-text-primary">企业技术运维故障排查知识库</h1>
+<span class="font-code-sm text-code-sm px-2 py-0.5 rounded bg-surface-container-low text-text-secondary">PROD-OPS-01</span>
+</div>
+<p class="font-body-md text-body-md text-text-secondary">
+            面向基础架构、微服务网关及数据库主从链路的标准应急恢复手册（SOP）、故障排查脚本以及历史案例精炼切片。
+          </p>
+</div>
+<div class="flex items-center gap-2.5 flex-wrap">
+<button class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-surface-container-high text-primary hover:bg-primary-tint font-label-md text-label-md transition-all shadow-sm" id="testRetrievalBtn">
+<span class="material-symbols-outlined text-[18px]">search_insights</span>
+<span>检索召回测试</span>
+</button>
+<div class="relative inline-block text-left" id="rebuildDropdownContainer">
+<button class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-surface-container-lowest hover:bg-surface-container-low text-text-primary font-label-md text-label-md transition-all shadow-sm" id="rebuildMenuBtn">
+<span class="material-symbols-outlined text-[18px] text-primary">autorenew</span>
+<span>重建向量索引</span>
+<span class="material-symbols-outlined text-[16px] text-text-muted">expand_more</span>
+</button>
+<div class="hidden absolute right-0 mt-1.5 w-56 rounded-lg bg-surface-container-lowest shadow-md p-1 z-30" id="rebuildMenu">
+<button class="w-full text-left px-3 py-2 rounded font-label-sm text-label-sm text-text-primary hover:bg-surface-container-low flex flex-col">
+<span class="font-semibold text-text-primary">增量重建 (推荐)</span>
+<span class="text-text-muted font-caption text-caption">仅重建新增与最近编辑变更的文档</span>
+</button>
+<button class="w-full text-left px-3 py-2 rounded font-label-sm text-label-sm text-status-danger hover:bg-status-danger-bg flex flex-col mt-0.5">
+<span class="font-semibold">全量覆写重建</span>
+<span class="text-text-muted font-caption text-caption">清空现有 6,850 切片并重新计算向量</span>
+</button>
+</div>
+</div>
+<button class="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-primary hover:bg-secondary text-on-primary font-label-md text-label-md transition-all shadow-sm" id="quickUploadTrigger">
+<span class="material-symbols-outlined text-[18px]">add_circle</span>
+<span>上传新文档</span>
+</button>
+</div>
+</div>
+<!-- Config & Metrics Bento Chips -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-space-sm pt-space-xs">
+<div class="p-space-md rounded-lg bg-surface-container-low flex flex-col gap-1">
+<div class="flex items-center justify-between text-text-muted font-caption text-caption">
+<span>嵌入向量模型</span>
+<span class="material-symbols-outlined text-[16px] text-primary">grain</span>
+</div>
+<span class="font-headline-md text-body-md font-semibold text-text-primary truncate">bge-m3</span>
+<span class="font-code-sm text-code-sm text-text-secondary truncate">1024 维 · Cosine 相似度</span>
+</div>
+<div class="p-space-md rounded-lg bg-surface-container-low flex flex-col gap-1">
+<div class="flex items-center justify-between text-text-muted font-caption text-caption">
+<span>切片分块策略</span>
+<span class="material-symbols-outlined text-[16px] text-primary">splitscreen</span>
+</div>
+<span class="font-headline-md text-body-md font-semibold text-text-primary truncate">滑动窗口分块</span>
+<span class="font-code-sm text-code-sm text-text-secondary truncate">500 tokens (重叠 50t)</span>
+</div>
+<div class="p-space-md rounded-lg bg-surface-container-low flex flex-col gap-1">
+<div class="flex items-center justify-between text-text-muted font-caption text-caption">
+<span>纳管源文档数</span>
+<span class="material-symbols-outlined text-[16px] text-text-secondary">description</span>
+</div>
+<span class="font-headline-md text-body-md font-semibold text-text-primary">142 <span class="font-caption text-caption text-text-muted">篇</span></span>
+<span class="font-code-sm text-code-sm text-status-success truncate">已同步 138 篇 · 4 异常/处理中</span>
+</div>
+<div class="p-space-md rounded-lg bg-surface-container-low flex flex-col gap-1">
+<div class="flex items-center justify-between text-text-muted font-caption text-caption">
+<span>活跃向量切片</span>
+<span class="material-symbols-outlined text-[16px] text-text-secondary">dataset</span>
+</div>
+<span class="font-headline-md text-body-md font-semibold text-text-primary">6,850 <span class="font-caption text-caption text-text-muted">chunks</span></span>
+<span class="font-code-sm text-code-sm text-text-secondary">存储容量 24.8 MB</span>
+</div>
+<div class="p-space-md rounded-lg bg-surface-container-low flex flex-col gap-1">
+<div class="flex items-center justify-between text-text-muted font-caption text-caption">
+<span>智能问答召回调用</span>
+<span class="material-symbols-outlined text-[16px] text-status-success">trending_up</span>
+</div>
+<span class="font-headline-md text-body-md font-semibold text-text-primary">426 <span class="font-caption text-caption text-text-muted">次 / 本周</span></span>
+<span class="font-code-sm text-code-sm text-status-success truncate">证据采纳率 91.4%</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Rebuild Progress Banner (Active Task) -->
+<div class="rounded-xl bg-gradient-to-r from-status-processing-bg via-surface-container-lowest to-status-processing-bg p-space-md shadow-sm mb-space-lg">
+<div class="flex flex-col gap-3">
+<div class="flex flex-wrap items-center justify-between gap-space-sm">
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-lg bg-primary text-on-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px] animate-spin">refresh</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<span class="font-label-md text-label-md font-semibold text-text-primary">正在执行增量向量索引重建任务 #REC-20260924-03</span>
+<span class="font-code-sm text-code-sm px-1.5 py-0.5 rounded bg-primary text-on-primary">RUNNING</span>
+</div>
+<p class="font-caption text-caption text-text-secondary">
+              增量重建期间，原有已发布索引继续提供高可靠问答检索服务，业务无停机与检索降级。
+            </p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="flex items-center gap-4 text-right">
+<div>
+<div class="font-code-sm text-code-sm text-text-secondary">已向量化</div>
+<div class="font-label-sm text-label-sm font-semibold text-text-primary">96 / 142 篇 (4,658 chunks)</div>
+</div>
+<div>
+<div class="font-code-sm text-code-sm text-text-secondary">耗时 / 预估剩余</div>
+<div class="font-label-sm text-label-sm font-semibold text-primary">01:12 / 剩余 45s</div>
+</div>
+</div>
+<div class="flex items-center gap-1.5 pl-2">
+<button class="px-2.5 py-1.5 rounded-lg bg-surface-container-lowest hover:bg-surface-container-high text-text-secondary hover:text-text-primary font-label-sm text-label-sm transition-colors">
+              日志流
+            </button>
+<button class="px-2.5 py-1.5 rounded-lg bg-surface-container-lowest hover:bg-status-danger-bg text-text-secondary hover:text-status-danger font-label-sm text-label-sm transition-colors">
+              暂停任务
+            </button>
+</div>
+</div>
+</div>
+<!-- Linear Gauge -->
+<div class="w-full bg-surface-container-high rounded-full h-2 overflow-hidden flex">
+<div class="bg-primary h-2 rounded-full transition-all duration-500 ease-out" style="width: 68%;"></div>
+</div>
+</div>
+</div>
+<!-- Workspace Tabs -->
+<div class="flex items-center justify-between border-b-0 mb-space-md">
+<div class="flex items-center gap-2 p-1 bg-surface-container-low rounded-xl">
+<button class="px-4 py-2 rounded-lg bg-surface-container-lowest font-label-md text-label-md font-semibold text-primary shadow-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">list_alt</span>
+<span>文档列表 (142)</span>
+</button>
+<button class="px-4 py-2 rounded-lg hover:bg-surface-container-lowest/60 font-label-md text-label-md font-medium text-text-secondary hover:text-text-primary transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">dataset</span>
+<span>解析切片预览 (Chunks)</span>
+</button>
+<button class="px-4 py-2 rounded-lg hover:bg-surface-container-lowest/60 font-label-md text-label-md font-medium text-text-secondary hover:text-text-primary transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">tune</span>
+<span>检索配置与策略</span>
+</button>
+<button class="px-4 py-2 rounded-lg hover:bg-surface-container-lowest/60 font-label-md text-label-md font-medium text-text-secondary hover:text-text-primary transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">history</span>
+<span>历史构建审计 (Audit)</span>
+</button>
+</div>
+<div class="hidden sm:flex items-center gap-2 text-text-muted font-caption text-caption">
+<span class="inline-block w-2 h-2 rounded-full bg-status-success"></span>
+<span>实时解析集群状态：正常运转 (4 Workers 在线)</span>
+</div>
+</div>
+<!-- Document Management Core Workspace Grid -->
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-space-lg items-start">
+<!-- Left / Center: Table & Drag-Drop Upload Area (xl:col-span-8 or 9) -->
+<div class="xl:col-span-8 flex flex-col gap-space-md">
+<!-- Drag Drop Box (Collapsible / Sleek) -->
+<div class="group relative rounded-xl bg-surface-container-lowest p-space-lg shadow-sm hover:bg-primary-tint/20 transition-all cursor-pointer" id="dropZone">
+<div class="flex flex-col sm:flex-row items-center justify-between gap-space-md">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-primary-tint flex items-center justify-center text-primary group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[28px]">cloud_upload</span>
+</div>
+<div class="flex flex-col">
+<div class="font-label-md text-label-md font-semibold text-text-primary flex items-center gap-2">
+<span>点击选择文件，或直接拖拽文档至此处</span>
+<span class="font-code-sm text-code-sm text-primary font-normal">支持多模态排版解析</span>
+</div>
+<p class="font-caption text-caption text-text-secondary">
+                支持 PDF、DOCX、Markdown、TXT 格式文档，单文件上限 50MB。自动清洗换行、提取目录结构并按标题自动切块。
+              </p>
+</div>
+</div>
+<button class="shrink-0 px-3.5 py-1.5 rounded-lg bg-surface-container-high hover:bg-primary hover:text-on-primary text-text-primary font-label-sm text-label-sm transition-colors">
+            选择本地文档
+          </button>
+</div>
+</div>
+<!-- Filter Controls Bar -->
+<div class="rounded-xl bg-surface-container-lowest p-space-md shadow-sm flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-space-md">
+<!-- Search & Quick Filters -->
+<div class="flex flex-wrap items-center gap-space-sm flex-1">
+<div class="relative min-w-[240px] flex-1 max-w-sm">
+<span class="material-symbols-outlined absolute left-2.5 top-2 text-[18px] text-text-muted">search</span>
+<input class="w-full pl-8 pr-3 py-1.5 rounded-lg bg-surface-container-low font-body-sm text-body-sm text-text-primary placeholder:text-text-muted focus:outline-none focus:bg-surface-container-lowest transition-colors" placeholder="搜索文档名称、标签或哈希值..." type="text"/>
+</div>
+<div class="flex items-center gap-1 bg-surface-container-low p-1 rounded-lg">
+<button class="px-2.5 py-1 rounded-md bg-surface-container-lowest text-primary font-label-sm text-label-sm font-medium shadow-sm">
+              全部 (142)
+            </button>
+<button class="px-2.5 py-1 rounded-md text-text-secondary hover:text-text-primary font-label-sm text-label-sm transition-colors">
+              成功 (138)
+            </button>
+<button class="px-2.5 py-1 rounded-md text-text-secondary hover:text-text-primary font-label-sm text-label-sm transition-colors flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-status-processing animate-pulse"></span>
+              切片中 (2)
+            </button>
+<button class="px-2.5 py-1 rounded-md text-text-secondary hover:text-text-primary font-label-sm text-label-sm transition-colors flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-status-danger"></span>
+              异常 (2)
+            </button>
+</div>
+</div>
+<!-- Bulk Operations -->
+<div class="flex items-center gap-2 self-end lg:self-auto">
+<button class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-surface-container-low hover:bg-surface-container-high text-text-primary font-label-sm text-label-sm transition-colors">
+<span class="material-symbols-outlined text-[16px]">restart_alt</span>
+<span>批量重切片</span>
+</button>
+<button class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-surface-container-low hover:bg-surface-container-high text-text-primary font-label-sm text-label-sm transition-colors">
+<span class="material-symbols-outlined text-[16px]">file_download</span>
+<span>导出元数据</span>
+</button>
+<button class="p-1.5 rounded-lg bg-surface-container-low hover:bg-surface-container-high text-text-secondary hover:text-text-primary transition-colors" title="刷新表格">
+<span class="material-symbols-outlined text-[18px]">refresh</span>
+</button>
+</div>
+</div>
+<!-- Document Data Table -->
+<div class="rounded-xl bg-surface-container-lowest shadow-sm overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low text-text-secondary font-label-sm text-label-sm uppercase">
+<th class="py-3 px-4 font-semibold w-10">
+<input class="rounded bg-surface-container-lowest text-primary focus:ring-0" type="checkbox"/>
+</th>
+<th class="py-3 px-4 font-semibold">文档名称 / 规格</th>
+<th class="py-3 px-4 font-semibold">分类标签</th>
+<th class="py-3 px-4 font-semibold">切片 / Tokens</th>
+<th class="py-3 px-4 font-semibold">向量索引状态</th>
+<th class="py-3 px-4 font-semibold">更新时间</th>
+<th class="py-3 px-4 font-semibold text-right">操作</th>
+</tr>
+</thead>
+<tbody class="divide-y-0 text-text-primary font-body-sm text-body-sm">
+<!-- Row 1: In progress -->
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="py-3.5 px-4">
+<input class="rounded bg-surface-container-lowest text-primary focus:ring-0" type="checkbox"/>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-error-container text-status-danger flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[20px]">picture_as_pdf</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-1.5">
+<span class="font-label-md text-label-md font-semibold truncate text-text-primary">网关分布式限流与令牌桶配置手册_v2.0.pdf</span>
+<span class="font-code-sm text-code-sm px-1.5 rounded bg-primary-tint text-primary font-medium">v2.0</span>
+</div>
+<span class="font-caption text-caption text-text-muted">3.4 MB · SHA256: 8f9b2...4ce0</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex flex-wrap gap-1">
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-primary font-code-sm text-code-sm">网关限流</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-low text-text-secondary font-code-sm text-code-sm">SOP</span>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm font-semibold text-text-primary">48 chunks</span>
+<span class="font-caption text-caption text-text-muted">21,490 tokens</span>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-status-processing-bg text-primary font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-status-processing animate-ping"></span>
+<span>解析向量化中 (3/4)</span>
+</div>
+</td>
+<td class="py-3.5 px-4 text-text-secondary font-caption text-caption">
+<div>陈工 (数据研发)</div>
+<div class="text-text-muted">刚刚 14:38</div>
+</td>
+<td class="py-3.5 px-4 text-right">
+<button class="p-1 rounded text-text-secondary hover:text-text-primary hover:bg-surface-container-high transition-colors" title="查看进度">
+<span class="material-symbols-outlined text-[18px]">hourglass_top</span>
+</button>
+</td>
+</tr>
+<!-- Row 2: HikariPool (Selected / Highlighted) -->
+<tr class="bg-primary-tint/30 hover:bg-primary-tint/50 transition-colors">
+<td class="py-3.5 px-4">
+<input checked="" class="rounded bg-surface-container-lowest text-primary focus:ring-0" type="checkbox"/>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-surface-container-highest text-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[20px]">markdown</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-1.5">
+<span class="font-label-md text-label-md font-semibold truncate text-text-primary">HikariPool连接池满载超时排查实战指南.md</span>
+<span class="font-code-sm text-code-sm px-1.5 rounded bg-surface-container-high text-text-secondary font-medium">v1.1</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-caption text-caption text-text-muted">180 KB · 问答高频引用 (42次)</span>
+</div>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex flex-wrap gap-1">
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-primary font-code-sm text-code-sm">连接池调优</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-low text-text-secondary font-code-sm text-code-sm">故障复盘</span>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm font-semibold text-text-primary">16 chunks</span>
+<span class="font-caption text-caption text-text-muted">7,420 tokens</span>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-status-success-bg text-status-success font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px]">check</span>
+<span>已入库 · 索引生效</span>
+</div>
+</td>
+<td class="py-3.5 px-4 text-text-secondary font-caption text-caption">
+<div>陈工 (数据研发)</div>
+<div class="text-text-muted">今日 11:20</div>
+</td>
+<td class="py-3.5 px-4 text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="p-1 rounded text-primary hover:bg-surface-container-high transition-colors" title="聚焦切片">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+<button class="p-1 rounded text-text-secondary hover:text-text-primary hover:bg-surface-container-high transition-colors" title="重新解析">
+<span class="material-symbols-outlined text-[18px]">sync</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3: DOCX Emergency -->
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="py-3.5 px-4">
+<input class="rounded bg-surface-container-lowest text-primary focus:ring-0" type="checkbox"/>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-status-processing-bg text-secondary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[20px]">description</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-1.5">
+<span class="font-label-md text-label-md font-semibold truncate text-text-primary">支付接口500异常应急止血预案_2026.docx</span>
+<span class="font-code-sm text-code-sm px-1.5 rounded bg-surface-container-high text-text-secondary font-medium">v1.0</span>
+</div>
+<span class="font-caption text-caption text-text-muted">1.2 MB · 核心保密文档</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex flex-wrap gap-1">
+<span class="px-2 py-0.5 rounded bg-status-danger-bg text-status-danger font-code-sm text-code-sm">应急止血</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-low text-text-secondary font-code-sm text-code-sm">支付专区</span>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm font-semibold text-text-primary">32 chunks</span>
+<span class="font-caption text-caption text-text-muted">14,980 tokens</span>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-status-success-bg text-status-success font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px]">check</span>
+<span>已入库 · 索引生效</span>
+</div>
+</td>
+<td class="py-3.5 px-4 text-text-secondary font-caption text-caption">
+<div>系统同步服务</div>
+<div class="text-text-muted">昨日 19:40</div>
+</td>
+<td class="py-3.5 px-4 text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="p-1 rounded text-text-secondary hover:text-text-primary hover:bg-surface-container-high transition-colors" title="查看切片">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+<button class="p-1 rounded text-text-secondary hover:text-text-primary hover:bg-surface-container-high transition-colors" title="更新替换">
+<span class="material-symbols-outlined text-[18px]">upload_file</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4: Database Slow Query Whitepaper -->
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="py-3.5 px-4">
+<input class="rounded bg-surface-container-lowest text-primary focus:ring-0" type="checkbox"/>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-error-container text-status-danger flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[20px]">picture_as_pdf</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-1.5">
+<span class="font-label-md text-label-md font-semibold truncate text-text-primary">核心数据库慢查询与主从延迟运维白皮书.pdf</span>
+<span class="font-code-sm text-code-sm px-1.5 rounded bg-surface-container-high text-text-secondary font-medium">v3.4</span>
+</div>
+<span class="font-caption text-caption text-text-muted">8.6 MB · 包含 14 个执行计划图解</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex flex-wrap gap-1">
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-primary font-code-sm text-code-sm">MySQL</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-low text-text-secondary font-code-sm text-code-sm">慢查询优化</span>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm font-semibold text-text-primary">112 chunks</span>
+<span class="font-caption text-caption text-text-muted">53,200 tokens</span>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-status-success-bg text-status-success font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px]">check</span>
+<span>已入库 · 索引生效</span>
+</div>
+</td>
+<td class="py-3.5 px-4 text-text-secondary font-caption text-caption">
+<div>DBA团队 (李工)</div>
+<div class="text-text-muted">09-22 17:15</div>
+</td>
+<td class="py-3.5 px-4 text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="p-1 rounded text-text-secondary hover:text-text-primary hover:bg-surface-container-high transition-colors" title="查看切片">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+<button class="p-1 rounded text-text-secondary hover:text-text-primary hover:bg-surface-container-high transition-colors" title="配置分块规则">
+<span class="material-symbols-outlined text-[18px]">settings_suggest</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 5: Failed Row (Encoding Error) -->
+<tr class="hover:bg-status-danger-bg/20 transition-colors">
+<td class="py-3.5 px-4">
+<input class="rounded bg-surface-container-lowest text-primary focus:ring-0" type="checkbox"/>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-surface-container-high text-text-secondary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[20px]">draft</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-1.5">
+<span class="font-label-md text-label-md font-semibold truncate text-text-primary">网络时钟NTP同步故障诊断规程.txt</span>
+<span class="font-code-sm text-code-sm px-1.5 rounded bg-surface-container-high text-text-secondary font-medium">v0.9</span>
+</div>
+<span class="font-caption text-caption text-status-danger">45 KB · 编码识别失败</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex flex-wrap gap-1">
+<span class="px-2 py-0.5 rounded bg-surface-container-low text-text-secondary font-code-sm text-code-sm">基础网络</span>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm font-semibold text-text-muted">-</span>
+<span class="font-caption text-caption text-text-muted">待计算</span>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<div class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-status-danger-bg text-status-danger font-label-sm text-label-sm" title="检测到 GBK 字符集，解析器强制要求 UTF-8 无 BOM">
+<span class="material-symbols-outlined text-[16px]">error</span>
+<span>解析失败 (编码需UTF-8)</span>
+</div>
+</td>
+<td class="py-3.5 px-4 text-text-secondary font-caption text-caption">
+<div>陈工 (数据研发)</div>
+<div class="text-text-muted">今日 10:04</div>
+</td>
+<td class="py-3.5 px-4 text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="px-2 py-1 rounded bg-status-danger-bg text-status-danger hover:bg-error hover:text-on-error font-label-sm text-label-sm transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">replay</span>
+<span>重试</span>
+</button>
+<button class="p-1 rounded text-text-secondary hover:text-status-danger transition-colors" title="移除文件">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Pagination Footer -->
+<div class="px-space-md py-3 bg-surface-container-low flex flex-wrap items-center justify-between gap-space-md">
+<div class="flex items-center gap-2 font-caption text-caption text-text-secondary">
+<span>显示第 1 至 5 条，共 142 条记录</span>
+<span class="text-text-muted">|</span>
+<span>每页展示:</span>
+<select class="rounded bg-surface-container-lowest font-code-sm text-code-sm px-2 py-0.5 text-text-primary focus:outline-none">
+<option>10 条 / 页</option>
+<option selected="">20 条 / 页</option>
+<option>50 条 / 页</option>
+</select>
+</div>
+<div class="flex items-center gap-1">
+<button class="px-2.5 py-1 rounded bg-surface-container-lowest text-text-muted hover:text-text-primary text-label-sm transition-colors disabled:opacity-40" disabled="">上一页</button>
+<button class="px-2.5 py-1 rounded bg-primary text-on-primary text-label-sm font-semibold">1</button>
+<button class="px-2.5 py-1 rounded bg-surface-container-lowest text-text-primary hover:bg-surface-container-high text-label-sm transition-colors">2</button>
+<button class="px-2.5 py-1 rounded bg-surface-container-lowest text-text-primary hover:bg-surface-container-high text-label-sm transition-colors">3</button>
+<span class="text-text-muted px-1">...</span>
+<button class="px-2.5 py-1 rounded bg-surface-container-lowest text-text-primary hover:bg-surface-container-high text-label-sm transition-colors">8</button>
+<button class="px-2.5 py-1 rounded bg-surface-container-lowest text-text-primary hover:bg-surface-container-high text-label-sm transition-colors">下一页</button>
+</div>
+</div>
+</div>
+<!-- Compliance & Encryption Audit Note -->
+<div class="p-space-md rounded-xl bg-surface-container-low flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-[20px] shrink-0 mt-0.5">verified_user</span>
+<div class="flex flex-col gap-0.5">
+<span class="font-label-sm text-label-sm font-semibold text-text-primary">可审计引用标准 & 知识安全性</span>
+<p class="font-caption text-caption text-text-secondary leading-relaxed">
+            文档切片在智能问答生成中支持精确到原文档页码、段落与代码行号的高亮反查。当前知识库存储受租户隔离加密 (AES-256) 保护，所有向量切片计算均在本地专有推理沙箱内完成。
+          </p>
+</div>
+</div>
+</div>
+<!-- Right: Active Chunk Inspector & Retrieval Simulator Dock (xl:col-span-4) -->
+<div class="xl:col-span-4 flex flex-col gap-space-md">
+<!-- Active Chunk Inspector Card -->
+<div class="rounded-xl bg-surface-container-lowest p-space-lg shadow-sm flex flex-col gap-space-md relative overflow-hidden">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-primary"></span>
+<h2 class="font-headline-md text-headline-md text-text-primary">切片解析明细 (Chunk Detail)</h2>
+</div>
+<span class="font-code-sm text-code-sm px-2 py-0.5 rounded bg-primary-tint text-primary font-semibold">Chunk #04 / 16</span>
+</div>
+<!-- Target Doc Context -->
+<div class="p-3 rounded-lg bg-surface-container-low flex flex-col gap-1">
+<div class="font-caption text-caption text-text-muted">关联源文件</div>
+<div class="font-label-sm text-label-sm font-semibold text-text-primary truncate">HikariPool连接池满载超时排查实战指南.md</div>
+<div class="flex items-center gap-2 font-caption text-caption text-text-secondary">
+<span>段落路径: H2 > 连接池击穿根因</span>
+<span class="text-text-muted">•</span>
+<span class="font-code-sm text-code-sm text-primary">ID: vec_bge_092384</span>
+</div>
+</div>
+<!-- Raw Chunk Content Preview -->
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center justify-between text-text-secondary font-label-sm text-label-sm">
+<span class="font-medium">文本切片内容 (Token数: 186)</span>
+<button class="inline-flex items-center gap-1 font-caption text-caption text-primary hover:underline" title="复制切片原文">
+<span class="material-symbols-outlined text-[14px]">content_copy</span>
+<span>复制</span>
+</button>
+</div>
+<div class="p-space-md rounded-lg bg-code-bg font-body-sm text-body-sm text-text-primary leading-relaxed select-text">
+<p>
+              ...当 HikariPool 活动连接数持续达到 <code class="font-code-sm text-code-sm bg-surface-container-high px-1 py-0.5 rounded text-primary">maximum-pool-size (如12)</code> 且新请求连接等待时长超过 <code class="font-code-sm text-code-sm bg-surface-container-high px-1 py-0.5 rounded text-primary">connection-timeout (15s)</code> 时，网关层将直接捕获 <span class="font-semibold text-status-danger">UpstreamConnectTimeoutException</span> 并对外返回 HTTP 500。
+            </p>
+<div class="mt-2.5 pt-2.5 border-t border-dashed border-border-subtle font-caption text-caption text-text-secondary">
+              💡 <strong>应急建议措施：</strong> 优先执行从库读流量路由切换，并通过 nacos 动态下发配置将 idle-timeout 临时收敛至 30000ms。
+            </div>
+</div>
+</div>
+<!-- Citation Audit Card inside Chunk Detail -->
+<div class="p-space-md rounded-lg bg-status-success-bg/40 flex flex-col gap-1.5">
+<div class="flex items-center gap-1.5 text-status-success font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+<span>问答真实证据命中记录</span>
+</div>
+<p class="font-caption text-caption text-text-secondary leading-normal">
+            今日 14:10 在运维会话 <span class="font-code-sm text-code-sm text-text-primary font-medium">#0924-4215</span>（“线上订单库突发 500 告警”）中作为第一候选证据 <span class="font-code-sm text-code-sm text-primary font-bold">[1]</span> 被智能问答成功采纳。
+          </p>
+<div class="flex items-center justify-between pt-1">
+<span class="font-caption text-caption text-text-muted">语义相似度分值:</span>
+<span class="font-code-sm text-code-sm font-bold text-status-success">0.932 (Cosine)</span>
+</div>
+</div>
+<!-- Vector Embedding Dimensionality Heat-bar (Micro-Visualizer) -->
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center justify-between text-text-secondary font-caption text-caption">
+<span>向量空间分布微视 (1024 维稀疏采样)</span>
+<span class="font-code-sm text-code-sm text-text-muted">Top-K = 4</span>
+</div>
+<div class="grid grid-cols-16 gap-1 h-3">
+<div class="bg-primary rounded-xs opacity-90" title="d0-d64"></div>
+<div class="bg-primary rounded-xs opacity-70" title="d64-d128"></div>
+<div class="bg-primary rounded-xs opacity-40" title="d128-d192"></div>
+<div class="bg-primary rounded-xs opacity-100" title="d192-d256"></div>
+<div class="bg-primary rounded-xs opacity-60" title="d256-d320"></div>
+<div class="bg-primary rounded-xs opacity-80" title="d320-d384"></div>
+<div class="bg-primary rounded-xs opacity-20" title="d384-d448"></div>
+<div class="bg-primary rounded-xs opacity-95" title="d448-d512"></div>
+<div class="bg-primary rounded-xs opacity-75" title="d512-d576"></div>
+<div class="bg-primary rounded-xs opacity-50" title="d576-d640"></div>
+<div class="bg-primary rounded-xs opacity-85" title="d640-d704"></div>
+<div class="bg-primary rounded-xs opacity-30" title="d704-d768"></div>
+<div class="bg-primary rounded-xs opacity-90" title="d768-d832"></div>
+<div class="bg-primary rounded-xs opacity-65" title="d832-d896"></div>
+<div class="bg-primary rounded-xs opacity-40" title="d896-d960"></div>
+<div class="bg-primary rounded-xs opacity-100" title="d960-d1024"></div>
+</div>
+</div>
+</div>
+<!-- Quick Retrieval Sandbox Mini-Card -->
+<div class="rounded-xl bg-surface-container-lowest p-space-lg shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">manage_search</span>
+<span class="font-headline-md text-headline-md text-text-primary">即时检索验证沙箱</span>
+</div>
+<span class="font-code-sm text-code-sm text-status-success font-medium">BM25 + Vector</span>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-caption text-caption text-text-secondary">输入排查查询以实时检验 Top-K 召回权重：</label>
+<div class="relative">
+<input class="w-full pl-3 pr-8 py-2 rounded-lg bg-surface-container-low font-body-sm text-body-sm text-text-primary focus:outline-none focus:bg-surface-container-lowest transition-colors" type="text" value="HikariPool 连接池满了返回 500 怎么排查"/>
+<button class="absolute right-2 top-2 text-primary hover:text-secondary">
+<span class="material-symbols-outlined text-[20px]">send</span>
+</button>
+</div>
+</div>
+<div class="flex flex-col gap-2 pt-1">
+<div class="flex items-center justify-between text-text-secondary font-caption text-caption">
+<span>首位召回预测</span>
+<span class="font-code-sm text-code-sm font-semibold text-primary">Score: 0.941</span>
+</div>
+<div class="p-2.5 rounded-lg bg-surface-container-low flex flex-col gap-1">
+<span class="font-label-sm text-label-sm font-semibold text-text-primary truncate">HikariPool连接池满载超时排查实战指南.md</span>
+<span class="font-caption text-caption text-text-secondary line-clamp-2">“...当 HikariPool 活动连接数持续达到 maximum-pool-size 且连接等待超时超过 15s...”</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+  // Simple dropdown micro-interaction for Rebuild Menu
+  const rebuildMenuBtn = document.getElementById('rebuildMenuBtn');
+  const rebuildMenu = document.getElementById('rebuildMenu');
+  const rebuildDropdownContainer = document.getElementById('rebuildDropdownContainer');
+
+  if (rebuildMenuBtn && rebuildMenu) {
+    rebuildMenuBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      rebuildMenu.classList.toggle('hidden');
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!rebuildDropdownContainer.contains(e.target)) {
+        rebuildMenu.classList.add('hidden');
+      }
+    });
+  }
+
+  // Quick upload zone visual hover feedback
+  const dropZone = document.getElementById('dropZone');
+  if (dropZone) {
+    ['dragenter', 'dragover'].forEach(eventName => {
+      dropZone.addEventListener(eventName, (e) => {
+        e.preventDefault();
+        dropZone.classList.add('bg-primary-tint/40');
+      });
+    });
+
+    ['dragleave', 'drop'].forEach(eventName => {
+      dropZone.addEventListener(eventName, (e) => {
+        e.preventDefault();
+        dropZone.classList.remove('bg-primary-tint/40');
+      });
+    });
+  }
+</script></main></div></body></html>

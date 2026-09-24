@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-slate-50" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>账号管理 - 智能分析平台</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+            }
+          }
+        }
+      }
+    }
+  </script>
+<!-- Custom Font & Scrollbar Style -->
+<style data-purpose="custom-styling">
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    }
+    /* Subtle custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 3px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+  </style>
+</head>
+<body class="h-full overflow-hidden text-slate-800 antialiased flex flex-col">
+<!-- BEGIN: MainContainer -->
+<div class="flex h-full w-full overflow-hidden">
+<!-- BEGIN: LeftSidebar -->
+<aside class="w-56 shrink-0 bg-white border-r border-slate-200 flex flex-col justify-between z-20 select-none">
+<!-- Top Branding and Nav Links -->
+<div class="flex flex-col">
+<!-- Brand Logo -->
+<div class="h-16 px-4 flex items-center justify-between border-b border-slate-100">
+<div class="flex items-center space-x-2.5">
+<div class="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white shadow-sm shadow-blue-500/30">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M13 10V3L4 14h7v7l9-11h-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<div>
+<div class="text-sm font-bold tracking-tight text-slate-900 leading-none">智能分析平台</div>
+<div class="text-[11px] text-slate-400 mt-1">大模型与数据中台</div>
+</div>
+</div>
+<span class="text-[10px] bg-slate-100 text-slate-500 px-1.5 py-0.5 rounded font-mono">v1.0</span>
+</div>
+<!-- Navigation Links -->
+<nav class="p-3 space-y-1">
+<!-- 智能问答 -->
+<a class="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-slate-600 hover:bg-slate-50 text-sm font-medium transition-colors" href="#">
+<svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path>
+</svg>
+<span>智能问答</span>
+</a>
+<!-- 模型管理 -->
+<a class="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-slate-600 hover:bg-slate-50 text-sm font-medium transition-colors" href="#">
+<svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path>
+<path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path>
+</svg>
+<span>模型管理</span>
+</a>
+<!-- 数据源管理 -->
+<a class="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-slate-600 hover:bg-slate-50 text-sm font-medium transition-colors" href="#">
+<svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path>
+</svg>
+<span>数据源管理</span>
+</a>
+<!-- 知识库 -->
+<a class="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-slate-600 hover:bg-slate-50 text-sm font-medium transition-colors" href="#">
+<svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path>
+</svg>
+<span>知识库</span>
+</a>
+<!-- 账号管理 (当前激活项) -->
+<a class="flex items-center space-x-3 px-3 py-2.5 rounded-lg bg-blue-50 text-blue-600 text-sm font-semibold transition-colors" href="#">
+<svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>账号管理</span>
+</a>
+</nav>
+</div>
+<!-- Bottom Security Status Indicator -->
+<div class="p-3 m-3 bg-slate-50 border border-slate-200/80 rounded-lg">
+<div class="flex items-center space-x-2">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+</span>
+<span class="text-[11px] font-semibold text-slate-700">API只读安全模式</span>
+</div>
+<p class="text-[10px] text-slate-400 mt-1 leading-normal">隔离网关正常运行，全量请求均经脱敏过滤</p>
+</div>
+</aside>
+<!-- END: LeftSidebar -->
+<!-- BEGIN: MainContentArea -->
+<div class="flex-1 flex flex-col min-w-0 overflow-hidden relative">
+<!-- BEGIN: TopHeader -->
+<header class="h-14 bg-white border-b border-slate-200 flex items-center justify-between px-6 shrink-0 z-10">
+<!-- Breadcrumb -->
+<nav class="flex items-center space-x-2 text-xs text-slate-500">
+<span class="hover:text-slate-800 cursor-pointer">首页</span>
+<span class="text-slate-300">/</span>
+<span class="hover:text-slate-800 cursor-pointer">系统与安全</span>
+<span class="text-slate-300">/</span>
+<span class="text-slate-900 font-medium">账号管理</span>
+</nav>
+<!-- Right System Indicators & Profile -->
+<div class="flex items-center space-x-4">
+<!-- KMS Tag -->
+<div class="flex items-center space-x-1.5 px-2.5 py-1 bg-emerald-50 border border-emerald-200/60 rounded-full text-emerald-700 text-xs font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+<span>生产环境 · KMS隔离</span>
+</div>
+<!-- Documentation Link -->
+<a class="flex items-center space-x-1 text-slate-500 hover:text-slate-800 text-xs transition-colors" href="#">
+<svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path>
+</svg>
+<span>帮助文档</span>
+</a>
+<!-- Notification Bell -->
+<button class="relative p-1.5 text-slate-400 hover:text-slate-600 rounded-md transition-colors" title="通知消息">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path>
+</svg>
+<span class="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full ring-2 ring-white"></span>
+</button>
+<div class="h-4 w-[1px] bg-slate-200"></div>
+<!-- User Badge -->
+<div class="flex items-center space-x-2">
+<div class="w-7 h-7 rounded-full bg-blue-600 text-white flex items-center justify-center text-xs font-semibold shadow-inner">
+              陈
+            </div>
+<div class="text-xs">
+<span class="font-medium text-slate-800">陈工</span>
+<span class="text-slate-400 ml-1">(系统管理员)</span>
+</div>
+</div>
+</div>
+</header>
+<!-- END: TopHeader -->
+<!-- Scrollable Inner View Area -->
+<main class="flex-1 overflow-y-auto p-6 space-y-6">
+<!-- Title & Primary Actions -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div>
+<h1 class="text-xl font-bold text-slate-900 tracking-tight">账号管理</h1>
+<p class="text-xs text-slate-500 mt-1">
+              纳管企业内部访问大模型与数据中台的用户账户，严格遵守无跨账户会话审计原则。
+            </p>
+</div>
+<div class="flex items-center space-x-3 shrink-0">
+<button class="px-3.5 py-1.5 bg-white border border-slate-200 rounded-lg text-xs font-medium text-slate-700 hover:bg-slate-50 shadow-sm flex items-center space-x-1.5 transition-colors">
+<svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>批量安全审计</span>
+</button>
+<button class="px-3.5 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-medium shadow-sm shadow-blue-500/20 flex items-center space-x-1.5 transition-colors">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M12 4v16m8-8H4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>新建用户</span>
+</button>
+</div>
+</div>
+<!-- Metric Stat Cards -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<!-- Card 1 -->
+<div class="bg-white border border-slate-200/80 rounded-xl p-4 shadow-sm">
+<div class="flex items-center justify-between">
+<span class="text-xs font-medium text-slate-500">纳管账户总数</span>
+<span class="p-1.5 bg-blue-50 rounded-lg text-blue-600">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</span>
+</div>
+<div class="mt-2 flex items-baseline space-x-2">
+<span class="text-2xl font-bold text-slate-900 tracking-tight">18</span>
+<span class="text-xs text-slate-500">个已登记</span>
+</div>
+<div class="mt-2 flex items-center text-xs text-slate-500 space-x-2">
+<span class="inline-flex items-center text-emerald-600 font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-1"></span> 16 正常运行
+              </span>
+<span class="text-slate-300">·</span>
+<span class="inline-flex items-center text-slate-400">
+<span class="w-1.5 h-1.5 rounded-full bg-slate-300 mr-1"></span> 2 已停用
+              </span>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-white border border-slate-200/80 rounded-xl p-4 shadow-sm">
+<div class="flex items-center justify-between">
+<span class="text-xs font-medium text-slate-500">活跃安全会话</span>
+<span class="p-1.5 bg-emerald-50 rounded-lg text-emerald-600">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M13 10V3L4 14h7v7l9-11h-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</span>
+</div>
+<div class="mt-2 flex items-baseline space-x-2">
+<span class="text-2xl font-bold text-slate-900 tracking-tight">4</span>
+<span class="text-xs text-slate-500">个在线会话</span>
+</div>
+<div class="mt-2 flex items-center text-xs text-slate-500">
+<span class="text-emerald-600 font-medium">100% 动态凭据挂载</span>
+<span class="text-slate-400 ml-1">(实时鉴权中)</span>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-white border border-slate-200/80 rounded-xl p-4 shadow-sm">
+<div class="flex items-center justify-between">
+<span class="text-xs font-medium text-slate-500">凭证与密钥托管</span>
+<span class="p-1.5 bg-purple-50 rounded-lg text-purple-600">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</span>
+</div>
+<div class="mt-2 flex items-baseline space-x-2">
+<span class="text-2xl font-bold text-slate-900 tracking-tight">100%</span>
+<span class="text-xs text-slate-500">全托管</span>
+</div>
+<div class="mt-2 flex items-center text-xs text-slate-500">
+<span class="text-purple-600 font-medium">KMS Envelope 加密保护</span>
+<span class="text-slate-400 ml-1">· 无明文泄漏风险</span>
+</div>
+</div>
+</div>
+<!-- Filter & Search Toolbar -->
+<div class="bg-white border border-slate-200 rounded-xl p-3 shadow-sm flex flex-col md:flex-row items-center justify-between gap-3">
+<div class="flex flex-wrap items-center gap-2 w-full md:w-auto">
+<!-- Search Input -->
+<div class="relative w-full sm:w-64">
+<span class="absolute inset-y-0 left-0 flex items-center pl-2.5 pointer-events-none text-slate-400">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</span>
+<input class="w-full pl-8 pr-3 py-1.5 text-xs bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-colors placeholder:text-slate-400" placeholder="搜索用户名、姓名、工号..." type="text"/>
+</div>
+<!-- Role Select Filter -->
+<select class="py-1.5 px-3 text-xs bg-slate-50 border border-slate-200 rounded-lg text-slate-600 focus:bg-white focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-colors">
+<option value="">全部系统角色</option>
+<option value="admin">系统管理员</option>
+<option value="analyst">数据分析师</option>
+<option value="user">普通用户</option>
+<option value="auditor">安全审计员</option>
+</select>
+<!-- Status Select Filter -->
+<select class="py-1.5 px-3 text-xs bg-slate-50 border border-slate-200 rounded-lg text-slate-600 focus:bg-white focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-colors">
+<option value="">全部状态 (18)</option>
+<option value="active">正常运行 (16)</option>
+<option value="disabled">已停用 (2)</option>
+</select>
+</div>
+<!-- Secondary Toolbar Actions -->
+<div class="flex items-center space-x-2 w-full md:w-auto justify-end">
+<button class="px-3 py-1.5 bg-white border border-slate-200 rounded-lg text-xs font-medium text-slate-600 hover:bg-slate-50 transition-colors flex items-center space-x-1">
+<svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>导出审计日志</span>
+</button>
+<button class="p-1.5 bg-white border border-slate-200 rounded-lg text-slate-500 hover:bg-slate-50 transition-colors" title="刷新表格">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+</div>
+<!-- User Accounts Table -->
+<div class="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden">
+<table class="w-full text-left text-xs border-collapse">
+<thead>
+<tr class="bg-slate-50/75 border-b border-slate-200 text-slate-500 font-medium select-none">
+<th class="py-3 px-4 w-10 text-center">
+<input class="rounded border-slate-300 text-blue-600 focus:ring-blue-500 h-3.5 w-3.5" type="checkbox"/>
+</th>
+<th class="py-3 px-4 font-semibold">用户名 / 工号</th>
+<th class="py-3 px-4 font-semibold">真实姓名</th>
+<th class="py-3 px-4 font-semibold">所属部门</th>
+<th class="py-3 px-4 font-semibold">系统角色</th>
+<th class="py-3 px-4 font-semibold">授权数据范围</th>
+<th class="py-3 px-4 font-semibold">账号状态</th>
+<th class="py-3 px-4 font-semibold">最近登录记录</th>
+<th class="py-3 px-4 font-semibold text-right">管理操作</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100">
+<!-- Row 1: Current user (Admin) -->
+<tr class="hover:bg-slate-50/50 transition-colors">
+<td class="py-3 px-4 text-center">
+<input class="rounded border-slate-200 bg-slate-100 text-blue-600 h-3.5 w-3.5 cursor-not-allowed" disabled="" type="checkbox"/>
+</td>
+<td class="py-3 px-4">
+<div class="font-mono font-medium text-slate-900">chen.sec</div>
+<div class="text-[11px] text-slate-400">ID: EMP-0881</div>
+</td>
+<td class="py-3 px-4 font-medium text-slate-900">陈工 (当前用户)</td>
+<td class="py-3 px-4 text-slate-600">基础架构部 / 安全与合规组</td>
+<td class="py-3 px-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-purple-50 text-purple-700 border border-purple-200/60">
+                    系统管理员
+                  </span>
+</td>
+<td class="py-3 px-4 text-slate-600">
+<span class="font-mono text-slate-700 font-medium">全量数据资产</span> (Global)
+                </td>
+<td class="py-3 px-4">
+<span class="inline-flex items-center space-x-1 text-emerald-600 font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+<span>活跃运行中</span>
+</span>
+</td>
+<td class="py-3 px-4">
+<div class="text-slate-700 font-mono text-[11px]">刚刚 (IP: 10.24.12.8)</div>
+<div class="text-slate-400 text-[10px]">会话有效 · KMS Token</div>
+</td>
+<td class="py-3 px-4 text-right space-x-2">
+<button class="text-blue-600 hover:text-blue-800 font-medium transition-colors">配置权限</button>
+<span class="text-slate-300">|</span>
+<span class="text-slate-300 cursor-not-allowed" title="无法停用本人账号">停用</span>
+</td>
+</tr>
+<!-- Row 2: Selected Target (Wang - Ops) -->
+<tr class="bg-blue-50/40 border-l-2 border-l-blue-600 transition-colors">
+<td class="py-3 px-4 text-center">
+<input checked="" class="rounded border-blue-500 text-blue-600 focus:ring-blue-500 h-3.5 w-3.5" type="checkbox"/>
+</td>
+<td class="py-3 px-4">
+<div class="font-mono font-semibold text-blue-700">wang.ops</div>
+<div class="text-[11px] text-slate-400">ID: EMP-0219</div>
+</td>
+<td class="py-3 px-4 font-semibold text-slate-900">王运维</td>
+<td class="py-3 px-4 text-slate-600">运维中心 / 核心SRE组</td>
+<td class="py-3 px-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-blue-50 text-blue-700 border border-blue-200/60">
+                    系统管理员
+                  </span>
+</td>
+<td class="py-3 px-4 text-slate-600">
+<span class="text-slate-800">生产运维库 + ES集群 + 故障SOP</span>
+</td>
+<td class="py-3 px-4">
+<span class="inline-flex items-center space-x-1 text-emerald-600 font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+<span>活跃会话中</span>
+</span>
+</td>
+<td class="py-3 px-4">
+<div class="text-slate-700 font-mono text-[11px]">10分钟前 (IP: 10.24.12.33)</div>
+<div class="text-slate-400 text-[10px]">MAC: 7A:91:DE:3C:44</div>
+</td>
+<td class="py-3 px-4 text-right space-x-2 font-medium">
+<button class="text-blue-600 hover:text-blue-800 transition-colors">配置</button>
+<span class="text-slate-300">|</span>
+<button class="text-red-600 hover:text-red-700 font-semibold transition-colors">停用账号</button>
+</td>
+</tr>
+<!-- Row 3: Li - Analyst -->
+<tr class="hover:bg-slate-50/50 transition-colors">
+<td class="py-3 px-4 text-center">
+<input class="rounded border-slate-300 text-blue-600 focus:ring-blue-500 h-3.5 w-3.5" type="checkbox"/>
+</td>
+<td class="py-3 px-4">
+<div class="font-mono font-medium text-slate-900">li.data</div>
+<div class="text-[11px] text-slate-400">ID: EMP-0542</div>
+</td>
+<td class="py-3 px-4 font-medium text-slate-900">李分析</td>
+<td class="py-3 px-4 text-slate-600">商业智能中心 / 增长分析组</td>
+<td class="py-3 px-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-slate-100 text-slate-700 border border-slate-200">
+                    普通用户
+                  </span>
+</td>
+<td class="py-3 px-4 text-slate-600">
+<span>营销数仓 ClickHouse (只读)</span>
+</td>
+<td class="py-3 px-4">
+<span class="inline-flex items-center space-x-1 text-slate-500">
+<span class="w-1.5 h-1.5 rounded-full bg-slate-300"></span>
+<span>离线 (无活动)</span>
+</span>
+</td>
+<td class="py-3 px-4">
+<div class="text-slate-700 font-mono text-[11px]">昨日 18:40 (IP: 10.24.16.89)</div>
+<div class="text-slate-400 text-[10px]">无持续会话</div>
+</td>
+<td class="py-3 px-4 text-right space-x-2">
+<button class="text-blue-600 hover:text-blue-800 font-medium transition-colors">配置</button>
+<span class="text-slate-300">|</span>
+<button class="text-slate-600 hover:text-red-600 transition-colors">停用</button>
+</td>
+</tr>
+<!-- Row 4: Qian - Risk -->
+<tr class="hover:bg-slate-50/50 transition-colors">
+<td class="py-3 px-4 text-center">
+<input class="rounded border-slate-300 text-blue-600 focus:ring-blue-500 h-3.5 w-3.5" type="checkbox"/>
+</td>
+<td class="py-3 px-4">
+<div class="font-mono font-medium text-slate-900">qian.risk</div>
+<div class="text-[11px] text-slate-400">ID: EMP-0763</div>
+</td>
+<td class="py-3 px-4 font-medium text-slate-900">钱风控</td>
+<td class="py-3 px-4 text-slate-600">风险治理部 / 贷后审计组</td>
+<td class="py-3 px-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-amber-50 text-amber-700 border border-amber-200/60">
+                    安全审计员
+                  </span>
+</td>
+<td class="py-3 px-4 text-slate-600">
+<span>风控规则库 + 审计日志全文检索</span>
+</td>
+<td class="py-3 px-4">
+<span class="inline-flex items-center space-x-1 text-emerald-600 font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+<span>活跃运行中</span>
+</span>
+</td>
+<td class="py-3 px-4">
+<div class="text-slate-700 font-mono text-[11px]">今日 09:12 (IP: 10.24.18.22)</div>
+<div class="text-slate-400 text-[10px]">会话有效</div>
+</td>
+<td class="py-3 px-4 text-right space-x-2">
+<button class="text-blue-600 hover:text-blue-800 font-medium transition-colors">配置</button>
+<span class="text-slate-300">|</span>
+<button class="text-slate-600 hover:text-red-600 transition-colors">停用</button>
+</td>
+</tr>
+<!-- Row 5: Sun - Biz (Disabled) -->
+<tr class="bg-slate-50/40 text-slate-400 transition-colors">
+<td class="py-3 px-4 text-center">
+<input class="rounded border-slate-300 text-blue-600 focus:ring-blue-500 h-3.5 w-3.5" type="checkbox"/>
+</td>
+<td class="py-3 px-4">
+<div class="font-mono font-medium text-slate-400">sun.biz</div>
+<div class="text-[11px] text-slate-400">ID: EMP-0104</div>
+</td>
+<td class="py-3 px-4 font-medium text-slate-500">孙商务</td>
+<td class="py-3 px-4 text-slate-400">华东业务拓展部</td>
+<td class="py-3 px-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-slate-100 text-slate-400 border border-slate-200">
+                    普通用户
+                  </span>
+</td>
+<td class="py-3 px-4 text-slate-400">
+<span>已收回全部授权</span>
+</td>
+<td class="py-3 px-4">
+<span class="inline-flex items-center space-x-1 text-slate-400 font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-slate-300"></span>
+<span>已停用 (冻结)</span>
+</span>
+</td>
+<td class="py-3 px-4">
+<div class="font-mono text-[11px] text-slate-400">2024-03-12 14:02</div>
+<div class="text-[10px] text-slate-400">已吊销全部凭证</div>
+</td>
+<td class="py-3 px-4 text-right space-x-2">
+<button class="text-blue-600 hover:text-blue-800 font-medium transition-colors">重新启用</button>
+<span class="text-slate-200">|</span>
+<button class="text-slate-400 hover:text-slate-600 transition-colors">审计归档</button>
+</td>
+</tr>
+</tbody>
+</table>
+<!-- Pagination Footer -->
+<div class="px-4 py-3 bg-slate-50/50 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-500">
+<div>显示第 1 至 5 条，共 18 条记录</div>
+<div class="flex items-center space-x-1.5">
+<button class="px-2.5 py-1 bg-white border border-slate-200 rounded text-slate-300 cursor-not-allowed" disabled="">上一页</button>
+<button class="px-2.5 py-1 bg-blue-600 border border-blue-600 rounded text-white font-medium">1</button>
+<button class="px-2.5 py-1 bg-white border border-slate-200 rounded text-slate-600 hover:bg-slate-50">2</button>
+<button class="px-2.5 py-1 bg-white border border-slate-200 rounded text-slate-600 hover:bg-slate-50">3</button>
+<button class="px-2.5 py-1 bg-white border border-slate-200 rounded text-slate-600 hover:bg-slate-50">下一页</button>
+</div>
+</div>
+</div>
+<!-- Compliance & Security Statement Banner -->
+<div class="p-3.5 bg-blue-50/70 border border-blue-200/80 rounded-xl flex items-start space-x-3">
+<div class="shrink-0 mt-0.5 text-blue-600">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<div class="text-xs space-y-1 leading-relaxed">
+<span class="font-semibold text-slate-900">企业数据隔离与特权审计规范声明：</span>
+<p class="text-slate-600">
+              平台严格遵循零信任（Zero Trust）与无跨账户会话审计准则。任何管理员角色均无权查看他人私有会话内容及临时上下文。账户停用后，其签发的短期 JWT 凭证将实时通过 KMS 吊销清单广播至各计算单元。
+            </p>
+</div>
+</div>
+</main>
+<!-- END: MainContentArea -->
+<!-- BEGIN: DisableAccountConfirmationModal -->
+<!-- Backdrop & Centered Modal Dialog -->
+<div class="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center p-4">
+<!-- Dialog Container -->
+<div class="w-full max-w-[520px] bg-white rounded-xl shadow-2xl border border-slate-200 p-6 flex flex-col space-y-5 animate-in fade-in zoom-in-95 duration-150">
+<!-- Header with Warning Icon -->
+<div class="flex items-start space-x-3.5">
+<div class="w-10 h-10 rounded-full bg-red-50 border border-red-100 flex items-center justify-center text-red-600 shrink-0">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<div>
+<h2 class="text-base font-bold text-slate-900">停用账号确认：wang.ops (王运维)？</h2>
+<p class="text-xs text-slate-500 mt-0.5">工号：EMP-0219 · 所属部门：运维中心 / 核心SRE组</p>
+</div>
+</div>
+<!-- Warning Notice Box -->
+<div class="bg-amber-50 border border-amber-200 rounded-lg p-3 text-xs text-amber-800 space-y-1.5 leading-relaxed">
+<div class="flex items-center space-x-1.5 font-semibold text-amber-900">
+<svg class="w-3.5 h-3.5 shrink-0" fill="currentColor" viewbox="0 0 20 20">
+<path clip-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" fill-rule="evenodd"></path>
+</svg>
+<span>账号停用影响说明</span>
+</div>
+<p>1. 停用后，该账号将<strong>立即无法登录</strong>智能分析平台，进行中的所有模型调度与会话任务将安全终止。</p>
+<p>2. 该账号历史生成的私有会话和已导出报表仍将按合规归档保留，<strong>不会被物理删除</strong>。未来可随时重新启用。</p>
+</div>
+<!-- Impact Scope Verification -->
+<div class="bg-slate-50 rounded-lg border border-slate-200/80 p-3 space-y-2 text-xs">
+<span class="font-semibold text-slate-700 block text-[11px] uppercase tracking-wider">即时影响范围核验</span>
+<div class="flex items-center justify-between border-b border-slate-200/60 pb-1.5">
+<span class="text-slate-500">受影响系统角色：</span>
+<span class="font-medium text-slate-800">系统管理员 (权限将立刻收回)</span>
+</div>
+<div class="flex items-center justify-between border-b border-slate-200/60 pb-1.5">
+<span class="text-slate-500">关联数据源与知识库：</span>
+<span class="font-medium text-slate-800">全局 MySQL 4个 / ES 集群 2个 / 内部知识库全部</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-slate-500">活跃会话 Token 状态：</span>
+<span class="font-mono text-red-600 font-medium">挂起并强制失效 (Session Revocation)</span>
+</div>
+</div>
+<!-- Acknowledgment Checkbox -->
+<div class="flex items-start space-x-2 pt-1">
+<input checked="" class="mt-0.5 rounded border-slate-300 text-red-600 focus:ring-red-500 h-4 w-4 shrink-0" id="ack_audit" type="checkbox"/>
+<label class="text-xs text-slate-600 select-none leading-tight cursor-pointer" for="ack_audit">
+              我已核对该操作对运维协同的影响，并知悉此项变更将作为重要安全事件同步记入安全合规审计流。
+            </label>
+</div>
+<!-- Action Buttons -->
+<div class="flex items-center justify-end space-x-3 pt-3 border-t border-slate-100">
+<button class="px-4 py-2 bg-white border border-slate-200 rounded-lg text-xs font-medium text-slate-700 hover:bg-slate-50 transition-colors shadow-sm">
+              取消
+            </button>
+<button class="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg text-xs font-medium shadow-sm shadow-red-500/25 flex items-center space-x-1.5 transition-colors">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>确认停用账号</span>
+</button>
+</div>
+</div>
+</div>
+<!-- END: DisableAccountConfirmationModal -->
+</div>
+<!-- END: MainContentArea -->
+</div>
+<!-- END: MainContainer -->
+</body></html>

@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter,+-apple-system,+BlinkMacSystemFont,+'PingFang+SC',+sans-serif:wght@100..900&display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"surface-container-lowest":"#ffffff","inverse-on-surface":"#eaf1ff","code-bg":"#F9FAFB","on-tertiary-fixed":"#360f00","surface-container-high":"#dee9fc","on-tertiary-fixed-variant":"#7d2d00","status-neutral":"#6B7280","error":"#ba1a1a","primary-container":"#2563eb","on-background":"#121c2a","surface-dim":"#d0dbed","tertiary-fixed":"#ffdbcd","inverse-primary":"#b4c5ff","on-primary-fixed-variant":"#003ea8","status-neutral-bg":"#F3F4F6","border-subtle":"#E5E7EB","surface-variant":"#d9e3f6","status-warning":"#F59E0B","surface-container-highest":"#d9e3f6","tertiary-container":"#bc4800","on-primary":"#ffffff","surface":"#f8f9ff","status-processing-bg":"#EFF6FF","on-primary-container":"#eeefff","surface-container":"#e6eeff","secondary-fixed":"#dce1ff","primary-tint":"#EFF6FF","on-primary-fixed":"#00174b","surface-tint":"#0053db","on-error":"#ffffff","surface-container-low":"#eff4ff","on-tertiary-container":"#ffede6","text-primary":"#1F2937","inverse-surface":"#27313f","status-success":"#10B981","on-secondary-fixed-variant":"#0039b5","on-secondary":"#ffffff","text-secondary":"#6B7280","outline":"#737686","on-surface":"#121c2a","surface-card":"#FFFFFF","status-warning-bg":"#FFFBEB","error-container":"#ffdad6","on-tertiary":"#ffffff","canvas-bg":"#F7F8FA","tertiary-fixed-dim":"#ffb596","status-processing":"#3B82F6","status-danger-bg":"#FEF2F2","on-secondary-container":"#fffbff","background":"#f8f9ff","primary":"#004ac6","primary-fixed":"#dbe1ff","outline-variant":"#c3c6d7","secondary-fixed-dim":"#b7c4ff","on-surface-variant":"#434655","tertiary":"#943700","border-focus":"#2563EB","on-error-container":"#93000a","status-success-bg":"#ECFDF5","on-secondary-fixed":"#001551","primary-fixed-dim":"#b4c5ff","surface-bright":"#f8f9ff","status-danger":"#EF4444","text-muted":"#9CA3AF","secondary-container":"#4069f2","secondary":"#1d4ed8"},borderRadius:{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},spacing:{"margin":"1.5rem","space-lg":"1.25rem","space-2xl":"2rem","margin-desktop":"2rem","space-sm":"0.5rem","space-xs":"0.25rem","space-xl":"1.5rem","space-md":"1rem","gutter":"1.25rem","gutter-desktop":"1.5rem"},fontFamily:{"headline-md":["\"Inter, -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif\""],"display":["\"Inter, -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif\""],"headline-lg":["\"Inter, -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif\""],"label-md":["\"Inter, -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif\""],"label-sm":["\"Inter, -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif\""],"body-md":["\"Inter, -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif\""],"code-sm":["\"JetBrains Mono, Menlo, Monaco, Consolas, monospace\""],"caption":["\"Inter, -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif\""],"code-md":["\"JetBrains Mono, Menlo, Monaco, Consolas, monospace\""],"body-lg":["\"Inter, -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif\""],"body-sm":["\"Inter, -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif\""]},fontSize:{"headline-md":["16px",{lineHeight:"24px",fontWeight:"600"}],"display":["24px",{lineHeight:"32px",letterSpacing:"-0.02em",fontWeight:"700"}],"headline-lg":["20px",{lineHeight:"28px",letterSpacing:"-0.01em",fontWeight:"600"}],"label-md":["14px",{lineHeight:"20px",fontWeight:"500"}],"label-sm":["12px",{lineHeight:"16px",fontWeight:"500"}],"body-md":["14px",{lineHeight:"20px",fontWeight:"400"}],"code-sm":["11px",{lineHeight:"16px",fontWeight:"500"}],"caption":["12px",{lineHeight:"16px",fontWeight:"400"}],"code-md":["13px",{lineHeight:"20px",fontWeight:"400"}],"body-lg":["15px",{lineHeight:"22px",fontWeight:"400"}],"body-sm":["13px",{lineHeight:"18px",fontWeight:"400"}]}}}}</script></head><body class="bg-surface font-body-md text-body-md text-on-surface"><aside class="fixed left-0 top-0 h-full w-[220px] bg-surface-container-lowest z-50 flex flex-col justify-between shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex flex-col"><div class="h-14 px-space-md flex items-center justify-between bg-surface-container-low"><div class="flex items-center gap-space-sm"><div class="w-7 h-7 rounded-lg bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">neurology</span></div><div class="flex flex-col"><span class="font-headline-md text-body-sm font-semibold text-text-primary leading-tight">智能分析平台</span><span class="font-caption text-caption text-text-secondary leading-none">大模型与数据中台</span></div></div><span class="font-code-sm text-code-sm px-1.5 py-0.5 rounded bg-primary-tint text-primary font-medium">v1.0</span></div><nav class="flex flex-col gap-1 p-space-sm" data-active-classes="bg-status-processing-bg text-primary font-label-md"><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="ai-qa" href="#"><span class="material-symbols-outlined text-[20px]">chat</span><span class="font-label-md text-label-md">智能问答</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="model-management" href="#"><span class="material-symbols-outlined text-[20px]">memory</span><span class="font-label-md text-label-md">模型管理</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="datasource-management" href="#"><span class="material-symbols-outlined text-[20px]">database</span><span class="font-label-md text-label-md">数据源管理</span></a><a aria-current="page" class="flex items-center gap-space-sm px-space-md py-2.5 rounded-lg transition-colors bg-status-processing-bg text-primary font-label-md" data-path="knowledge-base" href="#"><span class="material-symbols-outlined text-[20px]">folder_supervised</span><span class="font-label-md text-label-md">知识库</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="account-management" href="#"><span class="material-symbols-outlined text-[20px]">manage_accounts</span><span class="font-label-md text-label-md">账号管理</span></a></nav></div><div class="p-space-md bg-canvas-bg m-space-sm rounded-lg flex flex-col gap-1"><div class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-status-success animate-pulse"></span><span class="font-caption text-caption text-text-primary font-medium">API只读安全模式</span></div><p class="font-caption text-caption text-text-muted leading-tight">隔离网关正常运行</p></div></aside><div class="pl-[220px]"><header class="fixed top-0 left-[220px] right-0 h-14 bg-surface-container-lowest/90 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-space-xl"><div class="flex items-center gap-space-sm text-text-secondary"><span class="material-symbols-outlined text-[18px]">grid_view</span><span class="font-caption text-caption">/</span><span class="font-label-sm text-label-sm text-text-primary font-medium">知识库</span><span class="font-caption text-caption">/</span><span class="font-label-sm text-label-sm text-text-secondary">知识库列表</span></div><div class="flex items-center gap-space-lg"><div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-status-success-bg text-status-success font-label-sm text-label-sm"><span class="w-1.5 h-1.5 rounded-full bg-status-success"></span><span>生产环境 · KMS隔离</span></div><a class="inline-flex items-center gap-1 text-text-secondary hover:text-text-primary transition-colors font-label-sm text-label-sm" href="#"><span class="material-symbols-outlined text-[18px]">help_outline</span><span>帮助文档</span></a><button class="relative p-1.5 text-text-secondary hover:text-text-primary transition-colors rounded-lg hover:bg-surface-container-high"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-1 right-1 w-2 h-2 bg-error rounded-full"></span></button><div class="flex items-center gap-space-sm pl-space-sm"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div><div class="flex flex-col text-left"><span class="font-label-sm text-label-sm font-medium text-text-primary leading-tight">陈工 (数据研发)</span><span class="font-caption text-caption text-text-muted leading-tight">系统管理员</span></div></div></div></header><main class="w-full pt-14 px-space-xl py-space-xl bg-canvas-bg min-h-screen"><div class="flex flex-col w-full gap-space-xl">
+<!-- 页面头部区域 -->
+<div class="flex flex-col gap-space-md">
+<div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-space-md">
+<div class="flex flex-col">
+<div class="flex items-center gap-space-sm">
+<h1 class="font-display text-display text-text-primary">知识库管理</h1>
+<span class="font-code-sm text-code-sm text-text-secondary bg-surface-container-high px-2 py-0.5 rounded uppercase tracking-wider font-semibold">RAG Knowledge Bases</span>
+</div>
+<p class="font-body-md text-body-md text-text-secondary mt-1">管理用于业务问答检索增强 (RAG) 的文档知识库，配置向量切片与混合检索召回策略</p>
+</div>
+<div class="flex items-center gap-space-sm self-start lg:self-auto">
+<button class="h-9 px-3.5 rounded-lg bg-surface-card hover:bg-surface-container-high text-text-primary shadow-sm flex items-center gap-1.5 transition-colors font-label-md text-label-md" id="btn-embedding-config">
+<span class="material-symbols-outlined text-[18px] text-text-secondary">settings_suggest</span>
+<span>配置嵌入模型 (Embedding)</span>
+</button>
+<button class="h-9 px-4 rounded-lg bg-primary hover:bg-secondary text-on-primary shadow-sm flex items-center gap-1.5 transition-all font-label-md text-label-md" id="btn-create-kb">
+<span class="material-symbols-outlined text-[18px]">add</span>
+<span>新建知识库</span>
+</button>
+</div>
+</div>
+<!-- 顶部统计看板卡片组 (4列) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-space-md">
+<!-- 指标 1 -->
+<div class="bg-surface-card rounded-xl p-space-lg shadow-sm flex flex-col justify-between relative overflow-hidden group">
+<div class="absolute right-0 top-0 w-24 h-24 bg-primary/5 rounded-bl-full pointer-events-none transition-transform group-hover:scale-110"></div>
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-text-secondary">知识库总数</span>
+<span class="w-8 h-8 rounded-lg bg-primary-tint text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">folder_special</span>
+</span>
+</div>
+<div class="mt-3 flex items-baseline gap-2">
+<span class="font-display text-display text-text-primary font-bold">4</span>
+<span class="font-caption text-caption text-text-secondary">个知识库</span>
+</div>
+<div class="mt-2 flex items-center gap-2 font-caption text-caption">
+<span class="inline-flex items-center gap-1 text-status-success font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-status-success"></span>3 已就绪
+          </span>
+<span class="text-text-muted">·</span>
+<span class="inline-flex items-center gap-1 text-status-warning font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-status-warning"></span>1 向量重建中
+          </span>
+</div>
+</div>
+<!-- 指标 2 -->
+<div class="bg-surface-card rounded-xl p-space-lg shadow-sm flex flex-col justify-between relative overflow-hidden group">
+<div class="absolute right-0 top-0 w-24 h-24 bg-secondary-container/5 rounded-bl-full pointer-events-none transition-transform group-hover:scale-110"></div>
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-text-secondary">纳管文档总量</span>
+<span class="w-8 h-8 rounded-lg bg-status-processing-bg text-status-processing flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">description</span>
+</span>
+</div>
+<div class="mt-3 flex items-baseline gap-2">
+<span class="font-display text-display text-text-primary font-bold">1,286</span>
+<span class="font-caption text-caption text-text-secondary">份文件</span>
+</div>
+<div class="mt-2 flex items-center justify-between font-caption text-caption">
+<span class="text-text-secondary">解析成功率</span>
+<div class="flex items-center gap-1.5">
+<div class="w-16 h-1.5 bg-surface-container-high rounded-full overflow-hidden">
+<div class="bg-status-success h-full rounded-full" style="width: 99.2%"></div>
+</div>
+<span class="font-code-sm text-code-sm font-semibold text-status-success">99.2%</span>
+</div>
+</div>
+</div>
+<!-- 指标 3 -->
+<div class="bg-surface-card rounded-xl p-space-lg shadow-sm flex flex-col justify-between relative overflow-hidden group">
+<div class="absolute right-0 top-0 w-24 h-24 bg-primary/5 rounded-bl-full pointer-events-none transition-transform group-hover:scale-110"></div>
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-text-secondary">向量切片总量 (Chunks)</span>
+<span class="w-8 h-8 rounded-lg bg-surface-container-high text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">splitscreen</span>
+</span>
+</div>
+<div class="mt-3 flex items-baseline gap-2">
+<span class="font-display text-display text-text-primary font-bold">48,520</span>
+<span class="font-caption text-caption text-text-secondary">段切片</span>
+</div>
+<div class="mt-2 flex items-center gap-1.5 font-caption text-caption text-text-secondary">
+<span>平均分块长度:</span>
+<span class="font-code-sm text-code-sm text-text-primary font-medium">420 字符</span>
+<span class="text-text-muted">·</span>
+<span>Overlap: 12%</span>
+</div>
+</div>
+<!-- 指标 4 -->
+<div class="bg-surface-card rounded-xl p-space-lg shadow-sm flex flex-col justify-between relative overflow-hidden group">
+<div class="absolute right-0 top-0 w-24 h-24 bg-status-success-bg/30 rounded-bl-full pointer-events-none transition-transform group-hover:scale-110"></div>
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-text-secondary">独立嵌入模型 (Embedding)</span>
+<span class="w-8 h-8 rounded-lg bg-status-success-bg text-status-success flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">hub</span>
+</span>
+</div>
+<div class="mt-3 flex items-center gap-2">
+<span class="font-code-md text-code-md font-semibold text-text-primary truncate">text-embedding-3-l</span>
+</div>
+<div class="mt-2 flex items-center justify-between font-caption text-caption text-text-secondary">
+<span class="font-code-sm text-code-sm">1536 维</span>
+<span class="px-1.5 py-0.5 rounded bg-surface-container-high text-primary font-code-sm text-code-sm">备用: BGE-M3 (1024d)</span>
+</div>
+</div>
+</div>
+</div>
+<!-- 筛选与检索栏 -->
+<div class="bg-surface-card rounded-xl p-space-md shadow-sm flex flex-col lg:flex-row lg:items-center justify-between gap-space-md">
+<div class="flex flex-1 flex-wrap items-center gap-space-sm">
+<!-- 搜索框 -->
+<div class="relative flex-1 min-w-[260px] max-w-[420px]">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[18px] text-text-muted pointer-events-none">search</span>
+<input class="w-full h-9 pl-9 pr-3 rounded-lg bg-canvas-bg text-text-primary placeholder:text-text-muted font-body-sm text-body-sm focus:outline-none focus:bg-surface-card focus:shadow-[0_0_0_2px_rgba(37,99,235,0.2)] transition-all" id="kb-search-input" placeholder="搜索知识库名称、编码或业务描述..." type="text"/>
+</div>
+<!-- 嵌入模型筛选 -->
+<div class="relative">
+<select class="h-9 pl-3 pr-8 rounded-lg bg-canvas-bg text-text-primary font-body-sm text-body-sm appearance-none focus:outline-none cursor-pointer hover:bg-surface-container-high transition-colors" id="filter-model">
+<option value="all">全部嵌入模型 (All Models)</option>
+<option value="openai">text-embedding-3-large (1536d)</option>
+<option value="bge">bge-m3 (1024d)</option>
+<option value="ada">text-embedding-ada-002</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-[16px] text-text-secondary pointer-events-none">expand_more</span>
+</div>
+<!-- 状态筛选 -->
+<div class="relative">
+<select class="h-9 pl-3 pr-8 rounded-lg bg-canvas-bg text-text-primary font-body-sm text-body-sm appearance-none focus:outline-none cursor-pointer hover:bg-surface-container-high transition-colors" id="filter-status">
+<option value="all">全部状态 (All Status)</option>
+<option value="ready">● 已就绪 (Ready)</option>
+<option value="rebuilding">⚡ 向量重建中 (Rebuilding)</option>
+<option value="warning">⚠ 部分文档异常 (Warning)</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-[16px] text-text-secondary pointer-events-none">expand_more</span>
+</div>
+<!-- 业务领域筛选 -->
+<div class="relative">
+<select class="h-9 pl-3 pr-8 rounded-lg bg-canvas-bg text-text-primary font-body-sm text-body-sm appearance-none focus:outline-none cursor-pointer hover:bg-surface-container-high transition-colors" id="filter-domain">
+<option value="all">全业务领域 (Domains)</option>
+<option value="pay">金融支付</option>
+<option value="ops">SRE运维</option>
+<option value="open">开放生态</option>
+<option value="cs">客户支持</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-[16px] text-text-secondary pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- 右侧工具 -->
+<div class="flex items-center gap-space-md justify-between lg:justify-end">
+<span class="font-caption text-caption text-text-secondary">共 <strong class="text-text-primary font-semibold">4</strong> 个企业知识库</span>
+<button class="h-9 w-9 rounded-lg bg-canvas-bg hover:bg-surface-container-high text-text-secondary hover:text-text-primary flex items-center justify-center transition-colors" id="btn-refresh" title="刷新知识库状态">
+<span class="material-symbols-outlined text-[18px]">refresh</span>
+</button>
+</div>
+</div>
+<!-- 核心数据列表卡片 -->
+<div class="bg-surface-card rounded-xl shadow-sm overflow-hidden flex flex-col">
+<!-- 表格标题栏 -->
+<div class="grid grid-cols-12 gap-space-md px-space-xl py-3 bg-code-bg font-label-sm text-label-sm text-text-secondary font-semibold uppercase tracking-wider items-center">
+<div class="col-span-12 lg:col-span-4">知识库名称 / 业务属性</div>
+<div class="col-span-6 lg:col-span-2">嵌入模型与检索模式</div>
+<div class="col-span-6 lg:col-span-2">文档与切片规模</div>
+<div class="col-span-6 lg:col-span-2">向量索引状态</div>
+<div class="col-span-6 lg:col-span-2 text-right">快捷操作</div>
+</div>
+<!-- 数据行 1 -->
+<div class="grid grid-cols-12 gap-space-md px-space-xl py-space-lg items-center hover:bg-surface-container-low transition-colors duration-150">
+<!-- 知识库与简述 -->
+<div class="col-span-12 lg:col-span-4 flex items-start gap-3">
+<div class="w-10 h-10 rounded-lg bg-primary-tint text-primary flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[22px]">account_balance_wallet</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-2 flex-wrap">
+<span class="font-headline-md text-headline-md text-text-primary hover:text-primary cursor-pointer transition-colors">支付网关与交易清算标准制度</span>
+<span class="font-code-sm text-code-sm text-text-secondary bg-surface-container-high px-1.5 py-0.2 rounded font-mono">kb_pay_clear_std</span>
+</div>
+<p class="font-body-sm text-body-sm text-text-secondary line-clamp-1 mt-0.5">覆盖全渠道支付路由协议、对账排错手册及备付金存管审计规则</p>
+<div class="flex items-center gap-1.5 mt-2">
+<span class="px-2 py-0.5 rounded bg-primary-tint text-primary font-caption text-caption font-medium">金融支付</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-text-primary font-caption text-caption">风控核心</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-text-secondary font-caption text-caption font-code-sm">v2.4.0</span>
+</div>
+</div>
+</div>
+<!-- 嵌入模型与模式 -->
+<div class="col-span-6 lg:col-span-2 flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="font-code-sm text-code-sm font-semibold text-text-primary">text-embedding-3-large</span>
+</div>
+<span class="font-caption text-caption text-text-secondary mt-0.5">1536 维向量 (Cosine)</span>
+<div class="mt-1 flex items-center gap-1 font-caption text-caption text-primary">
+<span class="material-symbols-outlined text-[14px]">tune</span>
+<span>混合检索 Dense+BM25</span>
+</div>
+</div>
+<!-- 文档与切片规模 -->
+<div class="col-span-6 lg:col-span-2 flex flex-col">
+<div class="flex items-baseline gap-1.5">
+<span class="font-headline-md text-headline-md font-semibold text-text-primary">328</span>
+<span class="font-caption text-caption text-text-secondary">篇文档</span>
+</div>
+<div class="flex items-center gap-2 mt-0.5 font-code-sm text-code-sm text-text-secondary">
+<span class="text-text-primary font-medium">14,280</span>
+<span>Chunks</span>
+<span class="text-text-muted">·</span>
+<span>1.84 GB</span>
+</div>
+<span class="font-caption text-caption text-text-muted mt-0.5">PDF:210 | DOCX:94 | MD:24</span>
+</div>
+<!-- 检索状态 -->
+<div class="col-span-6 lg:col-span-2 flex flex-col items-start">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-status-success-bg text-status-success font-label-sm text-label-sm font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-status-success"></span>
+<span>已就绪 · 可检索</span>
+</span>
+<span class="font-caption text-caption text-text-muted mt-1.5 flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">schedule</span>
+<span>同步于 今日 11:30</span>
+</span>
+</div>
+<!-- 操作 -->
+<div class="col-span-6 lg:col-span-2 flex items-center justify-end gap-1.5">
+<button class="px-2.5 py-1.5 rounded-lg bg-surface-card hover:bg-surface-container-high text-primary font-label-sm text-label-sm transition-colors flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-[16px]">folder_open</span>
+<span>文档管理</span>
+</button>
+<button class="p-1.5 rounded-lg text-text-secondary hover:text-text-primary hover:bg-surface-container-high transition-colors" title="重建向量索引">
+<span class="material-symbols-outlined text-[18px]">sync</span>
+</button>
+<button class="p-1.5 rounded-lg text-text-secondary hover:text-text-primary hover:bg-surface-container-high transition-colors" title="配置详情">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</div>
+<!-- 数据行 2 (重建中状态) -->
+<div class="grid grid-cols-12 gap-space-md px-space-xl py-space-lg items-center hover:bg-surface-container-low transition-colors duration-150 bg-status-warning-bg/10">
+<!-- 知识库与简述 -->
+<div class="col-span-12 lg:col-span-4 flex items-start gap-3">
+<div class="w-10 h-10 rounded-lg bg-status-warning-bg text-status-warning flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[22px]">terminal</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-2 flex-wrap">
+<span class="font-headline-md text-headline-md text-text-primary hover:text-primary cursor-pointer transition-colors">企业技术运维故障排查知识库</span>
+<span class="font-code-sm text-code-sm text-text-secondary bg-surface-container-high px-1.5 py-0.2 rounded font-mono">kb_ops_runbook</span>
+</div>
+<p class="font-body-sm text-body-sm text-text-secondary line-clamp-1 mt-0.5">包含500超时应急处置、HikariPool连接池调优、熔断限流策略白皮书</p>
+<div class="flex items-center gap-1.5 mt-2">
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-text-primary font-caption text-caption font-medium">SRE运维</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-text-primary font-caption text-caption">网关监控</span>
+</div>
+</div>
+</div>
+<!-- 嵌入模型与模式 -->
+<div class="col-span-6 lg:col-span-2 flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="font-code-sm text-code-sm font-semibold text-text-primary">bge-m3</span>
+</div>
+<span class="font-caption text-caption text-text-secondary mt-0.5">1024 维 (多语言通用)</span>
+<div class="mt-1 flex items-center gap-1 font-caption text-caption text-text-secondary">
+<span class="material-symbols-outlined text-[14px]">layers</span>
+<span>Dense 稠密向量召回</span>
+</div>
+</div>
+<!-- 文档与切片规模 -->
+<div class="col-span-6 lg:col-span-2 flex flex-col">
+<div class="flex items-baseline gap-1.5">
+<span class="font-headline-md text-headline-md font-semibold text-text-primary">142</span>
+<span class="font-caption text-caption text-text-secondary">篇文档</span>
+</div>
+<div class="flex items-center gap-2 mt-0.5 font-code-sm text-code-sm text-text-secondary">
+<span class="text-text-primary font-medium">6,850</span>
+<span>Chunks</span>
+<span class="text-text-muted">·</span>
+<span>720 MB</span>
+</div>
+<span class="font-caption text-caption text-status-warning mt-0.5">+4 份新文档切片合并中</span>
+</div>
+<!-- 检索状态 (重建进度) -->
+<div class="col-span-6 lg:col-span-2 flex flex-col items-start w-full pr-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-status-warning-bg text-status-warning font-label-sm text-label-sm font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-status-warning animate-ping"></span>
+<span>增量重建中 · 68%</span>
+</span>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full mt-2 overflow-hidden">
+<div class="bg-status-warning h-full rounded-full transition-all duration-300" style="width: 68%"></div>
+</div>
+<span class="font-caption text-caption text-text-muted mt-1">预计剩余 2 分钟完成</span>
+</div>
+<!-- 操作 -->
+<div class="col-span-6 lg:col-span-2 flex items-center justify-end gap-1.5">
+<button class="px-2.5 py-1.5 rounded-lg bg-surface-card hover:bg-surface-container-high text-primary font-label-sm text-label-sm transition-colors flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-[16px]">folder_open</span>
+<span>文档管理</span>
+</button>
+<button class="px-2 py-1.5 rounded-lg text-text-secondary hover:text-text-primary hover:bg-surface-container-high transition-colors font-label-sm text-label-sm" title="查看向量流水线进度">
+<span>查看任务</span>
+</button>
+</div>
+</div>
+<!-- 数据行 3 -->
+<div class="grid grid-cols-12 gap-space-md px-space-xl py-space-lg items-center hover:bg-surface-container-low transition-colors duration-150">
+<!-- 知识库与简述 -->
+<div class="col-span-12 lg:col-span-4 flex items-start gap-3">
+<div class="w-10 h-10 rounded-lg bg-primary-tint text-primary flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[22px]">code_blocks</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-2 flex-wrap">
+<span class="font-headline-md text-headline-md text-text-primary hover:text-primary cursor-pointer transition-colors">商户接入与开放平台开发者文档</span>
+<span class="font-code-sm text-code-sm text-text-secondary bg-surface-container-high px-1.5 py-0.2 rounded font-mono">kb_open_merchant</span>
+</div>
+<p class="font-body-sm text-body-sm text-text-secondary line-clamp-1 mt-0.5">包含 OpenAPI 验签规范、时钟同步校准、异步通知对账协议及多语言SDK集成示例</p>
+<div class="flex items-center gap-1.5 mt-2">
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-text-primary font-caption text-caption font-medium">开放生态</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-text-primary font-caption text-caption">开发者指引</span>
+</div>
+</div>
+</div>
+<!-- 嵌入模型与模式 -->
+<div class="col-span-6 lg:col-span-2 flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="font-code-sm text-code-sm font-semibold text-text-primary">text-embedding-3-large</span>
+</div>
+<span class="font-caption text-caption text-text-secondary mt-0.5">1536 维向量 (Cosine)</span>
+<div class="mt-1 flex items-center gap-1 font-caption text-caption text-primary">
+<span class="material-symbols-outlined text-[14px]">tune</span>
+<span>混合检索 Dense+BM25</span>
+</div>
+</div>
+<!-- 文档与切片规模 -->
+<div class="col-span-6 lg:col-span-2 flex flex-col">
+<div class="flex items-baseline gap-1.5">
+<span class="font-headline-md text-headline-md font-semibold text-text-primary">612</span>
+<span class="font-caption text-caption text-text-secondary">篇文档</span>
+</div>
+<div class="flex items-center gap-2 mt-0.5 font-code-sm text-code-sm text-text-secondary">
+<span class="text-text-primary font-medium">21,400</span>
+<span>Chunks</span>
+<span class="text-text-muted">·</span>
+<span>2.45 GB</span>
+</div>
+<span class="font-caption text-caption text-text-muted mt-0.5">Markdown 格式占 78%</span>
+</div>
+<!-- 检索状态 -->
+<div class="col-span-6 lg:col-span-2 flex flex-col items-start">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-status-success-bg text-status-success font-label-sm text-label-sm font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-status-success"></span>
+<span>已就绪 · 可检索</span>
+</span>
+<span class="font-caption text-caption text-text-muted mt-1.5 flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">schedule</span>
+<span>同步于 昨天 19:45</span>
+</span>
+</div>
+<!-- 操作 -->
+<div class="col-span-6 lg:col-span-2 flex items-center justify-end gap-1.5">
+<button class="px-2.5 py-1.5 rounded-lg bg-surface-card hover:bg-surface-container-high text-primary font-label-sm text-label-sm transition-colors flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-[16px]">folder_open</span>
+<span>文档管理</span>
+</button>
+<button class="p-1.5 rounded-lg text-text-secondary hover:text-text-primary hover:bg-surface-container-high transition-colors" title="重建向量索引">
+<span class="material-symbols-outlined text-[18px]">sync</span>
+</button>
+<button class="p-1.5 rounded-lg text-text-secondary hover:text-text-primary hover:bg-surface-container-high transition-colors" title="配置详情">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</div>
+<!-- 数据行 4 (部分文档异常) -->
+<div class="grid grid-cols-12 gap-space-md px-space-xl py-space-lg items-center hover:bg-surface-container-low transition-colors duration-150">
+<!-- 知识库与简述 -->
+<div class="col-span-12 lg:col-span-4 flex items-start gap-3">
+<div class="w-10 h-10 rounded-lg bg-status-danger-bg text-status-danger flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[22px]">contact_support</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-2 flex-wrap">
+<span class="font-headline-md text-headline-md text-text-primary hover:text-primary cursor-pointer transition-colors">客户服务与售后退款政策规范</span>
+<span class="font-code-sm text-code-sm text-text-secondary bg-surface-container-high px-1.5 py-0.2 rounded font-mono">kb_customer_refund</span>
+</div>
+<p class="font-body-sm text-body-sm text-text-secondary line-clamp-1 mt-0.5">面向客服坐席与自动化问答的工单受理SLA、恶意退赔申诉处置规程</p>
+<div class="flex items-center gap-1.5 mt-2">
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-text-primary font-caption text-caption font-medium">客户支持</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-text-primary font-caption text-caption">退款风控</span>
+</div>
+</div>
+</div>
+<!-- 嵌入模型与模式 -->
+<div class="col-span-6 lg:col-span-2 flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="font-code-sm text-code-sm font-semibold text-text-primary">text-embedding-3-large</span>
+</div>
+<span class="font-caption text-caption text-text-secondary mt-0.5">1536 维向量 (Cosine)</span>
+<div class="mt-1 flex items-center gap-1 font-caption text-caption text-text-secondary">
+<span class="material-symbols-outlined text-[14px]">tune</span>
+<span>Dense 向量语义召回</span>
+</div>
+</div>
+<!-- 文档与切片规模 -->
+<div class="col-span-6 lg:col-span-2 flex flex-col">
+<div class="flex items-baseline gap-1.5">
+<span class="font-headline-md text-headline-md font-semibold text-text-primary">204</span>
+<span class="font-caption text-caption text-text-secondary">篇文档</span>
+</div>
+<div class="flex items-center gap-2 mt-0.5 font-code-sm text-code-sm text-text-secondary">
+<span class="text-text-primary font-medium">5,990</span>
+<span>Chunks</span>
+<span class="text-text-muted">·</span>
+<span>590 MB</span>
+</div>
+<span class="font-caption text-caption text-status-danger font-medium mt-0.5 flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">error</span>
+<span>2 篇解析失败待修复</span>
+</span>
+</div>
+<!-- 检索状态 -->
+<div class="col-span-6 lg:col-span-2 flex flex-col items-start">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-status-danger-bg text-status-danger font-label-sm text-label-sm font-medium">
+<span class="material-symbols-outlined text-[14px]">warning</span>
+<span>部分文档异常 (2篇)</span>
+</span>
+<span class="font-caption text-caption text-text-muted mt-1.5">其余 202 篇正常提供检索</span>
+</div>
+<!-- 操作 -->
+<div class="col-span-6 lg:col-span-2 flex items-center justify-end gap-1.5">
+<button class="px-2.5 py-1.5 rounded-lg bg-surface-card hover:bg-surface-container-high text-primary font-label-sm text-label-sm transition-colors flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-[16px]">folder_open</span>
+<span>管理切片</span>
+</button>
+<button class="px-2.5 py-1.5 rounded-lg bg-status-danger-bg hover:bg-error-container text-status-danger font-label-sm text-label-sm transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px]">build</span>
+<span>处理异常</span>
+</button>
+</div>
+</div>
+<!-- 底部标准分页与记录统计 -->
+<div class="px-space-xl py-3 bg-code-bg flex flex-col sm:flex-row items-center justify-between gap-space-sm font-caption text-caption text-text-secondary">
+<div class="flex items-center gap-space-sm">
+<span>显示第 1 至 4 项，共 4 项结果</span>
+<span class="text-text-muted">|</span>
+<span>每页显示</span>
+<select class="h-6 px-1 rounded bg-surface-card text-text-primary text-caption focus:outline-none">
+<option>10 条/页</option>
+<option>20 条/页</option>
+<option>50 条/页</option>
+</select>
+</div>
+<div class="flex items-center gap-1">
+<button class="h-7 w-7 rounded bg-surface-card text-text-muted flex items-center justify-center opacity-60 cursor-not-allowed" disabled="">
+<span class="material-symbols-outlined text-[16px]">chevron_left</span>
+</button>
+<button class="h-7 w-7 rounded bg-primary text-on-primary font-medium flex items-center justify-center">1</button>
+<button class="h-7 w-7 rounded bg-surface-card text-text-muted flex items-center justify-center opacity-60 cursor-not-allowed" disabled="">
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- 底部说明与合规管控指引卡片 -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<!-- 说明卡片 1 -->
+<div class="bg-surface-card rounded-xl p-space-lg shadow-sm flex items-start gap-space-md">
+<div class="w-9 h-9 rounded-lg bg-primary-tint text-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[20px]">smart_toy</span>
+</div>
+<div class="flex flex-col">
+<h4 class="font-headline-md text-headline-md text-text-primary font-semibold">智能问答实时链路协同</h4>
+<p class="font-body-sm text-body-sm text-text-secondary mt-1 leading-relaxed">
+          已启用的知识库将实时同步至“智能问答”的数据源选项中。检索系统在召回片段时采用重排序 (Rerank) 模型，且每条回答均附带精确的文档标题、页码及切片高亮溯源凭证。
+        </p>
+</div>
+</div>
+<!-- 说明卡片 2 -->
+<div class="bg-surface-card rounded-xl p-space-lg shadow-sm flex items-start gap-space-md">
+<div class="w-9 h-9 rounded-lg bg-status-success-bg text-status-success flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[20px]">verified_user</span>
+</div>
+<div class="flex flex-col">
+<h4 class="font-headline-md text-headline-md text-text-primary font-semibold">数据安全与隐私脱敏机制</h4>
+<p class="font-body-sm text-body-sm text-text-secondary mt-1 leading-relaxed">
+          所有非结构化文件在进入向量化切片流水线前，均已自动执行正则与NER实体识别，完成手机号码、身份证号、银行卡号及密钥凭据 (API Key) 的双向掩码脱敏，符合金融级数据治理规范。
+        </p>
+</div>
+</div>
+</div>
+<!-- 新建知识库弹窗 (默认隐藏，点击新建后由JS调起) -->
+<div class="fixed inset-0 z-50 flex items-center justify-center bg-inverse-surface/40 backdrop-blur-sm hidden" id="modal-create-kb">
+<div class="bg-surface-card rounded-xl shadow-xl w-full max-w-[560px] overflow-hidden flex flex-col p-space-xl gap-space-md">
+<div class="flex items-center justify-between pb-2 border-b border-border-subtle">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[22px]">create_new_folder</span>
+<h3 class="font-headline-lg text-headline-lg text-text-primary font-semibold">新建 RAG 知识库</h3>
+</div>
+<button class="p-1 rounded text-text-secondary hover:text-text-primary hover:bg-surface-container-high transition-colors" id="modal-close-btn">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<div class="flex flex-col gap-space-md">
+<div>
+<label class="block font-label-md text-label-md text-text-primary mb-1">知识库名称 <span class="text-status-danger">*</span></label>
+<input class="w-full h-9 px-3 rounded-lg bg-canvas-bg text-text-primary placeholder:text-text-muted font-body-sm text-body-sm focus:outline-none focus:bg-surface-card focus:shadow-[0_0_0_2px_rgba(37,99,235,0.2)]" placeholder="例如：跨境汇款业务审核细则" type="text"/>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-text-primary mb-1">唯一标识编码 (Key) <span class="text-status-danger">*</span></label>
+<input class="w-full h-9 px-3 rounded-lg bg-canvas-bg font-code-sm text-code-sm text-text-primary placeholder:text-text-muted focus:outline-none focus:bg-surface-card" placeholder="kb_crossborder_remittance" type="text"/>
+<span class="font-caption text-caption text-text-muted mt-1 block">仅支持小写字母、数字及下划线，创建后不可修改</span>
+</div>
+<div class="grid grid-cols-2 gap-space-md">
+<div>
+<label class="block font-label-md text-label-md text-text-primary mb-1">绑定嵌入模型 (Embedding)</label>
+<select class="w-full h-9 px-2 rounded-lg bg-canvas-bg text-text-primary font-body-sm text-body-sm focus:outline-none">
+<option>text-embedding-3-large (1536维)</option>
+<option>bge-m3 (1024维 · 多语言)</option>
+<option>text-embedding-ada-002</option>
+</select>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-text-primary mb-1">切片分块策略</label>
+<select class="w-full h-9 px-2 rounded-lg bg-canvas-bg text-text-primary font-body-sm text-body-sm focus:outline-none">
+<option>标准段落切分 (512字/20%叠包)</option>
+<option>精细切分 (256字/15%叠包)</option>
+<option>长篇大纲切分 (1024字/10%叠包)</option>
+</select>
+</div>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-text-primary mb-1">业务描述说明</label>
+<textarea class="w-full p-2.5 rounded-lg bg-canvas-bg text-text-primary placeholder:text-text-muted font-body-sm text-body-sm focus:outline-none focus:bg-surface-card resize-none" placeholder="简述该知识库收纳的文档范围与问答适用场景..." rows="3"></textarea>
+</div>
+</div>
+<div class="flex items-center justify-end gap-space-sm pt-2">
+<button class="px-4 py-2 rounded-lg bg-surface-container-high hover:bg-surface-variant text-text-primary font-label-md text-label-md transition-colors" id="modal-cancel-btn">取消</button>
+<button class="px-5 py-2 rounded-lg bg-primary hover:bg-secondary text-on-primary font-label-md text-label-md shadow-sm transition-colors" id="modal-confirm-btn">确认创建</button>
+</div>
+</div>
+</div>
+</div>
+<script>
+  // 简易交互逻辑：弹窗唤起与筛选响应
+  const createBtn = document.getElementById('btn-create-kb');
+  const modal = document.getElementById('modal-create-kb');
+  const closeBtn = document.getElementById('modal-close-btn');
+  const cancelBtn = document.getElementById('modal-cancel-btn');
+  const confirmBtn = document.getElementById('modal-confirm-btn');
+
+  function toggleModal(show) {
+    if (show) {
+      modal.classList.remove('hidden');
+    } else {
+      modal.classList.add('hidden');
+    }
+  }
+
+  if (createBtn) createBtn.addEventListener('click', () => toggleModal(true));
+  if (closeBtn) closeBtn.addEventListener('click', () => toggleModal(false));
+  if (cancelBtn) cancelBtn.addEventListener('click', () => toggleModal(false));
+  if (confirmBtn) {
+    confirmBtn.addEventListener('click', () => {
+      confirmBtn.innerText = '创建中...';
+      setTimeout(() => {
+        confirmBtn.innerText = '确认创建';
+        toggleModal(false);
+      }, 500);
+    });
+  }
+
+  // 刷新按钮动画微交互
+  const refreshBtn = document.getElementById('btn-refresh');
+  if (refreshBtn) {
+    refreshBtn.addEventListener('click', () => {
+      const icon = refreshBtn.querySelector('.material-symbols-outlined');
+      if (icon) {
+        icon.classList.add('animate-spin');
+        setTimeout(() => {
+          icon.classList.remove('animate-spin');
+        }, 600);
+      }
+    });
+  }
+</script></main></div></body></html>
