@@ -14,7 +14,7 @@ import java.util.UUID;
 
 @Repository
 public class UserRepository {
-    private static final String COLUMNS = "id, username, display_name, password_hash, role, enabled, auth_version, must_change_password, last_login_at, created_at, updated_at";
+    private static final String COLUMNS = "id, username, display_name, password_hash, role, enabled, auth_version, must_change_password, failed_login_count, locked_until, last_login_at, created_at, updated_at";
     private final JdbcTemplate jdbc;
     private final RowMapper<AppUser> mapper = this::map;
 
@@ -51,8 +51,12 @@ public class UserRepository {
     }
 
     public void recordLogin(UUID id) {
-        jdbc.update("UPDATE app_user SET last_login_at = ?, updated_at = ? WHERE id = ?", DatabaseTime.now(), DatabaseTime.now(), id.toString());
+        jdbc.update("UPDATE app_user SET last_login_at = ?, failed_login_count=0, locked_until=NULL, updated_at = ? WHERE id = ?", DatabaseTime.now(), DatabaseTime.now(), id.toString());
     }
+
+    public boolean isLocked(String username){return findByUsername(username).map(u->u.lockedUntil()!=null&&u.lockedUntil().isAfter(java.time.Instant.now())).orElse(false);}
+    public void recordLoginFailure(UUID id,int threshold,int lockMinutes){AppUser user=findById(id).orElseThrow();java.time.Instant instant=java.time.Instant.now();int previous=user.lockedUntil()!=null&&!user.lockedUntil().isAfter(instant)?0:user.failedLoginCount();int failures=previous+1;Timestamp now=Timestamp.from(instant);Timestamp locked=failures>=threshold?Timestamp.from(instant.plusSeconds(lockMinutes*60L)):null;jdbc.update("UPDATE app_user SET failed_login_count=?,locked_until=?,last_failed_login_at=?,updated_at=? WHERE id=?",failures,locked,now,now,id.toString());}
+    public void unlock(UUID id){jdbc.update("UPDATE app_user SET failed_login_count=0,locked_until=NULL,last_failed_login_at=NULL,updated_at=? WHERE id=?",DatabaseTime.now(),id.toString());}
 
     public void changePassword(UUID id, String passwordHash, boolean mustChangePassword) {
         jdbc.update("""
@@ -72,11 +76,11 @@ public class UserRepository {
     }
 
     private AppUser map(ResultSet rs, int rowNum) throws SQLException {
-        var lastLogin = rs.getTimestamp("last_login_at");
+        var lastLogin = rs.getTimestamp("last_login_at");var locked=rs.getTimestamp("locked_until");
         return new AppUser(
                 UUID.fromString(rs.getString("id")), rs.getString("username"), rs.getString("display_name"),
                 rs.getString("password_hash"), Role.valueOf(rs.getString("role")), rs.getBoolean("enabled"),
-                rs.getLong("auth_version"), rs.getBoolean("must_change_password"),
+                rs.getLong("auth_version"), rs.getBoolean("must_change_password"),rs.getInt("failed_login_count"),locked==null?null:locked.toInstant(),
                 lastLogin == null ? null : lastLogin.toInstant(), rs.getTimestamp("created_at").toInstant(),
                 rs.getTimestamp("updated_at").toInstant());
     }

@@ -78,6 +78,9 @@ public class AdminUserController {
         return new ResetPasswordResult(temporaryPassword);
     }
 
+    @PostMapping("/{id}/unlock") public UserSummary unlock(@PathVariable UUID id,Authentication authentication){users.findById(id).orElseThrow(()->new BusinessException(404,"USER_NOT_FOUND","账号不存在"));users.unlock(id);audit.record(actor(authentication).id(),"UNLOCK_USER","USER",id,"SUCCESS");return UserSummary.from(users.findById(id).orElseThrow());}
+    @PostMapping("/{id}/force-logout") public void forceLogout(@PathVariable UUID id,Authentication authentication){AppUser target=users.findById(id).orElseThrow(()->new BusinessException(404,"USER_NOT_FOUND","账号不存在"));sessions.invalidateUser(target.username(),null);audit.record(actor(authentication).id(),"FORCE_LOGOUT","USER",id,"SUCCESS");}
+
     private static PlatformPrincipal actor(Authentication authentication) {
         return (PlatformPrincipal) authentication.getPrincipal();
     }
@@ -92,10 +95,10 @@ public class AdminUserController {
     public record CreatedUser(UserSummary user, String temporaryPassword) {}
     public record ResetPasswordResult(String temporaryPassword) {}
     public record UserSummary(String id, String username, String displayName, Role role, boolean enabled,
-                              boolean mustChangePassword, Instant lastLoginAt, Instant createdAt) {
+                              boolean mustChangePassword,int failedLoginCount,Instant lockedUntil, Instant lastLoginAt, Instant createdAt) {
         static UserSummary from(AppUser user) {
             return new UserSummary(user.id().toString(), user.username(), user.displayName(), user.role(), user.enabled(),
-                    user.mustChangePassword(), user.lastLoginAt(), user.createdAt());
+                    user.mustChangePassword(),user.failedLoginCount(),user.lockedUntil(), user.lastLoginAt(), user.createdAt());
         }
     }
 }

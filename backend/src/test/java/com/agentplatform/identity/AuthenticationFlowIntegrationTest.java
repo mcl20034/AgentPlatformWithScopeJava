@@ -121,11 +121,24 @@ class AuthenticationFlowIntegrationTest {
         assertThat(changedUser.get("mustChangePassword").asBoolean()).isFalse();
         assertThat(user.get("/api/v1/ping").statusCode()).isEqualTo(HttpStatus.OK.value());
         assertThat(user.get("/api/v1/admin/users").statusCode()).isEqualTo(HttpStatus.FORBIDDEN.value());
+        assertThat(user.get("/api/v1/chat/options").body()).doesNotContain("测试模型已修改","测试 ES");
 
-        JsonNode reset = admin.post("/api/v1/admin/users/" + created.get("user").get("id").asText() + "/reset-password", "{}");
+        String userId=created.get("user").get("id").asText();
+        admin.put("/api/v1/admin/users/"+userId+"/grants",mapper.writeValueAsString(java.util.Map.of(
+                "models",java.util.List.of(model.get("id").asText()),"dataSources",java.util.List.of(source.get("id").asText()),"knowledgeBases",java.util.List.of())));
+        assertThat(user.get("/api/v1/chat/options").body()).contains("测试模型已修改","测试 ES");
+        JsonNode userConversation=user.post("/api/v1/chat/conversations",mapper.writeValueAsString(java.util.Map.of("modelId",model.get("id").asText(),"sourceId",source.get("id").asText())));
+        admin.put("/api/v1/admin/users/"+userId+"/grants","{\"models\":[],\"dataSources\":[],\"knowledgeBases\":[]}");
+        assertThat(user.get("/api/v1/chat/conversations/"+userConversation.get("id").asText()+"/messages").statusCode()).isEqualTo(HttpStatus.FORBIDDEN.value());
+
+        JsonNode reset = admin.post("/api/v1/admin/users/" + userId + "/reset-password", "{}");
         assertThat(user.get("/api/v1/ping").statusCode()).isEqualTo(HttpStatus.UNAUTHORIZED.value());
         Client relogin = new Client();
         assertThat(relogin.login("analyst.one", reset.get("temporaryPassword").asText()).get("mustChangePassword").asBoolean()).isTrue();
+        for(int i=0;i<5;i++)assertThat(new Client().loginResponse("analyst.one","wrong-password").statusCode()).isEqualTo(HttpStatus.UNAUTHORIZED.value());
+        assertThat(new Client().loginResponse("analyst.one",reset.get("temporaryPassword").asText()).statusCode()).isEqualTo(423);
+        admin.post("/api/v1/admin/users/"+userId+"/unlock","{}");
+        assertThat(new Client().login("analyst.one",reset.get("temporaryPassword").asText()).get("username").asText()).isEqualTo("analyst.one");
     }
 
     private final class Client {
@@ -141,6 +154,8 @@ class AuthenticationFlowIntegrationTest {
             refreshCsrf();
             return post("/api/v1/auth/login", mapper.writeValueAsString(java.util.Map.of("username", username, "password", password)));
         }
+
+        HttpResponse<String> loginResponse(String username,String password)throws Exception{refreshCsrf();HttpRequest request=HttpRequest.newBuilder(uri("/api/v1/auth/login")).header("Content-Type","application/json").header("X-XSRF-TOKEN",csrf).POST(HttpRequest.BodyPublishers.ofString(mapper.writeValueAsString(java.util.Map.of("username",username,"password",password)))).build();return http.send(request,HttpResponse.BodyHandlers.ofString());}
 
         void refreshCsrf() throws Exception {
             HttpResponse<String> response = get("/api/v1/auth/csrf");

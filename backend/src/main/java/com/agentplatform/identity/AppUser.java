@@ -12,6 +12,8 @@ public record AppUser(
         boolean enabled,
         long authVersion,
         boolean mustChangePassword,
+        int failedLoginCount,
+        Instant lockedUntil,
         Instant lastLoginAt,
         Instant createdAt,
         Instant updatedAt

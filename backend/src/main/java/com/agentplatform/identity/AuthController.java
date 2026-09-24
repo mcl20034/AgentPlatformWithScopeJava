@@ -8,6 +8,7 @@ import jakarta.validation.constraints.NotBlank;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -27,15 +28,17 @@ public class AuthController {
     private final PasswordEncoder passwordEncoder;
     private final SessionService sessions;
     private final AuditService audit;
+    private final SecurityProperties security;
 
     public AuthController(AuthenticationManager authenticationManager, SecurityContextRepository securityContexts,
-                          UserRepository users, PasswordEncoder passwordEncoder, SessionService sessions, AuditService audit) {
+                          UserRepository users, PasswordEncoder passwordEncoder, SessionService sessions, AuditService audit,SecurityProperties security) {
         this.authenticationManager = authenticationManager;
         this.securityContexts = securityContexts;
         this.users = users;
         this.passwordEncoder = passwordEncoder;
         this.sessions = sessions;
         this.audit = audit;
+        this.security=security;
     }
 
     @GetMapping("/csrf")
@@ -45,8 +48,12 @@ public class AuthController {
 
     @PostMapping("/login")
     public UserView login(@Valid @RequestBody LoginRequest body, HttpServletRequest request, HttpServletResponse response) {
-        Authentication authentication = authenticationManager.authenticate(
-                UsernamePasswordAuthenticationToken.unauthenticated(UserRepository.normalize(body.username()), body.password()));
+        String username=UserRepository.normalize(body.username());
+        AppUser candidate=users.findByUsername(username).orElse(null);
+        if(candidate!=null&&users.isLocked(username))throw new BusinessException(423,"ACCOUNT_LOCKED","登录失败次数过多，请稍后重试或联系管理员解锁");
+        Authentication authentication;
+        try{authentication=authenticationManager.authenticate(UsernamePasswordAuthenticationToken.unauthenticated(username, body.password()));}
+        catch(AuthenticationException exception){if(candidate!=null){users.recordLoginFailure(candidate.id(),security.effectiveMaxFailedLogins(),security.effectiveLockMinutes());audit.record(candidate.id(),"LOGIN","USER",candidate.id(),"FAILED");}throw exception;}
         request.getSession(true);
         request.changeSessionId();
         SecurityContext context = SecurityContextHolder.createEmptyContext();

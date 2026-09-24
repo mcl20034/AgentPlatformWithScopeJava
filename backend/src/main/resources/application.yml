@@ -62,6 +62,9 @@ platform:
     admin-password-file: ${PLATFORM_ADMIN_PASSWORD_FILE:}
   security:
     bcrypt-strength: ${PLATFORM_BCRYPT_STRENGTH:12}
+    max-failed-logins: ${PLATFORM_MAX_FAILED_LOGINS:5}
+    lock-minutes: ${PLATFORM_LOGIN_LOCK_MINUTES:15}
   operations:
     max-active-tasks-per-user: ${PLATFORM_MAX_ACTIVE_TASKS_PER_USER:2}
     max-tasks-per-hour-per-user: ${PLATFORM_MAX_TASKS_PER_HOUR_PER_USER:60}
+    log-model-content: ${PLATFORM_LOG_MODEL_CONTENT:false}

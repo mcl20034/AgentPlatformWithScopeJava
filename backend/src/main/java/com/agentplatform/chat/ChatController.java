@@ -3,6 +3,8 @@ package com.agentplatform.chat;
 import com.agentplatform.common.BusinessException;
 import com.agentplatform.identity.PlatformPrincipal;
 import com.agentplatform.operations.OperationsProperties;
+import com.agentplatform.identity.ResourceAuthorizationService;
+import com.agentplatform.identity.AuditService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -29,23 +31,26 @@ public class ChatController {
     private final ChatTaskEvents events;
     private final ObjectMapper json;
     private final OperationsProperties operations;
+    private final ResourceAuthorizationService authorizations;
+    private final AuditService audit;
 
-    public ChatController(JdbcTemplate jdbc, ChatAnalysisService analysis, ChatTaskEvents events, ObjectMapper json,OperationsProperties operations) {
-        this.jdbc = jdbc; this.analysis = analysis; this.events = events; this.json=json;this.operations=operations;
+    public ChatController(JdbcTemplate jdbc, ChatAnalysisService analysis, ChatTaskEvents events, ObjectMapper json,OperationsProperties operations,ResourceAuthorizationService authorizations,AuditService audit) {
+        this.jdbc = jdbc; this.analysis = analysis; this.events = events; this.json=json;this.operations=operations;this.authorizations=authorizations;this.audit=audit;
     }
 
     @GetMapping("/options")
-    public Map<String, Object> options() {
+    public Map<String, Object> options(Authentication authentication) {
+        PlatformPrincipal principal=actor(authentication);
         return Map.of(
-                "models", jdbc.queryForList("SELECT id,display_name name FROM model_config WHERE enabled=TRUE ORDER BY display_name"),
-                "sources", jdbc.queryForList("SELECT id,name,type FROM data_source WHERE enabled=TRUE AND type IN ('MYSQL','ELASTICSEARCH') ORDER BY type,name"),
-                "knowledgeBases",jdbc.queryForList("SELECT id,name,'KNOWLEDGE' type FROM knowledge_base WHERE enabled=TRUE AND active_generation_id IS NOT NULL ORDER BY name")
+                "models", filter(jdbc.queryForList("SELECT id,display_name name FROM model_config WHERE enabled=TRUE ORDER BY display_name"),principal,ResourceAuthorizationService.Type.MODEL),
+                "sources", filter(jdbc.queryForList("SELECT id,name,type FROM data_source WHERE enabled=TRUE AND type IN ('MYSQL','ELASTICSEARCH') ORDER BY type,name"),principal,ResourceAuthorizationService.Type.DATA_SOURCE),
+                "knowledgeBases",filter(jdbc.queryForList("SELECT id,name,'KNOWLEDGE' type FROM knowledge_base WHERE enabled=TRUE AND active_generation_id IS NOT NULL ORDER BY name"),principal,ResourceAuthorizationService.Type.KNOWLEDGE_BASE)
         );
     }
 
     @GetMapping("/conversations")
     public List<Map<String, Object>> conversations(Authentication authentication) {
-        List<Map<String,Object>> rows=jdbc.queryForList("SELECT c.id,c.title,c.model_id,c.source_id,d.type source_type,c.created_at,c.updated_at,(SELECT t.status FROM analysis_task t WHERE t.conversation_id=c.id ORDER BY t.created_at DESC LIMIT 1) last_status FROM chat_conversation c JOIN data_source d ON d.id=c.source_id WHERE c.user_id=? ORDER BY c.updated_at DESC", actor(authentication).id().toString());for(Map<String,Object> row:rows)row.put("knowledge_base_ids",jdbc.queryForList("SELECT kb_id FROM chat_conversation_knowledge WHERE conversation_id=? ORDER BY kb_id",String.class,String.valueOf(row.get("id"))));return rows;
+        PlatformPrincipal principal=actor(authentication);List<Map<String,Object>> rows=jdbc.queryForList("SELECT c.id,c.title,c.model_id,c.source_id,d.type source_type,c.created_at,c.updated_at,(SELECT t.status FROM analysis_task t WHERE t.conversation_id=c.id ORDER BY t.created_at DESC LIMIT 1) last_status FROM chat_conversation c JOIN data_source d ON d.id=c.source_id WHERE c.user_id=? ORDER BY c.updated_at DESC", principal.id().toString());for(Map<String,Object> row:rows)row.put("knowledge_base_ids",jdbc.queryForList("SELECT kb_id FROM chat_conversation_knowledge WHERE conversation_id=? ORDER BY kb_id",String.class,String.valueOf(row.get("id"))));return rows.stream().filter(row->canAccessConversation(principal,row)).toList();
     }
 
     @PostMapping("/conversations")
@@ -53,11 +58,13 @@ public class ChatController {
     public Map<String, Object> create(@Valid @RequestBody ConversationRequest request, Authentication authentication) {
         requireEnabled("model_config", request.modelId);
         requireEnabled("data_source", request.sourceId);
+        PlatformPrincipal principal=actor(authentication);authorizations.require(principal,ResourceAuthorizationService.Type.MODEL,request.modelId);authorizations.require(principal,ResourceAuthorizationService.Type.DATA_SOURCE,request.sourceId);
         List<UUID> knowledgeIds=request.knowledgeBaseIds==null?List.of():request.knowledgeBaseIds.stream().distinct().limit(5).toList();for(UUID kbId:knowledgeIds)requireEnabled("knowledge_base",kbId);
+        for(UUID kbId:knowledgeIds)authorizations.require(principal,ResourceAuthorizationService.Type.KNOWLEDGE_BASE,kbId);
         UUID id = UUID.randomUUID(); var now = com.agentplatform.common.DatabaseTime.now();
         String title = request.title == null || request.title.isBlank() ? "新会话" : request.title.trim();
         jdbc.update("INSERT INTO chat_conversation(id,user_id,title,model_id,source_id,created_at,updated_at) VALUES(?,?,?,?,?,?,?)",
-                id.toString(), actor(authentication).id().toString(), title, request.modelId.toString(), request.sourceId.toString(), now, now);
+                id.toString(), principal.id().toString(), title, request.modelId.toString(), request.sourceId.toString(), now, now);
         for(UUID kbId:knowledgeIds)jdbc.update("INSERT INTO chat_conversation_knowledge(conversation_id,kb_id) VALUES(?,?)",id.toString(),kbId.toString());
         return Map.of("id", id.toString(), "title", title);
     }
@@ -108,26 +115,25 @@ public class ChatController {
         if (List.of("QUEUED", "RUNNING").contains(String.valueOf(task.get("status")))) analysis.cancel(id);
     }
 
-    @GetMapping("/messages/{id}/export.csv") public ResponseEntity<byte[]> exportCsv(@PathVariable UUID id,Authentication authentication)throws Exception{Map<String,Object> message=messageForUser(id,authentication);List<Map<String,Object>> rows=json.readValue(String.valueOf(message.get("result_json")),List.class);StringBuilder csv=new StringBuilder("\uFEFF");if(!rows.isEmpty()){List<String> columns=new ArrayList<>(rows.getFirst().keySet());csv.append(String.join(",",columns.stream().map(ChatController::csv).toList())).append("\r\n");for(Map<String,Object> row:rows)csv.append(String.join(",",columns.stream().map(c->csv(value(row.get(c)))).toList())).append("\r\n");}return download(csv.toString().getBytes(StandardCharsets.UTF_8),"text/csv;charset=UTF-8","analysis-result.csv");}
-    @GetMapping("/messages/{id}/export.md") public ResponseEntity<byte[]> exportMarkdown(@PathVariable UUID id,Authentication authentication){Map<String,Object> message=messageForUser(id,authentication);StringBuilder md=new StringBuilder("# 智能分析报告\n\n").append(message.get("content")).append("\n\n## 实际执行的查询\n\n```").append("DSL".equals(message.get("query_language"))?"json":"sql").append("\n").append(message.get("sql_text")).append("\n```\n");try{JsonNode evidence=json.readTree(Objects.toString(message.get("evidence_json"),"{}"));if(evidence.path("citations").isArray()&&!evidence.path("citations").isEmpty()){md.append("\n## 知识库引用\n");int i=1;for(JsonNode citation:evidence.path("citations")){md.append("\n").append(i++).append(". ").append(citation.path("document_name").asText());if(!citation.path("page_number").isMissingNode()&&!citation.path("page_number").isNull())md.append("，第 ").append(citation.path("page_number").asInt()).append(" 页");md.append("\n   > ").append(citation.path("content").asText().replace("\n"," ")).append("\n");}}}catch(Exception ignored){}md.append("\n> 报告基于当次实际查询和检索证据生成。\n");return download(md.toString().getBytes(StandardCharsets.UTF_8),"text/markdown;charset=UTF-8","analysis-report.md");}
+    @GetMapping("/messages/{id}/export.csv") public ResponseEntity<byte[]> exportCsv(@PathVariable UUID id,Authentication authentication)throws Exception{Map<String,Object> message=messageForUser(id,authentication);List<Map<String,Object>> rows=json.readValue(String.valueOf(message.get("result_json")),List.class);StringBuilder csv=new StringBuilder("\uFEFF");if(!rows.isEmpty()){List<String> columns=new ArrayList<>(rows.getFirst().keySet());csv.append(String.join(",",columns.stream().map(ChatController::csv).toList())).append("\r\n");for(Map<String,Object> row:rows)csv.append(String.join(",",columns.stream().map(c->csv(value(row.get(c)))).toList())).append("\r\n");}audit.record(actor(authentication).id(),"EXPORT_CSV","CHAT_MESSAGE",id,"SUCCESS");return download(csv.toString().getBytes(StandardCharsets.UTF_8),"text/csv;charset=UTF-8","analysis-result.csv");}
+    @GetMapping("/messages/{id}/export.md") public ResponseEntity<byte[]> exportMarkdown(@PathVariable UUID id,Authentication authentication){Map<String,Object> message=messageForUser(id,authentication);StringBuilder md=new StringBuilder("# 智能分析报告\n\n").append(message.get("content")).append("\n\n## 实际执行的查询\n\n```").append("DSL".equals(message.get("query_language"))?"json":"sql").append("\n").append(message.get("sql_text")).append("\n```\n");try{JsonNode evidence=json.readTree(Objects.toString(message.get("evidence_json"),"{}"));if(evidence.path("citations").isArray()&&!evidence.path("citations").isEmpty()){md.append("\n## 知识库引用\n");int i=1;for(JsonNode citation:evidence.path("citations")){md.append("\n").append(i++).append(". ").append(citation.path("document_name").asText());if(!citation.path("page_number").isMissingNode()&&!citation.path("page_number").isNull())md.append("，第 ").append(citation.path("page_number").asInt()).append(" 页");md.append("\n   > ").append(citation.path("content").asText().replace("\n"," ")).append("\n");}}}catch(Exception ignored){}md.append("\n> 报告基于当次实际查询和检索证据生成。\n");audit.record(actor(authentication).id(),"EXPORT_MARKDOWN","CHAT_MESSAGE",id,"SUCCESS");return download(md.toString().getBytes(StandardCharsets.UTF_8),"text/markdown;charset=UTF-8","analysis-report.md");}
 
     private Map<String, Object> taskForUser(UUID id, Authentication authentication) {
         List<Map<String, Object>> rows = jdbc.queryForList("""
-                SELECT t.id,t.status,t.stage,t.error_code,t.error_message,t.assistant_message_id,t.created_at,t.updated_at
+                SELECT t.id,t.conversation_id,t.status,t.stage,t.error_code,t.error_message,t.assistant_message_id,t.created_at,t.updated_at
                 FROM analysis_task t JOIN chat_conversation c ON c.id=t.conversation_id
                 WHERE t.id=? AND c.user_id=?
                 """, id.toString(), actor(authentication).id().toString());
         if (rows.isEmpty()) throw new BusinessException(404, "TASK_NOT_FOUND", "任务不存在");
-        return rows.getFirst();
+        ownConversation(UUID.fromString(String.valueOf(rows.getFirst().get("conversation_id"))),authentication);return rows.getFirst();
     }
-    private Map<String,Object> messageForUser(UUID id,Authentication authentication){List<Map<String,Object>> rows=jdbc.queryForList("SELECT m.content,m.sql_text,m.query_language,m.result_json,m.evidence_json FROM chat_message m JOIN chat_conversation c ON c.id=m.conversation_id WHERE m.id=? AND m.role='ASSISTANT' AND m.status='COMPLETED' AND c.user_id=?",id.toString(),actor(authentication).id().toString());if(rows.isEmpty())throw new BusinessException(404,"MESSAGE_NOT_FOUND","可导出的回答不存在");return rows.getFirst();}
+    private Map<String,Object> messageForUser(UUID id,Authentication authentication){List<Map<String,Object>> rows=jdbc.queryForList("SELECT m.content,m.sql_text,m.query_language,m.result_json,m.evidence_json,m.conversation_id FROM chat_message m JOIN chat_conversation c ON c.id=m.conversation_id WHERE m.id=? AND m.role='ASSISTANT' AND m.status='COMPLETED' AND c.user_id=?",id.toString(),actor(authentication).id().toString());if(rows.isEmpty())throw new BusinessException(404,"MESSAGE_NOT_FOUND","可导出的回答不存在");ownConversation(UUID.fromString(String.valueOf(rows.getFirst().get("conversation_id"))),authentication);return rows.getFirst();}
     private static ResponseEntity<byte[]> download(byte[] body,String type,String filename){return ResponseEntity.ok().header("Content-Type",type).header("Content-Disposition","attachment; filename=\""+filename+"\"").body(body);}
     private static String value(Object value){if(value==null)return "";if(value instanceof Map<?,?>||value instanceof List<?>)return value.toString();return String.valueOf(value);}
     private static String csv(String value){return "\""+value.replace("\"","\"\"")+"\"";}
 
     private void ownConversation(UUID id, Authentication authentication) {
-        Integer count = jdbc.queryForObject("SELECT COUNT(*) FROM chat_conversation WHERE id=? AND user_id=?", Integer.class, id.toString(), actor(authentication).id().toString());
-        if (count == null || count == 0) throw new BusinessException(404, "CONVERSATION_NOT_FOUND", "会话不存在");
+        PlatformPrincipal principal=actor(authentication);List<Map<String,Object>> rows=jdbc.queryForList("SELECT id,model_id,source_id FROM chat_conversation WHERE id=? AND user_id=?",id.toString(),principal.id().toString());if(rows.isEmpty())throw new BusinessException(404,"CONVERSATION_NOT_FOUND","会话不存在");Map<String,Object> row=rows.getFirst();row.put("knowledge_base_ids",jdbc.queryForList("SELECT kb_id FROM chat_conversation_knowledge WHERE conversation_id=?",String.class,id.toString()));if(!canAccessConversation(principal,row))throw new BusinessException(403,"CONVERSATION_RESOURCE_REVOKED","会话使用的资源权限已被撤销");
     }
     private void requireEnabled(String table, UUID id) {
         if (!Set.of("model_config", "data_source","knowledge_base").contains(table)) throw new IllegalArgumentException();
@@ -135,6 +141,8 @@ public class ChatController {
         if (count == null || count == 0) throw new BusinessException(422, "CONFIG_NOT_AVAILABLE", "所选配置未启用");
     }
     private static PlatformPrincipal actor(Authentication authentication) { return (PlatformPrincipal) authentication.getPrincipal(); }
+    private List<Map<String,Object>> filter(List<Map<String,Object>> rows,PlatformPrincipal principal,ResourceAuthorizationService.Type type){Set<String> ids=authorizations.accessibleIds(principal,type);return ids==null?rows:rows.stream().filter(row->ids.contains(String.valueOf(row.get("id")))).toList();}
+    private boolean canAccessConversation(PlatformPrincipal principal,Map<String,Object> row){if(!authorizations.canAccess(principal,ResourceAuthorizationService.Type.MODEL,UUID.fromString(String.valueOf(row.get("model_id"))))||!authorizations.canAccess(principal,ResourceAuthorizationService.Type.DATA_SOURCE,UUID.fromString(String.valueOf(row.get("source_id")))))return false;Object ids=row.get("knowledge_base_ids");if(ids instanceof Iterable<?> values)for(Object value:values)if(!authorizations.canAccess(principal,ResourceAuthorizationService.Type.KNOWLEDGE_BASE,UUID.fromString(String.valueOf(value))))return false;return true;}
 
     public record ConversationRequest(String title, @NotNull UUID modelId, @NotNull UUID sourceId,List<UUID> knowledgeBaseIds) {}
     public record MessageRequest(@NotBlank @Size(max = 4000) String content) {}

@@ -26,11 +26,12 @@ import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Semaphore;
 import io.micrometer.core.instrument.MeterRegistry;
+import com.agentplatform.operations.OperationsProperties;
 
 @Service
 class ChatAnalysisService {
     private static final Logger log=LoggerFactory.getLogger(ChatAnalysisService.class);
-    private final JdbcTemplate jdbc; private final SecretService secrets; private final ObjectMapper json; private final ChatTaskEvents events;private final KnowledgeRetriever knowledge;private final MeterRegistry metrics;
+    private final JdbcTemplate jdbc; private final SecretService secrets; private final ObjectMapper json; private final ChatTaskEvents events;private final KnowledgeRetriever knowledge;private final MeterRegistry metrics;private final OperationsProperties operations;
     private final HttpClient http = HttpClient.newBuilder().followRedirects(HttpClient.Redirect.NEVER).build();
     private final Set<UUID> cancelled = ConcurrentHashMap.newKeySet();
     private final Map<UUID,Thread> workers = new ConcurrentHashMap<>();
@@ -38,8 +39,8 @@ class ChatAnalysisService {
     private final Semaphore capacity = new Semaphore(4);
     private final ThreadLocal<UUID> currentTask = new ThreadLocal<>();
 
-    ChatAnalysisService(JdbcTemplate jdbc, SecretService secrets, ObjectMapper json, ChatTaskEvents events,KnowledgeRetriever knowledge,MeterRegistry metrics) {
-        this.jdbc=jdbc;this.secrets=secrets;this.json=json;this.events=events;this.knowledge=knowledge;this.metrics=metrics;
+    ChatAnalysisService(JdbcTemplate jdbc, SecretService secrets, ObjectMapper json, ChatTaskEvents events,KnowledgeRetriever knowledge,MeterRegistry metrics,OperationsProperties operations) {
+        this.jdbc=jdbc;this.secrets=secrets;this.json=json;this.events=events;this.knowledge=knowledge;this.metrics=metrics;this.operations=operations;
     }
 
     @Async("chatTaskExecutor") public void run(UUID taskId) {
@@ -171,7 +172,7 @@ class ChatAnalysisService {
         String key=c.modelSecretId==null?null:secrets.reveal(UUID.fromString(c.modelSecretId),"MODEL");if(key!=null&&!key.isBlank())request.header("Authorization","Bearer "+key);
         HttpResponse<String> response;try{response=http.send(request.build(),HttpResponse.BodyHandlers.ofString());}catch(HttpTimeoutException exception){log.warn("模型调用超时 provider={} model={} timeoutMs={}",c.provider,c.modelName,c.timeoutMs);throw new BusinessException(504,"MODEL_TIMEOUT","模型调用超时（"+c.timeoutMs+" 毫秒）");}if(response.statusCode()/100!=2)throw new BusinessException(502,"MODEL_CALL_FAILED","模型调用失败，HTTP "+response.statusCode());
         root=json.readTree(response.body());String content=ollama?root.path("message").path("content").asText():root.path("choices").path(0).path("message").path("content").asText();if(content.isBlank())throw new BusinessException(502,"MODEL_EMPTY_RESPONSE","模型未返回有效内容");
-        String result=content.trim();callStatus="SUCCESS";log.info("模型调用结果 provider={} model={} chars={} content={}",c.provider,c.modelName,result.length(),limit(result,20000));return result;
+        String result=content.trim();callStatus="SUCCESS";if(operations.logModelContent())log.info("模型调用结果 provider={} model={} chars={} content={}",c.provider,c.modelName,result.length(),limit(result,20000));else log.info("模型调用完成 provider={} model={} chars={}",c.provider,c.modelName,result.length());return result;
         }catch(BusinessException e){errorCode=e.code();throw e;}catch(Exception e){errorCode="MODEL_CALL_EXCEPTION";throw e;}finally{
             long duration=elapsed(callStart);long promptTokens=root==null?0:root.path("usage").path("prompt_tokens").asLong(root.path("prompt_eval_count").asLong());long completionTokens=root==null?0:root.path("usage").path("completion_tokens").asLong(root.path("eval_count").asLong());long total=root==null?promptTokens+completionTokens:root.path("usage").path("total_tokens").asLong(promptTokens+completionTokens);
             String purpose=prompt.startsWith("你是数据分析助手")?"ANSWER_GENERATION":prompt.startsWith("你是字段选择器")?"FIELD_SELECTION":prompt.contains("上一次生成")?"QUERY_REPAIR":"QUERY_GENERATION";
