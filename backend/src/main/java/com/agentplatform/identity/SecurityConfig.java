@@ -51,6 +51,7 @@ public class SecurityConfig {
                 .csrf(config -> config.csrfTokenRepository(csrf).csrfTokenRequestHandler(handler))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/v1/auth/csrf", "/api/v1/auth/login", "/actuator/health").permitAll()
+                        .requestMatchers("/actuator/info", "/actuator/metrics", "/actuator/metrics/**").hasRole("ADMIN")
                         .requestMatchers("/api/v1/admin/**").hasRole("ADMIN")
                         .anyRequest().authenticated())
                 .exceptionHandling(errors -> errors

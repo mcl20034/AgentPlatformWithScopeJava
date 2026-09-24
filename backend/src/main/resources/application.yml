@@ -27,7 +27,18 @@ management:
   endpoints:
     web:
       exposure:
-        include: health
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: when-authorized
+logging:
+  file:
+    name: ${PLATFORM_LOG_FILE:./logs/agent-platform.log}
+  logback:
+    rollingpolicy:
+      max-file-size: ${PLATFORM_LOG_MAX_SIZE:20MB}
+      max-history: ${PLATFORM_LOG_MAX_HISTORY:30}
+      total-size-cap: ${PLATFORM_LOG_TOTAL_SIZE:1GB}
 platform:
   secrets:
     key-id: ${PLATFORM_MASTER_KEY_ID:local-v1}
@@ -43,3 +54,6 @@ platform:
     admin-password-file: ${PLATFORM_ADMIN_PASSWORD_FILE:}
   security:
     bcrypt-strength: ${PLATFORM_BCRYPT_STRENGTH:12}
+  operations:
+    max-active-tasks-per-user: ${PLATFORM_MAX_ACTIVE_TASKS_PER_USER:2}
+    max-tasks-per-hour-per-user: ${PLATFORM_MAX_TASKS_PER_HOUR_PER_USER:60}

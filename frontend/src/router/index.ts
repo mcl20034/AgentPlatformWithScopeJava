@@ -16,6 +16,7 @@ const router = createRouter({
         { path: 'admin/data-sources', name: 'data-sources', component: () => import('../views/ConfigurationCatalogView.vue'), meta: { admin: true, catalog: 'data-sources', title: '数据源管理' } },
         { path: 'admin/knowledge-bases', name: 'knowledge-bases', component: () => import('../views/KnowledgeBaseView.vue'), meta: { admin: true } },
         { path: 'admin/accounts', name: 'accounts', component: () => import('../views/AccountsView.vue'), meta: { admin: true } },
+        { path: 'admin/operations', name: 'operations', component: () => import('../views/OperationsView.vue'), meta: { admin: true, title: '运行与审计' } },
         { path: 'forbidden', name: 'forbidden', component: () => import('../views/ForbiddenView.vue') },
       ],
     },

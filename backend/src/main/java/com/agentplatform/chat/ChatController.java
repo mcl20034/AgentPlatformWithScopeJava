@@ -2,6 +2,7 @@ package com.agentplatform.chat;
 
 import com.agentplatform.common.BusinessException;
 import com.agentplatform.identity.PlatformPrincipal;
+import com.agentplatform.operations.OperationsProperties;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -27,9 +28,10 @@ public class ChatController {
     private final ChatAnalysisService analysis;
     private final ChatTaskEvents events;
     private final ObjectMapper json;
+    private final OperationsProperties operations;
 
-    public ChatController(JdbcTemplate jdbc, ChatAnalysisService analysis, ChatTaskEvents events, ObjectMapper json) {
-        this.jdbc = jdbc; this.analysis = analysis; this.events = events; this.json=json;
+    public ChatController(JdbcTemplate jdbc, ChatAnalysisService analysis, ChatTaskEvents events, ObjectMapper json,OperationsProperties operations) {
+        this.jdbc = jdbc; this.analysis = analysis; this.events = events; this.json=json;this.operations=operations;
     }
 
     @GetMapping("/options")
@@ -73,6 +75,11 @@ public class ChatController {
     @ResponseStatus(HttpStatus.ACCEPTED)
     public Map<String, Object> send(@PathVariable UUID id, @Valid @RequestBody MessageRequest request, Authentication authentication) {
         ownConversation(id, authentication);
+        String userId=actor(authentication).id().toString();
+        Integer active=jdbc.queryForObject("SELECT COUNT(*) FROM analysis_task t JOIN chat_conversation c ON c.id=t.conversation_id WHERE c.user_id=? AND t.status IN ('QUEUED','RUNNING')",Integer.class,userId);
+        if(operations.maxActiveTasksPerUser()>0&&active!=null&&active>=operations.maxActiveTasksPerUser())throw new BusinessException(429,"USER_TASK_LIMIT","您正在执行的分析任务已达到上限，请等待任务完成");
+        Integer hourly=jdbc.queryForObject("SELECT COUNT(*) FROM analysis_task t JOIN chat_conversation c ON c.id=t.conversation_id WHERE c.user_id=? AND t.created_at>=CURRENT_TIMESTAMP - INTERVAL '1' HOUR",Integer.class,userId);
+        if(operations.maxTasksPerHourPerUser()>0&&hourly!=null&&hourly>=operations.maxTasksPerHourPerUser())throw new BusinessException(429,"USER_RATE_LIMIT","您在最近一小时提交的分析任务已达到上限");
         Integer running = jdbc.queryForObject("SELECT COUNT(*) FROM analysis_task WHERE conversation_id=? AND status IN ('QUEUED','RUNNING')", Integer.class, id.toString());
         if (running != null && running > 0) throw new BusinessException(409, "TASK_ALREADY_RUNNING", "当前会话已有任务正在执行");
         UUID userMessage = UUID.randomUUID(), assistantMessage = UUID.randomUUID(), task = UUID.randomUUID();

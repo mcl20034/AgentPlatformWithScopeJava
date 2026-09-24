@@ -25,24 +25,27 @@ import java.time.Duration;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Semaphore;
+import io.micrometer.core.instrument.MeterRegistry;
 
 @Service
 class ChatAnalysisService {
     private static final Logger log=LoggerFactory.getLogger(ChatAnalysisService.class);
-    private final JdbcTemplate jdbc; private final SecretService secrets; private final ObjectMapper json; private final ChatTaskEvents events;private final KnowledgeRetriever knowledge;
+    private final JdbcTemplate jdbc; private final SecretService secrets; private final ObjectMapper json; private final ChatTaskEvents events;private final KnowledgeRetriever knowledge;private final MeterRegistry metrics;
     private final HttpClient http = HttpClient.newBuilder().followRedirects(HttpClient.Redirect.NEVER).build();
     private final Set<UUID> cancelled = ConcurrentHashMap.newKeySet();
     private final Map<UUID,Thread> workers = new ConcurrentHashMap<>();
     private final Map<UUID,Statement> activeStatements = new ConcurrentHashMap<>();
     private final Semaphore capacity = new Semaphore(4);
+    private final ThreadLocal<UUID> currentTask = new ThreadLocal<>();
 
-    ChatAnalysisService(JdbcTemplate jdbc, SecretService secrets, ObjectMapper json, ChatTaskEvents events,KnowledgeRetriever knowledge) {
-        this.jdbc=jdbc;this.secrets=secrets;this.json=json;this.events=events;this.knowledge=knowledge;
+    ChatAnalysisService(JdbcTemplate jdbc, SecretService secrets, ObjectMapper json, ChatTaskEvents events,KnowledgeRetriever knowledge,MeterRegistry metrics) {
+        this.jdbc=jdbc;this.secrets=secrets;this.json=json;this.events=events;this.knowledge=knowledge;this.metrics=metrics;
     }
 
     @Async("chatTaskExecutor") public void run(UUID taskId) {
         long taskStart=System.nanoTime();boolean acquired=false;
         try {
+            currentTask.set(taskId);
             workers.put(taskId,Thread.currentThread());
             acquired=capacity.tryAcquire();if(!acquired)throw new BusinessException(429,"ANALYSIS_CAPACITY_FULL","当前分析任务较多，请稍后重试");
             jdbc.update("UPDATE analysis_task SET started_at=?,updated_at=? WHERE id=?",com.agentplatform.common.DatabaseTime.now(),com.agentplatform.common.DatabaseTime.now(),taskId.toString());
@@ -57,7 +60,7 @@ class ChatAnalysisService {
         } catch(CancelledException ignored){finish(taskId,"CANCELLED","CANCELLED","TASK_CANCELLED","任务已停止");}
         catch(BusinessException e){fail(taskId,e.code(),e.getMessage());}
         catch(Exception e){if(cancelled.contains(taskId))finish(taskId,"CANCELLED","CANCELLED","TASK_CANCELLED","任务已停止");else fail(taskId,"ANALYSIS_FAILED",safe(e));}
-        finally{if(acquired)capacity.release();activeStatements.remove(taskId);workers.remove(taskId);cancelled.remove(taskId);}
+        finally{try{String status=jdbc.queryForObject("SELECT status FROM analysis_task WHERE id=?",String.class,taskId.toString());metrics.counter("agent.analysis.tasks","status",status==null?"UNKNOWN":status).increment();}catch(Exception ignored){}currentTask.remove();if(acquired)capacity.release();activeStatements.remove(taskId);workers.remove(taskId);cancelled.remove(taskId);}
     }
     void cancel(UUID taskId){cancelled.add(taskId);Statement statement=activeStatements.get(taskId);if(statement!=null)try{statement.cancel();}catch(Exception ignored){}Thread worker=workers.get(taskId);if(worker!=null)worker.interrupt();}
 
@@ -158,6 +161,8 @@ class ChatAnalysisService {
     }
     private String sanitizeCitations(String answer,int count){java.util.regex.Matcher matcher=java.util.regex.Pattern.compile("\\[(\\d+)]").matcher(answer);StringBuffer result=new StringBuffer();while(matcher.find()){int value=Integer.parseInt(matcher.group(1));matcher.appendReplacement(result,value>=1&&value<=count?matcher.group():"");}matcher.appendTail(result);return result.toString();}
     private String callModel(Config c,String prompt)throws Exception{
+        long callStart=System.nanoTime();String callStatus="FAILED",errorCode=null;JsonNode root=null;
+        try{
         boolean ollama="OLLAMA".equals(c.provider);URI uri=URI.create(c.modelEndpoint.replaceAll("/$","")+(ollama?"/api/chat":"/chat/completions"));
         Map<String,Object> message=Map.of("role","user","content",prompt);Map<String,Object> body=ollama
                 ?Map.of("model",c.modelName,"messages",List.of(message),"stream",false,"options",Map.of("num_predict",2048))
@@ -165,8 +170,14 @@ class ChatAnalysisService {
         HttpRequest.Builder request=HttpRequest.newBuilder(uri).timeout(Duration.ofMillis(c.timeoutMs)).header("Content-Type","application/json").POST(HttpRequest.BodyPublishers.ofString(json.writeValueAsString(body)));
         String key=c.modelSecretId==null?null:secrets.reveal(UUID.fromString(c.modelSecretId),"MODEL");if(key!=null&&!key.isBlank())request.header("Authorization","Bearer "+key);
         HttpResponse<String> response;try{response=http.send(request.build(),HttpResponse.BodyHandlers.ofString());}catch(HttpTimeoutException exception){log.warn("模型调用超时 provider={} model={} timeoutMs={}",c.provider,c.modelName,c.timeoutMs);throw new BusinessException(504,"MODEL_TIMEOUT","模型调用超时（"+c.timeoutMs+" 毫秒）");}if(response.statusCode()/100!=2)throw new BusinessException(502,"MODEL_CALL_FAILED","模型调用失败，HTTP "+response.statusCode());
-        JsonNode root=json.readTree(response.body());String content=ollama?root.path("message").path("content").asText():root.path("choices").path(0).path("message").path("content").asText();if(content.isBlank())throw new BusinessException(502,"MODEL_EMPTY_RESPONSE","模型未返回有效内容");
-        String result=content.trim();log.info("模型调用结果 provider={} model={} chars={} content={}",c.provider,c.modelName,result.length(),limit(result,20000));return result;
+        root=json.readTree(response.body());String content=ollama?root.path("message").path("content").asText():root.path("choices").path(0).path("message").path("content").asText();if(content.isBlank())throw new BusinessException(502,"MODEL_EMPTY_RESPONSE","模型未返回有效内容");
+        String result=content.trim();callStatus="SUCCESS";log.info("模型调用结果 provider={} model={} chars={} content={}",c.provider,c.modelName,result.length(),limit(result,20000));return result;
+        }catch(BusinessException e){errorCode=e.code();throw e;}catch(Exception e){errorCode="MODEL_CALL_EXCEPTION";throw e;}finally{
+            long duration=elapsed(callStart);long promptTokens=root==null?0:root.path("usage").path("prompt_tokens").asLong(root.path("prompt_eval_count").asLong());long completionTokens=root==null?0:root.path("usage").path("completion_tokens").asLong(root.path("eval_count").asLong());long total=root==null?promptTokens+completionTokens:root.path("usage").path("total_tokens").asLong(promptTokens+completionTokens);
+            String purpose=prompt.startsWith("你是数据分析助手")?"ANSWER_GENERATION":prompt.startsWith("你是字段选择器")?"FIELD_SELECTION":prompt.contains("上一次生成")?"QUERY_REPAIR":"QUERY_GENERATION";
+            try{jdbc.update("INSERT INTO model_call_log(id,task_id,provider,model_name,purpose,status,duration_ms,prompt_tokens,completion_tokens,total_tokens,error_code,occurred_at) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)",UUID.randomUUID().toString(),currentTask.get()==null?null:currentTask.get().toString(),c.provider,c.modelName,purpose,callStatus,duration,promptTokens,completionTokens,total,errorCode,com.agentplatform.common.DatabaseTime.now());}catch(Exception e){log.warn("模型调用审计写入失败",e);}
+            metrics.counter("agent.model.calls","provider",c.provider,"status",callStatus).increment();metrics.timer("agent.model.call.duration","provider",c.provider).record(Duration.ofMillis(duration));
+        }
     }
     private Execution queryMysql(UUID taskId,Config c,String sql)throws Exception{
         long start=System.nanoTime();Properties p=new Properties();p.setProperty("user",Objects.toString(c.sourceUsername,""));p.setProperty("password",sourcePassword(c));p.setProperty("connectTimeout","5000");p.setProperty("socketTimeout","15000");

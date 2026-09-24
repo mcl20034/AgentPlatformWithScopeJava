@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ChatDotRound, User, Fold, Expand, Setting, Coin, Collection } from '@element-plus/icons-vue'
+import { ChatDotRound, User, Fold, Expand, Setting, Coin, Collection, Monitor } from '@element-plus/icons-vue'
 import { computed, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useAuthStore } from '../stores/auth'
@@ -29,6 +29,7 @@ async function logout() {
           <el-menu-item index="/admin/embedding-models"><el-icon><Setting /></el-icon><template #title>Embedding 模型</template></el-menu-item>
           <el-menu-item index="/admin/data-sources"><el-icon><Coin /></el-icon><template #title>数据源管理</template></el-menu-item>
           <el-menu-item index="/admin/knowledge-bases"><el-icon><Collection /></el-icon><template #title>知识库</template></el-menu-item>
+          <el-menu-item index="/admin/operations"><el-icon><Monitor /></el-icon><template #title>运行与审计</template></el-menu-item>
         </template>
       </el-menu>
       <button class="collapse-button" @click="collapsed = !collapsed"><el-icon><Expand v-if="collapsed"/><Fold v-else/></el-icon><span v-if="!collapsed">收起导航</span></button>
